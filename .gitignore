@@ -64,3 +64,5 @@ local.properties
 # Maven
 log/
 target/
+
+WebContent/images/tests/*

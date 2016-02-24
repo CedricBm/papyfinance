@@ -6,6 +6,7 @@ Projet Java EE de Cédric Beaumont, Iñaki Calzada, Ismail Mallasse et Yassine R
 - Installer [JBoss - Wildfly](http://tools.jboss.org/downloads/jbosstools/mars/4.3.0.Final.html)
 - Installer [Maven](http://www.eclipse.org/m2e/)
 - Installer [xampp](https://www.apachefriends.org/fr/download.html) (pour la base de données MySQL)
+- Installer [h2](http://www.h2database.com/html/download.html) (pour la base de données de tests)
 - Création du projet
   - Créer un Dynamic Web Project
   - Utiliser le runtime Wildfly 8.x
