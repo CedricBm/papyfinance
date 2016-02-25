@@ -12,5 +12,6 @@
         <property name="show_sql">true</property>
         <property name="hibernate.default_schema">PUBLIC</property>
         <mapping class="fr.papyfinance.com.beans.Company"/>
+        <mapping class="fr.papyfinance.com.beans.Sector"/>
     </session-factory>
 </hibernate-configuration>

@@ -4,24 +4,24 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="companies")
 public class Company {
-	@Id
-    @GeneratedValue
     private int id;
     private String name;
-    @Lob
-    @Column(columnDefinition = "mediumblob")
     private byte[] logo;
     private String workforce;
     private int revenue;
     private String website;
+    private Sector sector;
     
-
+	@Id
+    @GeneratedValue
 	public int getId() {
 		return id;
 	}
@@ -38,6 +38,8 @@ public class Company {
 		this.name = name;
 	}
 
+	@Lob
+    @Column(columnDefinition = "mediumblob")
 	public byte[] getLogo() {
 		return logo;
 	}
@@ -68,5 +70,15 @@ public class Company {
 
 	public void setWebsite(String website) {
 		this.website = website;
+	}
+
+	@ManyToOne
+    @JoinColumn(name = "sector_id")
+	public Sector getSector() {
+		return sector;
+	}
+
+	public void setSector(Sector sector) {
+		this.sector = sector;
 	}
 }

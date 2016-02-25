@@ -1,5 +1,7 @@
 package fr.papyfinance.com.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -31,16 +33,22 @@ public class CompanyDao {
         session.getTransaction().commit();
 	}
 	
-	public Company get(int id) {
+	public Company get(String name) {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		Company c = (Company) session.createQuery("from Company where id = :cid").setParameter("cid", id).uniqueResult();
+		Company c = (Company) session.createQuery("from Company where name = :cname").setParameter("cname", name).uniqueResult();
 		session.getTransaction().commit();
 		return c;
 	}
 	
-	public void getAll() {
+	@SuppressWarnings("unchecked")
+	public List<Company> getAll() {
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		List<Company> companies = session.createQuery("from Company").list();
+		session.getTransaction().commit();
 		
+		return companies;
 	}
 	
 	public void delete(Company c) {
