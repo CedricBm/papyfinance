@@ -26,7 +26,7 @@ public class SectorDao {
         session.getTransaction().commit();
 	}
 	
-	public Sector get(String name) {
+	public Sector getByName(String name) {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		Sector s = (Sector) session.createQuery("from Sector where name = :sname").setParameter("sname", name).uniqueResult();

@@ -1,11 +1,14 @@
 package fr.papyfinance.com.beans;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,7 +18,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "offers")
-public class Offer {
+public class Offer implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	private float price;
 	private float quantity;
@@ -28,8 +33,12 @@ public class Offer {
 	private Company company;
 	private Set<Transaction> transactions;
 	
+	public Offer() {
+		setValid(true);
+	}
+	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -54,6 +63,7 @@ public class Offer {
 		this.quantity = quantity;
 	}
 	
+	@Column(name = "is_valid")
 	public boolean isValid() {
 		return valid;
 	}
@@ -121,7 +131,7 @@ public class Offer {
 		this.company = company;
 	}
 
-	@OneToMany(mappedBy = "offer")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "offer")
 	public Set<Transaction> getTransactions() {
 		return transactions;
 	}

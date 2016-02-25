@@ -1,8 +1,11 @@
 package fr.papyfinance.com.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -10,7 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "transactions")
-public class Transaction {
+public class Transaction implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	private String buyerFixed;
 	private String sellerFixed;
@@ -23,7 +28,7 @@ public class Transaction {
 	private Offer offer;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}

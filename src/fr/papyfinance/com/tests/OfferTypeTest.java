@@ -1,12 +1,10 @@
 package fr.papyfinance.com.tests;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.util.List;
-import java.util.Set;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -17,71 +15,50 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import fr.papyfinance.com.beans.Company;
-import fr.papyfinance.com.beans.Role;
-import fr.papyfinance.com.beans.Sector;
-import fr.papyfinance.com.dao.CompanyDao;
-import fr.papyfinance.com.dao.SectorDao;
+import fr.papyfinance.com.beans.OfferType;
+import fr.papyfinance.com.dao.OfferTypeDao;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class SectorTest {
-	private static CompanyDao companyDao;
-	private static SectorDao sectorDao;
+public class OfferTypeTest {
+	private static OfferTypeDao offerTypeDao;
 
 	@BeforeClass
     public static  void runBeforeClass() {
 		Configuration configuration = new Configuration().configure("hibernate-test.cfg.xml");
     	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        companyDao = new CompanyDao(sessionFactory);
-        sectorDao = new SectorDao(sessionFactory);
+        offerTypeDao = new OfferTypeDao(sessionFactory);
     }
 
 	@Test
 	public void test1Create() {
-		Sector s = new Sector();
-		s.setName("Banque");
-		
-		sectorDao.create(s);
+		OfferType s = new OfferType();
+		s.setName("Achat");
+		offerTypeDao.create(s);
 		
 		assertNotNull(s.getId());
 	}
 	
 	@Test
 	public void test2Get() {
-		Sector s = sectorDao.getByName("Banque");
+		OfferType s = offerTypeDao.getByName("Achat");
 		
 		assertNotNull(s);
 	}
 	
 	@Test
-	public void test3GetCompanies() {
-		Sector s = sectorDao.getByName("Banque");
-		Company c = new Company();
-		c.setName("Société Générale");
-		c.setSector(s);
-		
-		companyDao.create(c);
-		
-		Set<Company> companies = sectorDao.getByName("Banque").getCompanies();
-		
-		assertEquals(companies.size(), 1);
-		assertEquals(companies.iterator().next().getName(), "Société Générale");
-	}
-	
-	@Test
-	public void test4GetAll() {
-		List<Sector> sectors = sectorDao.getAll();
+	public void test3GetAll() {
+		List<OfferType> offerTypes = offerTypeDao.getAll();
 
-		assertTrue(sectors.size() > 0);
+		assertTrue(offerTypes.size() > 0);
 	}
 	
 	@Test
-	public void test5UniqName() {
-		Sector s = new Sector();
-		s.setName("Banque");
+	public void test4UniqName() {
+		OfferType s = new OfferType();
+		s.setName("Achat");
 		try {
-			sectorDao.create(s);
+			offerTypeDao.create(s);
 			fail("Unique constraint on name not respected.");
 		} catch (ConstraintViolationException e) {
 			assertTrue(true);

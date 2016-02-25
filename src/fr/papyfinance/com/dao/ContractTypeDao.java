@@ -5,49 +5,42 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import fr.papyfinance.com.beans.Company;
+import fr.papyfinance.com.beans.ContractType;
 import fr.papyfinance.com.beans.HibernateUtil;
 
-public class CompanyDao {
+public class ContractTypeDao {
 	private SessionFactory sessionFactory;
 	
-	public CompanyDao() {
+	public ContractTypeDao() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
 	
-	public CompanyDao(SessionFactory sessionFactory) {
+	public ContractTypeDao(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(Company c) {
+	public void create(ContractType o) {
 		Session session = sessionFactory.getCurrentSession();
         session.beginTransaction();
-        session.save(c);
+        session.save(o);
         session.getTransaction().commit();
 	}
 	
-	public void update(Company c) {
-		Session session = sessionFactory.getCurrentSession();
-        session.beginTransaction();
-        session.update(c);
-        session.getTransaction().commit();
-	}
-	
-	public Company getByName(String name) {
+	public ContractType getByName(String name) {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		Company c = (Company) session.createQuery("from Company where name = :cname").setParameter("cname", name).uniqueResult();
+		ContractType o = (ContractType) session.createQuery("from ContractType where name = :cname").setParameter("cname", name).uniqueResult();
 		session.getTransaction().commit();
-		return c;
+		return o;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Company> getAll() {
+	public List<ContractType> getAll() {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		List<Company> companies = session.createQuery("from Company").list();
+		List<ContractType> contractTypes = session.createQuery("from ContractType").list();
 		session.getTransaction().commit();
 		
-		return companies;
+		return contractTypes;
 	}
 }

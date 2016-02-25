@@ -1,7 +1,10 @@
 package fr.papyfinance.com.beans;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -9,14 +12,16 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "auction_offers")
-public class AuctionOffer {
+public class AuctionOffer implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private int id;
-	private float amount;
+	private double amount;
 	private User user;
 	private Auction auction;
 	
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -25,12 +30,12 @@ public class AuctionOffer {
 		this.id = id;
 	}
 	
-	public float getAmount() {
+	public double getAmount() {
 		return amount;
 	}
 	
-	public void setAmount(float amount) {
-		this.amount = amount;
+	public void setAmount(double d) {
+		this.amount = d;
 	}
 	
 	@ManyToOne

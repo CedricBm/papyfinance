@@ -1,11 +1,13 @@
 package fr.papyfinance.com.beans;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -15,7 +17,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "companies")
-public class Company {
+public class Company implements Serializable {
+	private static final long serialVersionUID = 1L;
+
     private int id;
     private String name;
     private byte[] logo;
@@ -24,12 +28,12 @@ public class Company {
     private String website;
     private Sector sector;
     private Set<Publication> publications;
-    private Set<User> user;
+    private Set<User> users;
     private Set<Offer> offers;
     private Set<Transaction> transactions;
     
 	@Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -38,6 +42,7 @@ public class Company {
 		this.id = id;
 	}
 	
+	@Column(unique = true)
 	public String getName() {
 		return name;
 	}
@@ -100,12 +105,12 @@ public class Company {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
-	public Set<User> getUser() {
-		return user;
+	public Set<User> getUsers() {
+		return users;
 	}
 
-	public void setUser(Set<User> user) {
-		this.user = user;
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
@@ -117,7 +122,7 @@ public class Company {
 		this.offers = offers;
 	}
 
-	@OneToMany(mappedBy = "company")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
 	public Set<Transaction> getTransactions() {
 		return transactions;
 	}

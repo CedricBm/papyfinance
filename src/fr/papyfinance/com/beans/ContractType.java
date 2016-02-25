@@ -1,23 +1,28 @@
 package fr.papyfinance.com.beans;
 
+import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "contract_types")
-public class ContractType {
+public class ContractType implements Serializable {
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	private String name;
 	private Set<Offer> offers;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {
 		return id;
 	}
@@ -25,7 +30,8 @@ public class ContractType {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
+	@Column(unique = true)
 	public String getName() {
 		return name;
 	}
