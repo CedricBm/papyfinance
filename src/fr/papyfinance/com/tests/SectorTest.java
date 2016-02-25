@@ -1,9 +1,9 @@
 package fr.papyfinance.com.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 import java.util.Set;
@@ -11,14 +11,12 @@ import java.util.Set;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import fr.papyfinance.com.beans.Company;
-import fr.papyfinance.com.beans.Role;
 import fr.papyfinance.com.beans.Sector;
 import fr.papyfinance.com.dao.CompanyDao;
 import fr.papyfinance.com.dao.SectorDao;
@@ -80,11 +78,6 @@ public class SectorTest {
 	public void test5UniqName() {
 		Sector s = new Sector();
 		s.setName("Banque");
-		try {
-			sectorDao.create(s);
-			fail("Unique constraint on name not respected.");
-		} catch (ConstraintViolationException e) {
-			assertTrue(true);
-		}
+		assertFalse(sectorDao.create(s));
 	}
 }

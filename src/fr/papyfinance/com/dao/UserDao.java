@@ -17,18 +17,26 @@ public class UserDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(User o) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(User o) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(o);
-        session.getTransaction().commit();
+        try {
+        	session.save(o);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 	
 	public User getByEmail(String email) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		User o = (User) session.createQuery("from User where email = :semail").setParameter("semail", email).uniqueResult();
 		session.getTransaction().commit();
+		session.close();
 		return o;
 	}
 }

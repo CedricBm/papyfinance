@@ -19,28 +19,34 @@ public class SectorDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(Sector s) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(Sector s) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(s);
-        session.getTransaction().commit();
+        try {
+        	session.save(s);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 	
 	public Sector getByName(String name) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Sector s = (Sector) session.createQuery("from Sector where name = :sname").setParameter("sname", name).uniqueResult();
-		session.getTransaction().commit();
+		session.close();
 		return s;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Sector> getAll() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		List<Sector> sectors = session.createQuery("from Sector").list();
-		session.getTransaction().commit();
-		
+		session.close();
 		return sectors;
 	}
 }

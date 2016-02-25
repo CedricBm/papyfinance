@@ -19,28 +19,36 @@ public class AuctionOfferDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(AuctionOffer o) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(AuctionOffer o) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(o);
-        session.getTransaction().commit();
+        try {
+        	session.save(o);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 	
 	public AuctionOffer getByName(String name) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		AuctionOffer o = (AuctionOffer) session.createQuery("from AuctionOffer where name = :cname").setParameter("cname", name).uniqueResult();
 		session.getTransaction().commit();
+		session.close();
 		return o;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<AuctionOffer> getAll() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		List<AuctionOffer> auctionOffers = session.createQuery("from AuctionOffer").list();
 		session.getTransaction().commit();
-		
+		session.close();
 		return auctionOffers;
 	}
 }

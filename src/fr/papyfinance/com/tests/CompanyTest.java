@@ -1,9 +1,8 @@
 package fr.papyfinance.com.tests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +12,6 @@ import java.util.Set;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -138,11 +136,6 @@ public class CompanyTest {
 	public void test7UniqName() {
 		Company c = new Company();
 		c.setName("Sopra Steria");
-		try {
-			companyDao.create(c);
-			fail("Unique constraint on name not respected.");
-		} catch (ConstraintViolationException e) {
-			assertTrue(true);
-		}
+		assertFalse(companyDao.create(c));
 	}
 }

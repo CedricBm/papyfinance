@@ -17,10 +17,17 @@ public class TransactionDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(Transaction o) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(Transaction o) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(o);
-        session.getTransaction().commit();
+        try {
+        	session.save(o);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 }

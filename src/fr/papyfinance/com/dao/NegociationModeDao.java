@@ -19,28 +19,36 @@ public class NegociationModeDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(NegociationMode o) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(NegociationMode o) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(o);
-        session.getTransaction().commit();
+        try {
+        	session.save(o);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 	
 	public NegociationMode getByName(String name) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		NegociationMode o = (NegociationMode) session.createQuery("from NegociationMode where name = :cname").setParameter("cname", name).uniqueResult();
 		session.getTransaction().commit();
+		session.close();
 		return o;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<NegociationMode> getAll() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		List<NegociationMode> negociationModes = session.createQuery("from NegociationMode").list();
 		session.getTransaction().commit();
-		
+		session.close();
 		return negociationModes;
 	}
 }

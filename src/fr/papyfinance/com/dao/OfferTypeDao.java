@@ -19,28 +19,36 @@ public class OfferTypeDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(OfferType o) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(OfferType o) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(o);
-        session.getTransaction().commit();
+        try {
+        	session.save(o);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 	
 	public OfferType getByName(String name) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		OfferType o = (OfferType) session.createQuery("from OfferType where name = :sname").setParameter("sname", name).uniqueResult();
 		session.getTransaction().commit();
+		session.close();
 		return o;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<OfferType> getAll() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		List<OfferType> offertTypes = session.createQuery("from OfferType").list();
 		session.getTransaction().commit();
-		
+		session.close();
 		return offertTypes;
 	}
 }

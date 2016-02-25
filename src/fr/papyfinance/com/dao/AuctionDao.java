@@ -17,10 +17,17 @@ public class AuctionDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(Auction o) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(Auction o) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(o);
-        session.getTransaction().commit();
+        try {
+        	session.save(o);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 }

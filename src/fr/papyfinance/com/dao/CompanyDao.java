@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.exception.ConstraintViolationException;
 
 import fr.papyfinance.com.beans.Company;
 import fr.papyfinance.com.beans.HibernateUtil;
@@ -19,35 +20,50 @@ public class CompanyDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public void create(Company c) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean create(Company c) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(c);
-        session.getTransaction().commit();
+        try {
+        	session.save(c);
+        	session.getTransaction().commit();
+        } catch (ConstraintViolationException e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;
 	}
 	
-	public void update(Company c) {
-		Session session = sessionFactory.getCurrentSession();
+	public boolean update(Company c) {
+		Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(c);
-        session.getTransaction().commit();
+        try {
+        	session.update(c);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;        
 	}
 	
 	public Company getByName(String name) {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Company c = (Company) session.createQuery("from Company where name = :cname").setParameter("cname", name).uniqueResult();
 		session.getTransaction().commit();
+		session.close();
 		return c;
 	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Company> getAll() {
-		Session session = sessionFactory.getCurrentSession();
+		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		List<Company> companies = session.createQuery("from Company").list();
 		session.getTransaction().commit();
-		
+		session.close();
 		return companies;
 	}
 }

@@ -1,15 +1,14 @@
 package fr.papyfinance.com.tests;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -57,11 +56,6 @@ public class ContractTypeTest {
 	public void test4UniqName() {
 		ContractType s = new ContractType();
 		s.setName("Titre");
-		try {
-			contractTypeDao.create(s);
-			fail("Unique constraint on name not respected.");
-		} catch (ConstraintViolationException e) {
-			assertTrue(true);
-		}
+		assertFalse(contractTypeDao.create(s));
 	}
 }
