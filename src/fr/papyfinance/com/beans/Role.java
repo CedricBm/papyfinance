@@ -10,36 +10,36 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "sectors")
-public class Sector {
-    private int id;
-    private String name;
-    private Set<Company> companies;
-    
+@Table(name = "roles")
+public class Role {
+	private int id;
+	private String name;
+	private Set<User> users;
+	
 	@Id
     @GeneratedValue
 	public int getId() {
 		return id;
 	}
-
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
-
+	
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sector")
-	public Set<Company> getCompanies() {
-		return companies;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "role")
+	public Set<User> getUsers() {
+		return users;
 	}
-
-	public void setCompanies(Set<Company> companies) {
-		this.companies = companies;
+	
+	public void setUsers(Set<User> users) {
+		this.users = users;
 	}
 }

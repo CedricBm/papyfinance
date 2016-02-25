@@ -1,16 +1,20 @@
 package fr.papyfinance.com.beans;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="companies")
+@Table(name = "companies")
 public class Company {
     private int id;
     private String name;
@@ -19,6 +23,10 @@ public class Company {
     private int revenue;
     private String website;
     private Sector sector;
+    private Set<Publication> publications;
+    private Set<User> user;
+    private Set<Offer> offers;
+    private Set<Transaction> transactions;
     
 	@Id
     @GeneratedValue
@@ -80,5 +88,41 @@ public class Company {
 
 	public void setSector(Sector sector) {
 		this.sector = sector;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
+	public Set<Publication> getPublications() {
+		return publications;
+	}
+
+	public void setPublications(Set<Publication> publications) {
+		this.publications = publications;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
+	public Set<User> getUser() {
+		return user;
+	}
+
+	public void setUser(Set<User> user) {
+		this.user = user;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
+	public Set<Offer> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(Set<Offer> offers) {
+		this.offers = offers;
+	}
+
+	@OneToMany(mappedBy = "company")
+	public Set<Transaction> getTransactions() {
+		return transactions;
+	}
+
+	public void setTransactions(Set<Transaction> transactions) {
+		this.transactions = transactions;
 	}
 }
