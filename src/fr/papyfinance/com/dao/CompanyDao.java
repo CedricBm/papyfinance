@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
 
 import fr.papyfinance.com.beans.Company;
-import fr.papyfinance.com.beans.HibernateUtil;
+import fr.papyfinance.com.resources.HibernateUtil;
 
 public class CompanyDao {
 	private SessionFactory sessionFactory;

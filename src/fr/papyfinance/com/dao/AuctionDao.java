@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.papyfinance.com.beans.Auction;
-import fr.papyfinance.com.beans.HibernateUtil;
+import fr.papyfinance.com.resources.HibernateUtil;
 
 public class AuctionDao {
 	private SessionFactory sessionFactory;

@@ -1,4 +1,4 @@
-package fr.papyfinance.com.beans;
+package fr.papyfinance.com.resources;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;

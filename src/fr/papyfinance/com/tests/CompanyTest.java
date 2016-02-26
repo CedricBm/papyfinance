@@ -64,7 +64,7 @@ public class CompanyTest {
         Company c = new Company();
 		c.setName("Sopra Steria");
 		c.setWorkforce("36 000");
-		c.setRevenue(1000000000);
+		c.setRevenue("1000000000");
 		c.setWebsite("http://www.soprasteria.com/");
         c.setLogo(bFile);
         c.setSector(s);
@@ -100,11 +100,11 @@ public class CompanyTest {
 	@Test
 	public void test3Update() {
 		Company c = companyDao.getByName("Sopra Steria");
-		c.setRevenue(2000000000);
+		c.setRevenue("2000000000");
 		companyDao.update(c);
 		
 		c = companyDao.getByName("Sopra Steria");
-		assertEquals(c.getRevenue(), 2000000000);
+		assertEquals(c.getRevenue(), "2000000000");
 	}
 	
 	@Test

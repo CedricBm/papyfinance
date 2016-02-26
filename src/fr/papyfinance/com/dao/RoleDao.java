@@ -5,8 +5,8 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import fr.papyfinance.com.beans.HibernateUtil;
 import fr.papyfinance.com.beans.Role;
+import fr.papyfinance.com.resources.HibernateUtil;
 
 public class RoleDao {
 	private SessionFactory sessionFactory;

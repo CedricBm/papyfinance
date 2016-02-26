@@ -24,7 +24,7 @@ public class Company implements Serializable {
     private String name;
     private byte[] logo;
     private String workforce;
-    private int revenue;
+    private String revenue;
     private String website;
     private Sector sector;
     private Set<Publication> publications;
@@ -69,11 +69,11 @@ public class Company implements Serializable {
 		this.workforce = workforce;
 	}
 
-	public int getRevenue() {
+	public String getRevenue() {
 		return revenue;
 	}
 
-	public void setRevenue(int revenue) {
+	public void setRevenue(String revenue) {
 		this.revenue = revenue;
 	}
 

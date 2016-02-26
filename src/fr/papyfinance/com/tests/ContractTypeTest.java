@@ -2,6 +2,7 @@ package fr.papyfinance.com.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
@@ -57,5 +58,11 @@ public class ContractTypeTest {
 		ContractType s = new ContractType();
 		s.setName("Titre");
 		assertFalse(contractTypeDao.create(s));
+	}
+	
+	@Test
+	public void test5NullReturn() {
+		ContractType s = contractTypeDao.getByName("Foobar");
+		assertNull(s);
 	}
 }

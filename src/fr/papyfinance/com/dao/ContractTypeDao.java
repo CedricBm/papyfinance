@@ -6,7 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.papyfinance.com.beans.ContractType;
-import fr.papyfinance.com.beans.HibernateUtil;
+import fr.papyfinance.com.resources.HibernateUtil;
 
 public class ContractTypeDao {
 	private SessionFactory sessionFactory;
