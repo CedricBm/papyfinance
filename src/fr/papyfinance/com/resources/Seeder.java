@@ -7,18 +7,21 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+
 import fr.papyfinance.com.beans.Company;
 import fr.papyfinance.com.beans.ContractType;
 import fr.papyfinance.com.beans.NegociationMode;
 import fr.papyfinance.com.beans.OfferType;
 import fr.papyfinance.com.beans.Role;
 import fr.papyfinance.com.beans.Sector;
+import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.dao.CompanyDao;
 import fr.papyfinance.com.dao.ContractTypeDao;
 import fr.papyfinance.com.dao.NegociationModeDao;
 import fr.papyfinance.com.dao.OfferTypeDao;
 import fr.papyfinance.com.dao.RoleDao;
 import fr.papyfinance.com.dao.SectorDao;
+import fr.papyfinance.com.dao.UserDao;
 
 public final class Seeder {
 	private static ContractTypeDao contractTypeDao = new ContractTypeDao();
@@ -27,6 +30,7 @@ public final class Seeder {
 	private static SectorDao sectorDao = new SectorDao();
 	private static RoleDao roleDao = new RoleDao();
 	private static CompanyDao companyDao = new CompanyDao();
+	private static UserDao userDao = new UserDao();
 	
 	private static List<String> contractTypes = Arrays.asList("Action", "Stock Option");
 	private static List<String> negociationModes = Arrays.asList("Prix Fixe", "Enchère");
@@ -248,6 +252,7 @@ public final class Seeder {
 		seedSectors();
 		seedRoles();
 		seedCompanies(logosPath);
+		seedAdmin();
 		System.out.println("========================= Fin du seed =========================");
 	}
 	
@@ -350,5 +355,20 @@ public final class Seeder {
 			}
 		}
 		System.out.println(count + " companies seeded.");
+	}
+	
+	public static void seedAdmin() {
+		User u = new User();
+		u.setEmail("admin@papyfinance.fr");
+		u.setFname("Admin");
+		u.setLname("Istrateur");
+		u.setLogin("admin");
+		u.setPassword(User.encrypt("password"));
+		u.setRole(roleDao.getByName("Administrateur"));
+		if (userDao.create(u)) {
+			System.out.println("Admin user seeded.");
+		} else {
+			System.out.println("Admin user already seeded.");
+		}
 	}
 }

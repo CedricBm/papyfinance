@@ -46,7 +46,7 @@ public class CompanyTest {
 
 	@Test
 	public void test1Save() {
-		File file = new File("WebContent/images/sopra_steria.png");
+		File file = new File("WebContent/img/sopra_steria.png");
         byte[] bFile = new byte[(int) file.length()];
  
         try {
@@ -89,7 +89,7 @@ public class CompanyTest {
 		assertNotNull(c);
 		
 		try{
-            FileOutputStream fos = new FileOutputStream("WebContent/images/tests/sopra_steria_output.png");
+            FileOutputStream fos = new FileOutputStream("WebContent/images/img/sopra_steria_output.png");
             fos.write(c.getLogo());
             fos.close();
         }catch(Exception e){

@@ -20,7 +20,7 @@ public class SeedServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Seeder.seedAll(this.getServletContext().getRealPath("/images/logos/"));
+		Seeder.seedAll(this.getServletContext().getRealPath("/img/logos/"));
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/seed.jsp" ).forward( request, response );
 	}
 
