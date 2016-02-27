@@ -11,9 +11,41 @@
           <h2 class="header center orange-text">PapyFinance</h2>
           <div class="row center">
             <h5 class="header col s12 light">Le marché secondaire du parfait papy financier.</h5>
+            <img class="cover" src="<c:url value="/img/cover.png" />" />
           </div>
         </div>
-        <div class="col s12 m4">inscription</div>
+        <div class="col s12 m4">
+          <div class="row">
+            <form class="col s12" method="post">
+              <div class="row">
+                <div class="input-field col s6">
+                  <i class="material-icons prefix">account_circle</i> <input id="fname" type="text" class="validate"> <label for="fname">Prénom</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="lname" type="text" class="validate"> <label for="lname">Nom</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">explore</i> <input id="login" type="text" class="validate"> <label for="login">Login</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">email</i> <input id="email" type="email" class="validate"> <label for="email">Email</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <i class="material-icons prefix">security</i> <input id="password" type="password" class="validate"> <label for="password">Mot de passe</label>
+                </div>
+              </div>
+              <div class="row">
+                <button class="waves-effect waves-light btn" type="submit">Je m'inscris!</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
       <br> <br>
     </div>

@@ -19,3 +19,7 @@ body {
 .main {
   flex: 1 0 auto;
 }
+
+img.cover {
+  margin-top: 10px;
+}
