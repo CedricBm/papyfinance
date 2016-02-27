@@ -138,4 +138,11 @@ public class CompanyTest {
 		c.setName("Sopra Steria");
 		assertFalse(companyDao.create(c));
 	}
+	
+	@Test
+	public void test8GetById() {
+		Company c = companyDao.getById(1);
+		
+		assertNotNull(c);
+	}
 }

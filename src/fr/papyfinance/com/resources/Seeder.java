@@ -365,6 +365,7 @@ public final class Seeder {
 		u.setLogin("admin");
 		u.setPassword(User.encrypt("password"));
 		u.setRole(roleDao.getByName("Administrateur"));
+		u.setConfirmed(true);
 		if (userDao.create(u)) {
 			System.out.println("Admin user seeded.");
 		} else {

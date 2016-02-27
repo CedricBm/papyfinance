@@ -50,6 +50,7 @@ public class UserTest {
 		
 		User u = new User();
 		u.setEmail("user@example.org");
+		u.setLogin("test");
 		u.setCompany(c);
 		u.setRole(r);
 		userDao.create(u);
@@ -76,5 +77,19 @@ public class UserTest {
 		User u = c.getUsers().iterator().next();
 		
 		assertEquals(u.getEmail(), "user@example.org");
+	}
+	
+	@Test
+	public void test4GetFromEmail() {
+		User u = userDao.getByEmail("user@example.org");
+				
+		assertNotNull(u.getId());
+	}
+	
+	@Test
+	public void test5GetFromLogin() {
+		User u = userDao.getByLogin("test");
+		
+		assertNotNull(u.getId());
 	}
 }

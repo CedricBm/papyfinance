@@ -39,4 +39,13 @@ public class UserDao {
 		session.close();
 		return o;
 	}
+	
+	public User getByLogin(String login) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		User o = (User) session.createQuery("from User where login = :slogin").setParameter("slogin", login).uniqueResult();
+		session.getTransaction().commit();
+		session.close();
+		return o;
+	}
 }

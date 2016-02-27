@@ -25,6 +25,7 @@ public class User implements Serializable {
 	private String email;
 	private String fname;
 	private String lname;
+	private boolean confirmed;
 	private Set<Publication> publications;
 	private Company company;
 	private Role role;
@@ -96,6 +97,15 @@ public class User implements Serializable {
 
 	public void setLname(String lname) {
 		this.lname = lname;
+	}
+
+	@Column(name = "is_confirmed")
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")

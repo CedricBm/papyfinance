@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageTitle}-PapyFinance</title>
+<title>${pageTitle} - PapyFinance</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/materialize.min.css" />" />
@@ -17,19 +17,27 @@
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="${pageContext.request.contextPath}" class="brand-logo valign-wrapper"><img src="<c:url value="/img/logo.png" />" /></a>
-      <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light" href="login">Connexion</a></li>
-        <li><a class="waves-effect waves-light" href="signup/company">Inscription Membre société</a></li>
+      <a class='right hide-on-med-and-down dropdown-button menu' href='#' data-activates='dropdown1' data-constrainwidth="false" data-beloworigin="true">Bienvenue ${ user.fname }<i class="material-icons right">list</i></a>
+
+      <ul id='dropdown1' class='dropdown-content'>
+        <li><a class="waves-effect waves-light" href="#">Publier une offre</a></li>
+        <li><a class="waves-effect waves-light" href="#">Mon profil</a></li>
+        <li><a class="waves-effect waves-light" href="#">Acheter/Vendre</a></li>
+        <li class="divider"></li>
+        <li><a href="logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light" href="login">Connexion</a></li>
-        <li><a class="waves-effect waves-light" href="signup/company">Inscription Membre société</a></li>
+        <li><a class="waves-effect waves-light" href="#">Publier une offre</a></li>
+        <li><a class="waves-effect waves-light" href="#">Mon profil</a></li>
+        <li><a class="waves-effect waves-light" href="#">Acheter/Vendre</a></li>
+        <li class="divider"></li>
+        <li><a href="logout">Déconnexion</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-
+  
   <jsp:include page="/WEB-INF/inc/flash.jsp" />
 
   <jsp:doBody />

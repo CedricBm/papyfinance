@@ -1,26 +1,29 @@
 package fr.papyfinance.com.servlets;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.papyfinance.com.resources.Seeder;
+import fr.papyfinance.com.resources.Util;
 
-@WebServlet("/seed")
-public class SeedServlet extends HttpServlet {
+/**
+ * Servlet implementation class LogoutServlet
+ */
+@WebServlet("/logout")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/seed.jsp" ).forward( request, response );
+		Util.logout(request.getSession());
+		request.getSession().setAttribute("logout", "Vous êtes bien déconnecté. A bientôt!");
+		response.sendRedirect("/PapyFinance");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Seeder.seedAll(this.getServletContext().getRealPath("/img/logos/"));
-		this.getServletContext().getRequestDispatcher( "/WEB-INF/seed.jsp" ).forward( request, response );
+		doGet(request, response);
 	}
 
 }

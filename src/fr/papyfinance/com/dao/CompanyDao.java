@@ -57,6 +57,15 @@ public class CompanyDao {
 		return c;
 	}
 	
+	public Company getById(int id) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Company c = (Company) session.createQuery("from Company where id = :cid").setParameter("cid", id).uniqueResult();
+		session.getTransaction().commit();
+		session.close();
+		return c;
+	}
+	
 	@SuppressWarnings("unchecked")
 	public List<Company> getAll() {
 		Session session = sessionFactory.openSession();

@@ -23,3 +23,20 @@ body {
 img.cover {
   margin-top: 10px;
 }
+
+img.logo-connection {
+  margin-top: 20px;
+}
+
+.input-field .prefix ~ div.select-wrapper {
+  margin-left: 3rem;
+  width: calc(100% - 3rem);
+}
+
+.prefix-select {
+  left: 12px;
+}
+
+.flash {
+  line-height: 45px;
+}
