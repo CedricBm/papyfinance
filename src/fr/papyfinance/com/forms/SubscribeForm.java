@@ -19,7 +19,7 @@ public class SubscribeForm {
 		user.setFname(Util.getInputValue(request, "fname"));
 		user.setEmail(Util.getInputValue(request, "email"));
 		user.setLogin(Util.getInputValue(request, "login"));
-		user.setPassword(User.encrypt(Util.getInputValue(request, "password")));
+		user.setPassword(Util.encrypt(Util.getInputValue(request, "password")));
 		user.setRole(roleDao.getByName("Investisseur"));
 		user.setConfirmed(true);
 

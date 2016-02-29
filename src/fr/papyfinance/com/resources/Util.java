@@ -26,4 +26,17 @@ public final class Util {
 	public static User currentUser(HttpSession session) {
 		return (User) session.getAttribute("user");
 	}
+	
+	public static String encrypt(String password) {
+		try {
+			java.security.MessageDigest d = null;
+			d = java.security.MessageDigest.getInstance("MD5");
+			d.reset();
+			d.update(password.getBytes());
+			return new String(d.digest());
+		} catch (Throwable ex) {
+			System.err.println("Encryption failed. " + ex);
+		}
+		return null;
+	}
 }

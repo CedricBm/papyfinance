@@ -15,8 +15,8 @@ public class AuthenticationForm {
 
 	public User getUser(HttpServletRequest request) {
 		User user = userDao.getByLogin(Util.getInputValue(request, "login"));
-		
-		if (user != null && User.encrypt(Util.getInputValue(request, "password")).equals(user.getPassword())) {
+
+		if (user != null && Util.encrypt(Util.getInputValue(request, "password")).equals(user.getPassword())) {
 			return user;
 		}
 		return null;

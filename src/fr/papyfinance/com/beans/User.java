@@ -34,19 +34,6 @@ public class User implements Serializable {
 	private Set<Transaction> transactionsBought;
 	private Set<Transaction> transactionsSold;
 
-	public static String encrypt(String password) {
-		try {
-			java.security.MessageDigest d = null;
-			d = java.security.MessageDigest.getInstance("SHA-1");
-			d.reset();
-			d.update(password.getBytes());
-			return new String(d.digest());
-		} catch (Throwable ex) {
-			System.err.println("Encryption failed. " + ex);
-		}
-		return null;
-	}
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getId() {

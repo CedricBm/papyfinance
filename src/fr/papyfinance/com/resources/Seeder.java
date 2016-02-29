@@ -363,7 +363,7 @@ public final class Seeder {
 		u.setFname("Admin");
 		u.setLname("Istrateur");
 		u.setLogin("admin");
-		u.setPassword(User.encrypt("password"));
+		u.setPassword(Util.encrypt("password"));
 		u.setRole(roleDao.getByName("Administrateur"));
 		u.setConfirmed(true);
 		if (userDao.create(u)) {
