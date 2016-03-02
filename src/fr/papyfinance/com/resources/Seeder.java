@@ -33,7 +33,7 @@ public final class Seeder {
 	private static UserDao userDao = new UserDao();
 	
 	private static List<String> contractTypes = Arrays.asList("Action", "Stock Option");
-	private static List<String> negociationModes = Arrays.asList("Prix Fixe", "Ench�re");
+	private static List<String> negociationModes = Arrays.asList("Prix Fixe", "Enchère");
 	private static List<String> offerTypes = Arrays.asList("Achat", "Vente");
 	private static List<String> sectors = Arrays.asList("Aéronautique", "Agro-alimentaire", "Assurance", "Automobile",
 			"Banque", "Informatique", "Téléphonie", "Textile");
