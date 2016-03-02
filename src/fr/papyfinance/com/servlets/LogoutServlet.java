@@ -9,9 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.papyfinance.com.resources.Util;
 
-/**
- * Servlet implementation class LogoutServlet
- */
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

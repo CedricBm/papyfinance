@@ -27,7 +27,7 @@ public class AuthenticationServlet extends HttpServlet {
 		if (Util.currentUser(request.getSession()) == null) {
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/connection/authentication.jsp" ).forward( request, response );
 		} else {
-			request.getSession().setAttribute("already_connected", "Vous Ãªtes dÃ©jÃ  connectÃ©.");
+			request.getSession().setAttribute("already_connected", "Vous êtes déjà connecté.");
 			response.sendRedirect("/PapyFinance");
 		}
 	}
@@ -36,14 +36,14 @@ public class AuthenticationServlet extends HttpServlet {
 		User u = authenticationForm.getUser(request);
 
 		if (u == null) {
-			request.setAttribute("error", "Votre login ou mot de passe est erronÃ©.");
+			request.setAttribute("error", "Votre login ou mot de passe est erroné.");
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/connection/authentication.jsp" ).forward( request, response );
 		} else if (!u.isConfirmed()) {
-			request.getSession().setAttribute("unconfirmed", "Votre compte est en cours de vÃ©rification. Veuillez attendre qu'il soit validÃ©.");
+			request.getSession().setAttribute("unconfirmed", "Votre compte est en cours de vérification. Veuillez attendre qu'il soit validé.");
 			response.sendRedirect("/PapyFinance");
 		} else {
 			Util.login(u, request.getSession());
-			request.getSession().setAttribute("connection", "Connexion rÃ©ussie!");
+			request.getSession().setAttribute("connection", "Connexion réussie!");
 			response.sendRedirect("/PapyFinance");
 		}
 	}

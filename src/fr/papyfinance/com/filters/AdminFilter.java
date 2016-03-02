@@ -33,7 +33,7 @@ public class AdminFilter implements Filter {
         if (u != null && u.getRole().getName() == "Administrateur") {
         	chain.doFilter(request, response);
         } else {
-        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accÃ©der Ã  cette page!");
+        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
         	response.sendRedirect("/PapyFinance");
         }
 	}

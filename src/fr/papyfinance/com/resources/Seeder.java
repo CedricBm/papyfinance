@@ -33,11 +33,11 @@ public final class Seeder {
 	private static UserDao userDao = new UserDao();
 	
 	private static List<String> contractTypes = Arrays.asList("Action", "Stock Option");
-	private static List<String> negociationModes = Arrays.asList("Prix Fixe", "EnchÃ¨re");
+	private static List<String> negociationModes = Arrays.asList("Prix Fixe", "Enchère");
 	private static List<String> offerTypes = Arrays.asList("Achat", "Vente");
-	private static List<String> sectors = Arrays.asList("AÃ©ronautique", "Agro-alimentaire", "Assurance", "Automobile",
-			"Banque", "Informatique", "TÃ©lÃ©phonie", "Textile");
-	private static List<String> roles = Arrays.asList("Administrateur", "Membre sociÃ©tÃ©", "Investisseur");
+	private static List<String> sectors = Arrays.asList("Aéronautique", "Agro-alimentaire", "Assurance", "Automobile",
+			"Banque", "Informatique", "Télé©phonie", "Textile");
+	private static List<String> roles = Arrays.asList("Administrateur", "Membre société", "Investisseur");
 	@SuppressWarnings("serial")
 	private static ArrayList<HashMap<String, String>> companies = new ArrayList<HashMap<String, String>>() {
 		{
@@ -58,7 +58,7 @@ public final class Seeder {
 					put("workforce", "144061");
 					put("revenue", "60700000000");
 					put("website", "http://www.airbus-group.com");
-					put("sector", "AÃ©ronautique");
+					put("sector", "Aéronautique");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -68,7 +68,7 @@ public final class Seeder {
 					put("workforce", "92600");
 					put("revenue", "182800000000");
 					put("website", "http://www.apple.com");
-					put("sector", "TÃ©lÃ©phonie");
+					put("sector", "Téléphonie");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -78,12 +78,12 @@ public final class Seeder {
 					put("workforce", "172415");
 					put("revenue", "81700000000");
 					put("website", "http://www.boeing.com");
-					put("sector", "AÃ©ronautique");
+					put("sector", "Aéronautique");
 				}
 			});
 			add(new HashMap<String, String>() {
 				{
-					put("name", "Caisse d'Ã©pargne");
+					put("name", "Caisse d'épargne");
 					put("logo", "Caissedepargne-logo.png");
 					put("workforce", "52000");
 					put("revenue", "2000000000");
@@ -93,7 +93,7 @@ public final class Seeder {
 			});
 			add(new HashMap<String, String>() {
 				{
-					put("name", "CitroÃ«n");
+					put("name", "Citroën");
 					put("logo", "Citroen-logo.png");
 					put("workforce", "13500");
 					put("revenue", "27616000000");
@@ -178,7 +178,7 @@ public final class Seeder {
 					put("workforce", "29485");
 					put("revenue", "45000000000");
 					put("website", "http://www.lg.com");
-					put("sector", "TÃ©lÃ©phonie");
+					put("sector", "Téléphonie");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -193,7 +193,7 @@ public final class Seeder {
 			});
 			add(new HashMap<String, String>() {
 				{
-					put("name", "NestlÃ©");
+					put("name", "Nestlé");
 					put("logo", "Nestle-logo.png");
 					put("workforce", "328000");
 					put("revenue", "92186000000");
@@ -228,12 +228,12 @@ public final class Seeder {
 					put("workforce", "30000");
 					put("revenue", "305000000000");
 					put("website", "http://www.samsung.com");
-					put("sector", "TÃ©lÃ©phonie");
+					put("sector", "Téléphonie");
 				}
 			});
 			add(new HashMap<String, String>() {
 				{
-					put("name", "SociÃ©tÃ© GÃ©nÃ©rale");
+					put("name", "Société Géné©rale");
 					put("logo", "SocieteGenerale-logo.png");
 					put("workforce", "148300");
 					put("revenue", "23700000000");
@@ -245,7 +245,7 @@ public final class Seeder {
 	};
 
 	public static void seedAll(String logosPath) {
-		System.out.println("======================== DÃ©but du seed ========================");
+		System.out.println("======================== Début du seed ========================");
 		seedContractTypes();
 		seedNegociationModes();
 		seedOfferTypes();
