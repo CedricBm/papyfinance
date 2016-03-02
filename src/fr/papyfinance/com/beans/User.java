@@ -21,7 +21,7 @@ public class User implements Serializable {
 
 	private int id;
 	private String login;
-	private String password;
+	private byte[] password;
 	private String email;
 	private String fname;
 	private String lname;
@@ -53,11 +53,11 @@ public class User implements Serializable {
 		this.login = login;
 	}
 
-	public String getPassword() {
+	public byte[] getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
+	public void setPassword(byte[] password) {
 		this.password = password;
 	}
 

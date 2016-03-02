@@ -1,5 +1,7 @@
 package fr.papyfinance.com.forms;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 
 import fr.papyfinance.com.beans.User;
@@ -16,7 +18,7 @@ public class AuthenticationForm {
 	public User getUser(HttpServletRequest request) {
 		User user = userDao.getByLogin(Util.getInputValue(request, "login"));
 
-		if (user != null && Util.encrypt(Util.getInputValue(request, "password")).equals(user.getPassword())) {
+		if (user != null && Arrays.equals(Util.encrypt(Util.getInputValue(request, "password")), user.getPassword())) {
 			return user;
 		}
 		return null;

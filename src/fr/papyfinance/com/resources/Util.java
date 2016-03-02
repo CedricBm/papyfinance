@@ -27,13 +27,13 @@ public final class Util {
 		return (User) session.getAttribute("user");
 	}
 	
-	public static String encrypt(String password) {
+	public static byte[] encrypt(String password) {
 		try {
 			java.security.MessageDigest d = null;
-			d = java.security.MessageDigest.getInstance("MD5");
+			d = java.security.MessageDigest.getInstance("SHA-256");
 			d.reset();
 			d.update(password.getBytes());
-			return new String(d.digest());
+			return d.digest();
 		} catch (Throwable ex) {
 			System.err.println("Encryption failed. " + ex);
 		}
