@@ -36,7 +36,7 @@ public final class Seeder {
 	private static List<String> negociationModes = Arrays.asList("Prix Fixe", "Enchère");
 	private static List<String> offerTypes = Arrays.asList("Achat", "Vente");
 	private static List<String> sectors = Arrays.asList("Aéronautique", "Agro-alimentaire", "Assurance", "Automobile",
-			"Banque", "Informatique", "Télé©phonie", "Textile");
+			"Banque", "Informatique", "Téléphonie", "Textile");
 	private static List<String> roles = Arrays.asList("Administrateur", "Membre société", "Investisseur");
 	@SuppressWarnings("serial")
 	private static ArrayList<HashMap<String, String>> companies = new ArrayList<HashMap<String, String>>() {
@@ -233,7 +233,7 @@ public final class Seeder {
 			});
 			add(new HashMap<String, String>() {
 				{
-					put("name", "Société Géné©rale");
+					put("name", "Société Générale");
 					put("logo", "SocieteGenerale-logo.png");
 					put("workforce", "148300");
 					put("revenue", "23700000000");
