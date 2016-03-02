@@ -30,10 +30,10 @@ public class CompanyFilter implements Filter {
         HttpSession session = request.getSession();
 
         User u = (User) session.getAttribute("user");
-        if (u != null && (u.getRole().getName() == "Administrateur" || u.getRole().getName() == "Membre société")) {
+        if (u != null && (u.getRole().getName().equals("Administrateur") || u.getRole().getName().equals("Membre sociÃ©tÃ©"))) {
         	chain.doFilter(request, response);
         } else {
-        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
+        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accï¿½der ï¿½ cette page!");
         	response.sendRedirect("/PapyFinance");
         }
 	}
