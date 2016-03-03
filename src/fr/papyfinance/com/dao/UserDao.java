@@ -1,5 +1,7 @@
 package fr.papyfinance.com.dao;
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
@@ -47,5 +49,24 @@ public class UserDao {
 		session.getTransaction().commit();
 		session.close();
 		return o;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public ArrayList<User> getAllByRole(int role) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		ArrayList<User> o = (ArrayList<User>) session.createQuery("from User where role_id = :srole").setParameter("srole", role).list();
+		session.getTransaction().commit();
+		session.close();
+		return o;
+	}
+	
+	public User update(User newUser){
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		User u = (User) session.merge(newUser);
+		session.getTransaction().commit();
+		session.close();
+		return u;
 	}
 }

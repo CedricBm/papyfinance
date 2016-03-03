@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageTitle}-PapyFinance</title>
+<title>${pageTitle} - PapyFinance</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/materialize.min.css" />" />
@@ -14,25 +14,30 @@
 
 </head>
 <body>
-  <nav class="light-blue lighten-1" role="navigation">
+<nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
       <a id="logo-container" href="${pageContext.request.contextPath}" class="brand-logo valign-wrapper"><img src="<c:url value="/img/logo.png" />" /></a>
       <ul class="right hide-on-med-and-down">
-        <li><a class="waves-effect waves-light" href="admin/all/company_member">Rechercher tous les membres societe</a></li>
-        <li><a class="waves-effect waves-light" href="admin/all/invest">Rechercher tous les investisseurs</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/admin">Retourner sur la page d'administration</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light" href="admin/all/company_member">Rechercher tous les membres societe</a></li>
-        <li><a class="waves-effect waves-light" href="admin/all/invest">Rechercher tous les investisseurs</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/admin">Retourner sur la page d'administration</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
 
-  <jsp:include page="/WEB-INF/inc/flash.jsp" />
-
-  <jsp:doBody />
+  <div class="section no-pad-bot main">
+    <div class="container">
+      <br> <br>
+      <div class="row center">
+        
+        <jsp:doBody />
+        
+      </div>
+    </div>
+  </div>
 
   <footer class="page-footer orange">
     <div class="footer-copyright">
