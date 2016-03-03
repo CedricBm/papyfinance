@@ -18,8 +18,8 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter("/*")
 public class FlashFilter implements Filter {
-	private final List<String> FLASH_ALERTS = Arrays.asList("unauthorized", "unconfirmed");
-	private final List<String> FLASH_SUCCESSES = Arrays.asList("connection", "subscribe");
+	private final List<String> FLASH_ALERTS = Arrays.asList("unauthorized", "unconfirmed", "not_activated", "not_desactivated");
+	private final List<String> FLASH_SUCCESSES = Arrays.asList("connection", "subscribe", "activated", "desactivated");
 	private final List<String> FLASH_NOTICES = Arrays.asList("already_connected", "logout");
 
 	public void destroy() {

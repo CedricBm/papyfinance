@@ -2,7 +2,7 @@
 <%@ taglib prefix="layout" tagdir="/WEB-INF/tags/layouts"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
-<layout:admin-search pageTitle="Resultat recherche">
+<layout:admin pageTitle="Resultat recherche">
 <!--   <div class="col s12">
     <h4 class="header center orange-text">Inscription à PapyFinance</h4>
     <form class="col s4 offset-s4 hoverable" method="post">
@@ -42,4 +42,4 @@
       Vous êtes un papy déjà connu? <a href="login">Connectez-vous.</a>
     </p>
   </div>-->
-</layout:admin-search>
+</layout:admin>

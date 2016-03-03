@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.dao.UserDao;
 
-@WebServlet("/admin/all/invest")
+@WebServlet("/admin/investors")
 public class AdminAllInvestServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +25,7 @@ public class AdminAllInvestServlet extends HttpServlet {
 		UserDao ud = new UserDao();
 		ArrayList<User> listeUsers = ud.getAllByRole(3);
 		HttpSession session = request.getSession();
-		session.setAttribute("_LISTE_USERS",listeUsers);
+		session.setAttribute("listeUsers",listeUsers);
 		
 		this.getServletContext().getRequestDispatcher("/WEB-INF/admin/all-invest.jsp").forward(request,
 				response);

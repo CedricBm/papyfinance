@@ -30,7 +30,7 @@ public class SubscribeServlet extends HttpServlet {
 		if (Util.currentUser(request.getSession()) == null) {
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/connection/signup.jsp" ).forward( request, response );
 		} else {
-			request.getSession().setAttribute("already_connected", "Vous êtes déjà connecté.");
+			request.getSession().setAttribute("already_connected", "Vous Ãªtes dÃ©jÃ  connectÃ©.");
 			response.sendRedirect("/PapyFinance");
 		}
 	}
@@ -40,7 +40,7 @@ public class SubscribeServlet extends HttpServlet {
 
 		if (userDao.create(u)) {
 			Util.login(u, request.getSession());
-			request.getSession().setAttribute("subscribe", "Inscription réussie!");
+			request.getSession().setAttribute("subscribe", "Inscription rÃ©ussie!");
 			response.sendRedirect("/PapyFinance");
 		} else {
 			request.setAttribute("error", "Votre login et/ou votre email n'est pas disponible.");

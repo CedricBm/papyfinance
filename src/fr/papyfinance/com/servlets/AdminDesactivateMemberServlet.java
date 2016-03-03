@@ -23,8 +23,15 @@ public class AdminDesactivateMemberServlet extends HttpServlet{
 			UserDao ud = new UserDao();
 			User u = ud.getByEmail(Util.getInputValue(request, "email"));
 			u.setConfirmed(false);
-			ud.update(u);
-			response.sendRedirect("/PapyFinance/admin/all/company_member");
+			
+			if(ud.update(u))
+			{
+				request.getSession().setAttribute("desactivated", "L'utilisateur "+u.getEmail()+" a bien été désactivé !");
+			}else
+			{
+				request.getSession().setAttribute("not_desactivated", "L'utilisateur "+u.getEmail()+" n'a pas été désactivé !");
+			}
+			response.sendRedirect("company-members");
 	
 	}
 

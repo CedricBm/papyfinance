@@ -60,13 +60,18 @@ public class UserDao {
 		session.close();
 		return o;
 	}
-	
-	public User update(User newUser){
+		
+	public boolean update(User newUser) {
 		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		User u = (User) session.merge(newUser);
-		session.getTransaction().commit();
-		session.close();
-		return u;
+        session.beginTransaction();
+        try {
+        	session.update(newUser);
+        	session.getTransaction().commit();
+        } catch (Exception e) {
+        	return false;
+        } finally {
+        	session.close();
+        }
+        return true;        
 	}
 }

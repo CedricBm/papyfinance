@@ -22,7 +22,7 @@ public class SubscribeCompanyForm {
 		user.setFname(Util.getInputValue(request, "fname"));
 		user.setEmail(Util.getInputValue(request, "email"));
 		user.setCompany(companyDao.getById(Integer.parseInt(Util.getInputValue(request, "company"))));
-		user.setRole(roleDao.getByName("Membre société"));
+		user.setRole(roleDao.getByName("Membre sociÃ©tÃ©"));
 		user.setConfirmed(false);
 
 		return user;

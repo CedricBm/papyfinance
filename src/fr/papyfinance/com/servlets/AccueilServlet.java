@@ -18,7 +18,10 @@ public class AccueilServlet extends HttpServlet {
 			throws ServletException, IOException {
 		if (Util.currentUser(request.getSession()) == null) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/landing/landing.jsp").forward(request, response);
-		} else if (Util.currentUser(request.getSession()).getRole().getName() == "Membre société") {
+		}else if (Util.currentUser(request.getSession()).getRole().getName().equals("Administrateur")) {
+			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/admin.jsp").forward(request,
+					response);
+		}else if (Util.currentUser(request.getSession()).getRole().getName().equals("Membre sociÃ©tÃ©")) {
 			this.getServletContext().getRequestDispatcher("/WEB-INF/landing/landing-company.jsp").forward(request,
 					response);
 		} else {

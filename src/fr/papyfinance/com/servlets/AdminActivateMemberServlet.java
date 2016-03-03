@@ -19,22 +19,36 @@ public class AdminActivateMemberServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	//	if (Util.currentUser(request.getSession()) == null) {
-	//		this.getServletContext().getRequestDispatcher("/WEB-INF/landing/landing.jsp").forward(request, response);
-	//	} else if (Util.currentUser(request.getSession()).getRole().getName() == "Administrateur") {
 			UserDao ud = new UserDao();
 			User u = ud.getByEmail(Util.getInputValue(request, "email"));
+			if(u.getLogin()==null)
+			{
+				u.setLogin(Util.getInputValue(request, "login"));
+				u.setPassword(Util.encrypt(Util.getInputValue(request, "password")));
+			}
 			u.setConfirmed(true);
-			u.setLogin("test");
-			u.setPassword(Util.encrypt("test"));
-			ud.update(u);
-			response.sendRedirect("/PapyFinance/admin/all/company_member");
-		
-	//	} 
+			if(ud.update(u))
+			{
+				request.getSession().setAttribute("activated", "L'utilisateur "+u.getEmail()+" a bien été activé !");
+			}else
+			{
+				request.getSession().setAttribute("not_activated", "L'utilisateur "+u.getEmail()+" n'a pas été activé !");
+			}
+			response.sendRedirect("company-members");
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		doGet(request, response);
+		UserDao ud = new UserDao();
+		User u = ud.getByEmail(Util.getInputValue(request, "email"));
+		if(u.getLogin()==null&&(Util.getInputValue(request, "login")==null||Util.getInputValue(request, "password")==null)){
+			request.setAttribute("email",u.getEmail());
+			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/activate-company_member.jsp").forward(request,
+					response);
+		}else
+		{
+			doGet(request, response);
+		}
 	}
 }

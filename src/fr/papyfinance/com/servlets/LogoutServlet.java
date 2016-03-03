@@ -15,7 +15,7 @@ public class LogoutServlet extends HttpServlet {
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Util.logout(request.getSession());
-		request.getSession().setAttribute("logout", "Vous êtes bien déconnecté. A bientôt!");
+		request.getSession().setAttribute("logout", "Vous Ãªtes bien deconnecte. A bientÃ´t!");
 		response.sendRedirect("/PapyFinance");
 	}
 

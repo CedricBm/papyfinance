@@ -34,7 +34,7 @@ public class SubscribeCompanyServlet extends HttpServlet {
 			request.setAttribute("companies", companyDao.getAll());
 			this.getServletContext().getRequestDispatcher( "/WEB-INF/connection/signup_company.jsp" ).forward( request, response );
 		} else {
-			request.getSession().setAttribute("already_connected", "Vous êtes déjà connecté.");
+			request.getSession().setAttribute("already_connected", "Vous Ãªtes dÃ©jÃ  connectÃ©.");
 			response.sendRedirect("/PapyFinance");
 		}
 	}
@@ -43,7 +43,7 @@ public class SubscribeCompanyServlet extends HttpServlet {
 		User u = subscribeCompanyForm.getUser(request);
 
 		if (userDao.create(u)) {
-			request.getSession().setAttribute("subscribe", "Inscription réussie, veuillez attendre la validation de votre compte.");
+			request.getSession().setAttribute("subscribe", "Inscription rÃ©ussie, veuillez attendre la validation de votre compte.");
 			response.sendRedirect("/PapyFinance");
 		} else {
 			request.setAttribute("error", "Votre email n'est pas disponible.");
