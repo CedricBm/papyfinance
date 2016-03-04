@@ -49,6 +49,7 @@ public final class Seeder {
 					put("revenue", "4110000000");
 					put("website", "http://www.abercrombie.com");
 					put("sector", "Textile");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -59,6 +60,7 @@ public final class Seeder {
 					put("revenue", "60700000000");
 					put("website", "http://www.airbus-group.com");
 					put("sector", "Aéronautique");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -69,6 +71,7 @@ public final class Seeder {
 					put("revenue", "182800000000");
 					put("website", "http://www.apple.com");
 					put("sector", "Téléphonie");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -79,6 +82,7 @@ public final class Seeder {
 					put("revenue", "81700000000");
 					put("website", "http://www.boeing.com");
 					put("sector", "Aéronautique");
+					put("confirmed","false");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -89,6 +93,7 @@ public final class Seeder {
 					put("revenue", "2000000000");
 					put("website", "http://www.caisse-epargne.fr");
 					put("sector", "Banque");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -99,6 +104,7 @@ public final class Seeder {
 					put("revenue", "27616000000");
 					put("website", "http://www.citroen.fr");
 					put("sector", "Automobile");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -109,6 +115,7 @@ public final class Seeder {
 					put("revenue", "21100000000");
 					put("website", "http://www.danone.com");
 					put("sector", "Agro-alimentaire");
+					put("confirmed","false");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -119,6 +126,7 @@ public final class Seeder {
 					put("revenue", "3200000");
 					put("website", "http://www.gmf.fr");
 					put("sector", "Assurance");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -129,6 +137,7 @@ public final class Seeder {
 					put("revenue", "66000000000");
 					put("website", "http://www.google.com");
 					put("sector", "Informatique");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -139,6 +148,7 @@ public final class Seeder {
 					put("revenue", "176600000000");
 					put("website", "http://www.hm.com");
 					put("sector", "Textile");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -149,6 +159,7 @@ public final class Seeder {
 					put("revenue", "81700000000");
 					put("website", "http://www.ibm.com");
 					put("sector", "Informatique");
+					put("confirmed","false");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -159,6 +170,7 @@ public final class Seeder {
 					put("revenue", "54000000000");
 					put("website", "http://www.intel.com");
 					put("sector", "Informatique");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -169,6 +181,7 @@ public final class Seeder {
 					put("revenue", "4000000000");
 					put("website", "http://www.lcl.com");
 					put("sector", "Banque");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -179,6 +192,7 @@ public final class Seeder {
 					put("revenue", "45000000000");
 					put("website", "http://www.lg.com");
 					put("sector", "Téléphonie");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -189,6 +203,7 @@ public final class Seeder {
 					put("revenue", "1941062");
 					put("website", "http://www.matmut.fr");
 					put("sector", "Assurance");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -199,6 +214,7 @@ public final class Seeder {
 					put("revenue", "92186000000");
 					put("website", "http://www.nestle.com");
 					put("sector", "Agro-alimentaire");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -209,6 +225,7 @@ public final class Seeder {
 					put("revenue", "27485000000");
 					put("website", "http://www.peugeot.fr");
 					put("sector", "Automobile");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -219,6 +236,7 @@ public final class Seeder {
 					put("revenue", "27260000000");
 					put("website", "http://www.groupe.renault.com");
 					put("sector", "Automobile");
+					put("confirmed","false");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -229,6 +247,7 @@ public final class Seeder {
 					put("revenue", "305000000000");
 					put("website", "http://www.samsung.com");
 					put("sector", "Téléphonie");
+					put("confirmed","true");
 				}
 			});
 			add(new HashMap<String, String>() {
@@ -239,6 +258,7 @@ public final class Seeder {
 					put("revenue", "23700000000");
 					put("website", "http://www.societegenerale.com");
 					put("sector", "Banque");
+					put("confirmed","true");
 				}
 			});
 		}
@@ -348,6 +368,7 @@ public final class Seeder {
 				company.setWebsite(companyDatas.get("website"));
 		        company.setLogo(bFile);
 		        company.setSector(sectorDao.getByName(companyDatas.get("sector")));
+		        company.setConfirmed(Boolean.valueOf(companyDatas.get("confirmed")));
 				
 				if (companyDao.create(company)) {
 					count++;

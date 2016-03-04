@@ -23,6 +23,7 @@
       <ul id='dropdown1' class='dropdown-content'>
         <li><a class="waves-effect waves-light" href="/PapyFinance/admin/company-members">Rechercher tous les membres societe</a></li>
         <li><a class="waves-effect waves-light" href="/PapyFinance/admin/investors">Rechercher tous les investisseurs</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/accredit">Accréditer les sociétés</a></li>
         <li><a class="waves-effect waves-light" href="/PapyFinance/admin">Administration</a></li>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
@@ -30,7 +31,8 @@
 
       <ul id="nav-mobile" class="side-nav">
         <li><a class="waves-effect waves-light" href="/PapyFinance/admin/company-members">Rechercher tous les membres societe</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/investors">Rechercher tous les investisseurs</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/investors">Rechercher tous les investisseurs</a></li>       
+        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/accredit">Accréditer les sociétés</a></li>
         <li><a class="waves-effect waves-light" href="/PapyFinance/admin">Administration</a></li>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>

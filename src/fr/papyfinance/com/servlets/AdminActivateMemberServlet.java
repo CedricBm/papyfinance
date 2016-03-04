@@ -34,7 +34,6 @@ public class AdminActivateMemberServlet extends HttpServlet{
 			{
 				request.getSession().setAttribute("not_activated", "L'utilisateur "+u.getEmail()+" n'a pas été activé !");
 			}
-			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+Util.getInputValue(request, "role"));
 			if(Util.getInputValue(request, "role").equals("company-member"))
 			{
 				response.sendRedirect("company-members");

@@ -7,6 +7,7 @@ import static org.junit.Assert.assertNotNull;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Set;
 
 import org.hibernate.SessionFactory;
@@ -144,5 +145,13 @@ public class CompanyTest {
 		Company c = companyDao.getById(1);
 		
 		assertNotNull(c);
+	}
+	
+	@Test
+	public void test9GetAllNotAccredit()
+	{
+		ArrayList<Company> lc = companyDao.getAllCompanyNotAccredit();
+		
+		assertEquals(lc.size(), 1);
 	}
 }

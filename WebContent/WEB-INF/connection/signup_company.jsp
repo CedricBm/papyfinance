@@ -25,7 +25,7 @@
       <div class="row">
         <div class="input-field col s12">
           <i class="material-icons prefix prefix-select">work</i>
-          <select id="company" name="company" class="validate" required aria-required="true">
+          <select id="company" name="company" class="validate">
             <option value="" disabled selected>Choisir une société</option>
             <c:forEach var="company" items="${companies}">
               <option value="${ company.id }">${ company.name }</option>

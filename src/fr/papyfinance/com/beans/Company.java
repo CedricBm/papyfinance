@@ -31,6 +31,7 @@ public class Company implements Serializable {
     private Set<User> users;
     private Set<Offer> offers;
     private Set<Transaction> transactions;
+    private boolean confirmed;
     
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -129,5 +130,14 @@ public class Company implements Serializable {
 
 	public void setTransactions(Set<Transaction> transactions) {
 		this.transactions = transactions;
+	}
+	
+	@Column(name = "is_confirmed")
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
 	}
 }

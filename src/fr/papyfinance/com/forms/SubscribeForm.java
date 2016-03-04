@@ -21,7 +21,7 @@ public class SubscribeForm {
 		user.setLogin(Util.getInputValue(request, "login"));
 		user.setPassword(Util.encrypt(Util.getInputValue(request, "password")));
 		user.setRole(roleDao.getByName("Investisseur"));
-		user.setConfirmed(true);
+		user.setConfirmed(false);
 
 		return user;
 	}

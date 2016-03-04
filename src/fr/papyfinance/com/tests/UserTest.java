@@ -3,6 +3,8 @@ package fr.papyfinance.com.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -91,5 +93,30 @@ public class UserTest {
 		User u = userDao.getByLogin("test");
 		
 		assertNotNull(u.getId());
+	}
+	
+	@Test
+	public void test6GetAllByRole()
+	{
+		ArrayList<User> lu = userDao.getAllByRole(1);
+		
+		assertEquals(lu.size(), 1);
+	}
+	
+	@Test
+	public void test7Update()
+	{
+		User u = new User();
+		u.setEmail("test@update.org");
+		u.setLogin("test1");
+		userDao.create(u);
+		
+		u.setLogin("test2");
+		userDao.update(u);
+		
+		u=userDao.getByEmail("test@update.org");
+		assertEquals(u.getLogin(), "test2");
+		
+		
 	}
 }

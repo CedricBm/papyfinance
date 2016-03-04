@@ -1,5 +1,6 @@
 package fr.papyfinance.com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -74,5 +75,15 @@ public class CompanyDao {
 		session.getTransaction().commit();
 		session.close();
 		return companies;
+	}
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Company> getAllCompanyNotAccredit() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		ArrayList<Company> c = (ArrayList<Company>) session.createQuery("from Company where is_confirmed = false").list();
+		session.getTransaction().commit();
+		session.close();
+		return c;
 	}
 }
