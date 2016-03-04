@@ -31,7 +31,14 @@ public class AdminDesactivateMemberServlet extends HttpServlet{
 			{
 				request.getSession().setAttribute("not_desactivated", "L'utilisateur "+u.getEmail()+" n'a pas été désactivé !");
 			}
-			response.sendRedirect("company-members");
+			if(Util.getInputValue(request, "role").equals("company-member"))
+			{
+
+				response.sendRedirect("company-members");
+			}else
+			{
+				response.sendRedirect("investors");
+			}
 	
 	}
 

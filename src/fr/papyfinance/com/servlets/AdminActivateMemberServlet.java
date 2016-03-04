@@ -34,7 +34,14 @@ public class AdminActivateMemberServlet extends HttpServlet{
 			{
 				request.getSession().setAttribute("not_activated", "L'utilisateur "+u.getEmail()+" n'a pas été activé !");
 			}
-			response.sendRedirect("company-members");
+			System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaa"+Util.getInputValue(request, "role"));
+			if(Util.getInputValue(request, "role").equals("company-member"))
+			{
+				response.sendRedirect("company-members");
+			}else
+			{
+				response.sendRedirect("investors");
+			}
 
 	}
 
@@ -45,7 +52,7 @@ public class AdminActivateMemberServlet extends HttpServlet{
 		if(u.getLogin()==null&&(Util.getInputValue(request, "login")==null||Util.getInputValue(request, "password")==null)){
 			request.setAttribute("email",u.getEmail());
 			this.getServletContext().getRequestDispatcher("/WEB-INF/admin/activate-company_member.jsp").forward(request,
-					response);
+						response);			
 		}else
 		{
 			doGet(request, response);

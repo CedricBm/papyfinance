@@ -24,6 +24,7 @@
 			<td align="center">LNAME</td>
 			<td align="center">LOGIN</td>
 			<td align="center">COMPANY_ID</td>
+			<td align="center">ACTIVER/DESACTIVER</td>
 		</tr>
 		</tbody>
 
@@ -37,6 +38,24 @@
 			  <td align="center">${user.lname}</td>
 			  <td align="center">${user.login}</td>
 			  <td align="center">${user.company.name}</td>
+			  <td align="center">
+			  <c:choose>
+			  <c:when test="${user.confirmed}">
+			   <form method="post" action="../admin/desactivate">
+			    <input id="role" type="text" name="role" value="investor" style="display:none" />
+				<input id="email" type="text" name="email" value="${user.email}" style="display:none" />
+				<button class="waves-effect waves-light btn" type="submit">DESACTIVER</button>
+			   </form>
+			  </c:when>
+			  <c:otherwise>
+			   <form method="post" action="../admin/activate">
+			    <input id="role" type="text" name="role" value="investor" style="display:none" />
+				<input id="email" type="text" name="email" value="${user.email}" style="display: none" />
+				<button class="waves-effect waves-light btn" type="submit">ACTIVER</button>
+			   </form>
+			  </c:otherwise>
+			 </c:choose>
+		     </td>
 		   </tr>
 		  </tbody>
 		 </c:forEach>
