@@ -1,10 +1,12 @@
 package fr.papyfinance.com.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import fr.papyfinance.com.beans.Company;
 import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.resources.HibernateUtil;
 
@@ -73,5 +75,26 @@ public class UserDao {
         	session.close();
         }
         return true;        
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<User> getAll() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		List<User> users = session.createQuery("from User").list();
+		session.getTransaction().commit();
+		session.close();
+		return users;
+	}
+	
+	public ArrayList<User> getAllWithAttribute(String attribute)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String query = "from User where fname like '%"+attribute+"%' OR lname like '%"+attribute+"%' OR email like '%"+attribute+"%'";
+		ArrayList<User> c = (ArrayList<User>) session.createQuery(query).list();
+		session.getTransaction().commit();
+		session.close();
+		return c;
 	}
 }

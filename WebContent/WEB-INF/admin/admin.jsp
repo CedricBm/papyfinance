@@ -12,16 +12,16 @@
             <form class="col s12 hoverable" method="post" action="admin/search">
               <div class="row">
               <div class="input-field col s6">
-                  <input id="search" name="search" type="text" class="validate" required aria-required="true"> <label for="search">Veuillez entrer la valeur que vous recherchez</label>
+                  <input id="search" name="search" type="text" class="validate"> <label for="search">Veuillez entrer la valeur que vous recherchez</label>
                 </div>
               </div>
               <div class="row">
               <div class="input-field col s6">
                 <select name="typeSearch" size="1">
-                  <option>Société
-                  <option>Utilisateur
-                  <option>Offre
-                  <option>Transaction
+                  <option value=1>Société
+                  <option value=2>Utilisateur
+                  <option value=3>Offre
+                  <option value=4>Transaction
                  </select>
                  </div>
               </div>

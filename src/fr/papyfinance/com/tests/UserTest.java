@@ -119,4 +119,20 @@ public class UserTest {
 		
 		
 	}
+	
+	@Test
+	public void test8GetAll()
+	{
+		ArrayList<User> lc = (ArrayList<User>) userDao.getAll();
+		
+		assertEquals(lc.size(), 2);
+	}
+	
+	@Test
+	public void test9GetAllWithAttribute()
+	{
+		ArrayList<User> lc = (ArrayList<User>) userDao.getAllWithAttribute("test");
+		
+		assertEquals(lc.size(), 1);
+	}
 }

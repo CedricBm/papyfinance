@@ -1,7 +1,10 @@
 package fr.papyfinance.com.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -13,6 +16,7 @@ import org.junit.runners.MethodSorters;
 
 import fr.papyfinance.com.beans.Company;
 import fr.papyfinance.com.beans.Offer;
+import fr.papyfinance.com.beans.Transaction;
 import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.dao.CompanyDao;
 import fr.papyfinance.com.dao.OfferDao;
@@ -74,6 +78,14 @@ public class OfferTest {
 		offerDao.create(o);
 		
 		assertTrue(o.isValid());
+	}
+	
+	@Test
+	public void test7GetAll()
+	{
+		ArrayList<Offer> lc = (ArrayList<Offer>) offerDao.getAll();
+		
+		assertEquals(lc.size(), 2);
 	}
 
 }

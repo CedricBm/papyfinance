@@ -86,4 +86,15 @@ public class CompanyDao {
 		session.close();
 		return c;
 	}
+	
+	public ArrayList<Company> getAllWithAttribute(String attribute)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String query = "from Company where name like '%"+attribute+"%'  OR website like '%"+attribute+"%' ";
+		ArrayList<Company> c = (ArrayList<Company>) session.createQuery(query).list();
+		session.getTransaction().commit();
+		session.close();
+		return c;
+	}
 }

@@ -1,8 +1,12 @@
 package fr.papyfinance.com.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import fr.papyfinance.com.beans.Offer;
 import fr.papyfinance.com.beans.Transaction;
 import fr.papyfinance.com.resources.HibernateUtil;
 
@@ -29,5 +33,26 @@ public class TransactionDao {
         	session.close();
         }
         return true;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Transaction> getAll() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		List<Transaction> transactions = session.createQuery("from Transaction").list();
+		session.getTransaction().commit();
+		session.close();
+		return transactions;
+	}
+	
+	public ArrayList<Transaction> getAllWithAttribute(String attribute)
+	{
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String query = "from Transaction where buyerFixed like '%"+attribute+"%' OR sellerFixed like '%"+attribute+"%' OR offerFixed like '%"+attribute+"%' OR companyFixed like '%"+attribute+"%' OR contractFixed like '%"+attribute+"%'";
+		ArrayList<Transaction> c = (ArrayList<Transaction>) session.createQuery(query).list();
+		session.getTransaction().commit();
+		session.close();
+		return c;
 	}
 }

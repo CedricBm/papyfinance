@@ -1,6 +1,9 @@
 package fr.papyfinance.com.tests;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.ArrayList;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -57,6 +60,7 @@ public class TransactionTest {
 		offerDao.create(o);
 		
 		Transaction t = new Transaction();
+		t.setBuyerFixed("test");
 		t.setBuyer(buyer);
 		t.setSeller(seller);
 		t.setOffer(o);
@@ -97,5 +101,21 @@ public class TransactionTest {
 		Transaction t = o.getTransactions().iterator().next();
 		
 		assertNotNull(t);
+	}
+	
+	@Test
+	public void test6GetAll()
+	{
+		ArrayList<Transaction> lc = (ArrayList<Transaction>) transactionDao.getAll();
+		
+		assertEquals(lc.size(), 1);
+	}
+	
+	@Test
+	public void test7GetAllWithAttribute()
+	{
+		ArrayList<Transaction> lc = (ArrayList<Transaction>) transactionDao.getAllWithAttribute("test");
+		
+		assertEquals(lc.size(), 1);
 	}
 }

@@ -154,4 +154,20 @@ public class CompanyTest {
 		
 		assertEquals(lc.size(), 1);
 	}
+	
+	@Test
+	public void test910GetAll()
+	{
+		ArrayList<Company> lc = (ArrayList<Company>) companyDao.getAll();
+		
+		assertEquals(lc.size(), 1);
+	}
+	
+	@Test
+	public void test911GetAllWithAttribute()
+	{
+		ArrayList<Company> lc = (ArrayList<Company>) companyDao.getAllWithAttribute("sopra");
+		
+		assertEquals(lc.size(), 1);
+	}
 }
