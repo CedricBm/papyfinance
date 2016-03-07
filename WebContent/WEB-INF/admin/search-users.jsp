@@ -7,38 +7,37 @@
  <div class="container">
   <br> <br>
   <div class="row center">
-   <div class="col s12 m8">
-	<div class="row center">
+   <div class="col s12">
 	 <c:choose>
 	  <c:when test="${empty listeRes }">
 		<p>Aucun utilisateur à afficher pour le moment !!</p>
 	  </c:when>
 	  <c:otherwise>
-	   <table border="1">
-		<tbody>
+	   <table class="bordered centered">
+		<thead>
 		<tr>
-			<td align="center">ID</td>
-			<td align="center">IS_CONFIRMED</td>
-			<td align="center">EMAIL</td>
-			<td align="center">FNAME</td>
-			<td align="center">LNAME</td>
-			<td align="center">LOGIN</td>
-			<td align="center">COMPANY_ID</td>
-			<td align="center">ROLE</td>
+			<td>Id utilisateur</td>
+			<td>Est confirmé</td>
+			<td>Email</td>
+			<td>Prénom</td>
+			<td>Nom</td>
+			<td>Login</td>
+			<td>Compagnie</td>
+			<td>Rôle</td>
 		</tr>
-		</tbody>
+		</thead>
 
 		<c:forEach var="user" items="${listeRes}">
 		<tbody>
 			<tr>
-			  <td align="center">${user.id}</td>
-			  <td align="center">${user.confirmed}</td>
-			  <td align="center">${user.email}</td>
-			  <td align="center">${user.fname}</td>
-			  <td align="center">${user.lname}</td>
-			  <td align="center">${user.login}</td>
-			  <td align="center">${user.company.name}</td>
-			  <td align="center">${user.role.name}</td>
+			  <td>${user.id}</td>
+			  <td>${user.confirmed}</td>
+			  <td>${user.email}</td>
+			  <td>${user.fname}</td>
+			  <td>${user.lname}</td>
+			  <td>${user.login}</td>
+			  <td>${user.company.name}</td>
+			  <td>${user.role.name}</td>
 		   </tr>
 		  </tbody>
 		 </c:forEach>
@@ -46,7 +45,6 @@
 	   </c:otherwise>
 	  </c:choose>
 	 </div>
-	</div>
   </div>
  </div>
 </div>

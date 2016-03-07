@@ -15,10 +15,12 @@ import org.junit.runners.MethodSorters;
 
 import fr.papyfinance.com.beans.Company;
 import fr.papyfinance.com.beans.Offer;
+import fr.papyfinance.com.beans.OfferType;
 import fr.papyfinance.com.beans.Transaction;
 import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.dao.CompanyDao;
 import fr.papyfinance.com.dao.OfferDao;
+import fr.papyfinance.com.dao.OfferTypeDao;
 import fr.papyfinance.com.dao.TransactionDao;
 import fr.papyfinance.com.dao.UserDao;
 
@@ -26,6 +28,7 @@ import fr.papyfinance.com.dao.UserDao;
 public class TransactionTest {
 	private static CompanyDao companyDao;
 	private static OfferDao offerDao;
+	private static OfferTypeDao offerTypeDao;
 	private static UserDao userDao;
 	private static TransactionDao transactionDao;
 
@@ -36,6 +39,7 @@ public class TransactionTest {
         SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
         companyDao = new CompanyDao(sessionFactory);
         offerDao = new OfferDao(sessionFactory);
+        offerTypeDao = new OfferTypeDao(sessionFactory);
         userDao = new UserDao(sessionFactory);
         transactionDao = new TransactionDao(sessionFactory);
     }
@@ -43,10 +47,12 @@ public class TransactionTest {
 	@Test
 	public void test1Save() {
 		User buyer = new User();
+		buyer.setLname("test");
 		buyer.setEmail("buyer@example.org");
 		userDao.create(buyer);
 		
 		User seller = new User();
+		seller.setLname("test");
 		seller.setEmail("seller@example.org");
 		userDao.create(seller);
 		
@@ -54,13 +60,17 @@ public class TransactionTest {
 		c.setName("LVMH");
 		companyDao.create(c);
 		
+		OfferType ot = new OfferType();
+		ot.setName("Achat");
+		offerTypeDao.create(ot);
+				
 		Offer o = new Offer();
+		o.setOfferType(ot);
 		o.setUser(buyer);
 		o.setCompany(c);
 		offerDao.create(o);
 		
 		Transaction t = new Transaction();
-		t.setBuyerFixed("test");
 		t.setBuyer(buyer);
 		t.setSeller(seller);
 		t.setOffer(o);
@@ -114,7 +124,7 @@ public class TransactionTest {
 	@Test
 	public void test7GetAllWithAttribute()
 	{
-		ArrayList<Transaction> lc = (ArrayList<Transaction>) transactionDao.getAllWithAttribute("test");
+		ArrayList<Transaction> lc = (ArrayList<Transaction>) transactionDao.getAllWithAttribute("Achat");
 		
 		assertEquals(lc.size(), 1);
 	}

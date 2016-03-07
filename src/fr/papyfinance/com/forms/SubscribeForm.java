@@ -3,14 +3,17 @@ package fr.papyfinance.com.forms;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.papyfinance.com.beans.User;
+import fr.papyfinance.com.dao.CompanyDao;
 import fr.papyfinance.com.dao.RoleDao;
 import fr.papyfinance.com.resources.Util;
 
 public class SubscribeForm {
 	private RoleDao roleDao;
-	
+	private CompanyDao companyDao;
+
 	public SubscribeForm() {
 		roleDao = new RoleDao();
+		companyDao = new CompanyDao();
 	}
 
 	public User getUser(HttpServletRequest request) {
@@ -21,6 +24,7 @@ public class SubscribeForm {
 		user.setLogin(Util.getInputValue(request, "login"));
 		user.setPassword(Util.encrypt(Util.getInputValue(request, "password")));
 		user.setRole(roleDao.getByName("Investisseur"));
+		user.setCompany(companyDao.getByName("Aucune société"));
 		user.setConfirmed(false);
 
 		return user;

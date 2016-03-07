@@ -95,16 +95,9 @@ public class UserTest {
 		assertNotNull(u.getId());
 	}
 	
-	@Test
-	public void test6GetAllByRole()
-	{
-		ArrayList<User> lu = userDao.getAllByRole(1);
-		
-		assertEquals(lu.size(), 1);
-	}
 	
 	@Test
-	public void test7Update()
+	public void test6Update()
 	{
 		User u = new User();
 		u.setEmail("test@update.org");
@@ -121,7 +114,7 @@ public class UserTest {
 	}
 	
 	@Test
-	public void test8GetAll()
+	public void test7GetAll()
 	{
 		ArrayList<User> lc = (ArrayList<User>) userDao.getAll();
 		
@@ -129,9 +122,17 @@ public class UserTest {
 	}
 	
 	@Test
-	public void test9GetAllWithAttribute()
+	public void test8GetAllWithAttribute()
 	{
-		ArrayList<User> lc = (ArrayList<User>) userDao.getAllWithAttribute("test");
+		ArrayList<User> lc = (ArrayList<User>) userDao.getAllWithAttribute("BNP");
+		
+		assertEquals(lc.size(), 1);
+	}
+	
+	@Test
+	public void test9GetAllInvest()
+	{
+		ArrayList<User> lc = (ArrayList<User>) userDao.getAllInvest();
 		
 		assertEquals(lc.size(), 1);
 	}

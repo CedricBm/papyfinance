@@ -6,51 +6,55 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import fr.papyfinance.com.beans.Offer;
 import fr.papyfinance.com.beans.Transaction;
 import fr.papyfinance.com.resources.HibernateUtil;
 
 public class TransactionDao {
 	private SessionFactory sessionFactory;
-	
+
 	public TransactionDao() {
 		sessionFactory = HibernateUtil.getSessionFactory();
 	}
-	
+
 	public TransactionDao(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
+
 	public boolean create(Transaction o) {
 		Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        try {
-        	session.save(o);
-        	session.getTransaction().commit();
-        } catch (Exception e) {
-        	return false;
-        } finally {
-        	session.close();
-        }
-        return true;
+		session.beginTransaction();
+		try {
+			session.save(o);
+			session.getTransaction().commit();
+		} catch (Exception e) {
+			return false;
+		} finally {
+			session.close();
+		}
+		return true;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Transaction> getAll() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		List<Transaction> transactions = session.createQuery("from Transaction").list();
+		List<Transaction> transactions = session
+				.createQuery("from Transaction").list();
 		session.getTransaction().commit();
 		session.close();
 		return transactions;
 	}
-	
-	public ArrayList<Transaction> getAllWithAttribute(String attribute)
-	{
+
+	@SuppressWarnings("unchecked")
+	public ArrayList<Transaction> getAllWithAttribute(String attribute) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		String query = "from Transaction where buyerFixed like '%"+attribute+"%' OR sellerFixed like '%"+attribute+"%' OR offerFixed like '%"+attribute+"%' OR companyFixed like '%"+attribute+"%' OR contractFixed like '%"+attribute+"%'";
-		ArrayList<Transaction> c = (ArrayList<Transaction>) session.createQuery(query).list();
+		String query = "from Transaction where buyer.lname like '%" + attribute
+				+ "%' OR seller.lname like '%" + attribute
+				+ "%' OR offer.offerType.name like '%" + attribute
+				+ "%' OR company.name like '%" + attribute + "%'";
+		ArrayList<Transaction> c = (ArrayList<Transaction>) session
+				.createQuery(query).list();
 		session.getTransaction().commit();
 		session.close();
 		return c;

@@ -7,41 +7,38 @@
  <div class="container">
   <br> <br>
   <div class="row center">
-   <div class="col s12 m8">
-	<div class="row center">
+   <div class="col s12">
 	 <c:choose>
 	  <c:when test="${empty listeUsers }">
 		<p>Liste des membre société est vide !!</p>
 	  </c:when>
 	  <c:otherwise>
-	   <table border="1">
-		<tbody>
+	   <table class="bordered centered">
+		<thead>
 		<tr>
-			<td align="center">ID</td>
-			<td align="center">IS_CONFIRMED</td>
-			<td align="center">EMAIL</td>
-			<td align="center">FNAME</td>
-			<td align="center">LNAME</td>
-			<td align="center">LOGIN</td>
-			<td align="center">COMPANY_ID</td>
-			<td align="center">ACTIVER/DESACTIVER</td>
+			<td>Id utilisateur</td>
+			<td>Email</td>
+			<td>Prénom</td>
+			<td>Nom</td>
+			<td>Login</td>
+			<td>Nom compagnie</td>
+			<td>Activer/Désactiver</td>
 		</tr>
-		</tbody>
+		</thead>
 
 		<c:forEach var="user" items="${listeUsers}">
 		<tbody>
 			<tr>
-			  <td align="center">${user.id}</td>
-			  <td align="center">${user.confirmed}</td>
-			  <td align="center">${user.email}</td>
-			  <td align="center">${user.fname}</td>
-			  <td align="center">${user.lname}</td>
-			  <td align="center">${user.login}</td>
-			  <td align="center">${user.company.name}</td>
-			  <td align="center">
+			  <td>${user.id}</td>
+			  <td>${user.email}</td>
+			  <td>${user.fname}</td>
+			  <td>${user.lname}</td>
+			  <td>${user.login}</td>
+			  <td>${user.company.name}</td>
+			  <td>
 			  <c:choose>
 			  <c:when test="${user.confirmed}">
-			   <form method="post" action="../admin/desactivate">
+			   <form method="post" action="../admin/deactivate">
 			    <input id="role" type="text" name="role" value="company-member" style="display:none" />
 				<input id="email" type="text" name="email" value="${user.email}" style="display:none" />
 				<button class="waves-effect waves-light btn" type="submit">DESACTIVER</button>
@@ -63,7 +60,6 @@
 	   </c:otherwise>
 	  </c:choose>
 	 </div>
-	</div>
   </div>
  </div>
 </div>

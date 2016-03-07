@@ -16,34 +16,36 @@ import fr.papyfinance.com.resources.Util;
 @WebServlet("/admin/accredit")
 public class AdminAccredit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public AdminAccredit() {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		this.getServletContext()
+				.getRequestDispatcher("/WEB-INF/admin/accredit.jsp")
+				.forward(request, response);
+
+	}
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		CompanyDao cd = new CompanyDao();
 		String name = Util.getInputValue(request, "name");
-		if(name!=null)
-		{
+		if (name != null) {
 			Company c = cd.getByName(name);
-			if(c!=null)
-			{
+			if (c != null) {
 				c.setConfirmed(true);
 				cd.update(c);
 			}
 		}
 		ArrayList<Company> listeCompanies = cd.getAllCompanyNotAccredit();
-		request.setAttribute("listeCompanies",listeCompanies);
-		
-		this.getServletContext().getRequestDispatcher("/WEB-INF/admin/accredit.jsp").forward(request,
-				response);
-		
-	}
+		request.setAttribute("listeCompanies", listeCompanies);
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		doGet(request,response);
+		doGet(request, response);
 	}
 
 }

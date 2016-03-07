@@ -10,7 +10,7 @@ import fr.papyfinance.com.resources.Util;
 public class SubscribeCompanyForm {
 	private RoleDao roleDao;
 	private CompanyDao companyDao;
-	
+
 	public SubscribeCompanyForm() {
 		roleDao = new RoleDao();
 		companyDao = new CompanyDao();
@@ -22,11 +22,12 @@ public class SubscribeCompanyForm {
 		user.setLname(Util.getInputValue(request, "lname"));
 		user.setFname(Util.getInputValue(request, "fname"));
 		user.setEmail(Util.getInputValue(request, "email"));
-		id_company=Util.getInputValue(request, "company");
-		if(id_company!=null)
-		{
+		id_company = Util.getInputValue(request, "company");
+		if (id_company != null) {
 
 			user.setCompany(companyDao.getById(Integer.parseInt(id_company)));
+		} else {
+			user.setCompany(companyDao.getByName("Aucune société"));
 		}
 		user.setRole(roleDao.getByName("Membre société"));
 		user.setConfirmed(false);

@@ -18,10 +18,10 @@
               <div class="row">
               <div class="input-field col s6">
                 <select name="typeSearch" size="1">
-                  <option value=1>Société
-                  <option value=2>Utilisateur
-                  <option value=3>Offre
-                  <option value=4>Transaction
+                  <option value=1>Société</option>
+                  <option value=2>Utilisateur</option>
+                  <option value=3>Offre</option>
+                  <option value=4>Transaction</option>
                  </select>
                  </div>
               </div>

@@ -43,6 +43,12 @@ public final class Seeder {
 		{
 			add(new HashMap<String, String>() {
 				{
+					put("name", "Aucune société");
+					put("confirmed","true");
+				}
+			});
+			add(new HashMap<String, String>() {
+				{
 					put("name", "Abercrombie & Fitch");
 					put("logo", "AbercrombieFitch-logo.png");
 					put("workforce", "13000");
@@ -386,6 +392,7 @@ public final class Seeder {
 		u.setLogin("admin");
 		u.setPassword(Util.encrypt("password"));
 		u.setRole(roleDao.getByName("Administrateur"));
+		u.setCompany(companyDao.getByName("Aucune société"));
 		u.setConfirmed(true);
 		if (userDao.create(u)) {
 			System.out.println("Admin user seeded.");

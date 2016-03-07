@@ -7,36 +7,35 @@
  <div class="container">
   <br> <br>
   <div class="row center">
-   <div class="col s12 m8">
-	<div class="row center">
+   <div class="col s12">
 	 <c:choose>
 	  <c:when test="${empty listeCompanies }">
 		<p>Aucune société à accréditer pour le moment !!</p>
 	  </c:when>
 	  <c:otherwise>
-	   <table border="1">
-		<tbody>
+	   <table class="bordered centered">
+		<thead>
 		<tr>
-			<td align="center">ID</td>
-			<td align="center">NAME</td>
-			<td align="center">REVENUE</td>
-			<td align="center">WEBSITE</td>
-			<td align="center">WORKFORCE</td>
-			<td align="center">SECTOR</td>
+			<td>Id compagnie</td>
+			<td>Nom</td>
+			<td>Chiffre d'affaire</td>
+			<td>Site web</td>
+			<td>Nombre employés</td>
+			<td>Secteur d'activité</td>
+			<td>Accréditer</td>
 		</tr>
-		</tbody>
+		</thead>
 
 		<c:forEach var="company" items="${listeCompanies}">
 		<tbody>
 			<tr>
-			  <td align="center">${company.id}</td>
-			  <td align="center">${company.name}</td>
-			  <td align="center">${company.revenue}</td>
-			  <td align="center"><a href="${company.website}">${company.website}</a></td>
-			  <td align="center">${company.workforce}</td>
-			  <td align="center">${company.sector.name}</td>
-			  <td align="center">
-			  
+			  <td>${company.id}</td>
+			  <td>${company.name}</td>
+			  <td>${company.revenue}</td>
+			  <td><a href="${company.website}">${company.website}</a></td>
+			  <td>${company.workforce}</td>
+			  <td>${company.sector.name}</td>
+			  <td>
 			   <form method="post" action="../admin/accredit">
 			    <input id="name" type="text" name="name" value="${company.name}" style="display:none" />
 				<button class="waves-effect waves-light btn" type="submit">ACCREDITER</button>
@@ -49,7 +48,6 @@
 	   </c:otherwise>
 	  </c:choose>
 	 </div>
-	</div>
   </div>
  </div>
 </div>
