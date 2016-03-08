@@ -16,11 +16,11 @@
 	   <table class="bordered centered">
 		<thead>
 		<tr>
-			<td>Id transaction</td>
-			<td>Nom acheteur</td>
-			<td>Nom vendeur</td>
-			<td>Compagnie</td>
-			<td>Id offre</td>
+			<th>Id transaction</th>
+			<th>Nom acheteur</th>
+			<th>Nom vendeur</th>
+			<th>Compagnie</th>
+			<th>Id offre</th>
 		</tr>
 		</thead>
 
