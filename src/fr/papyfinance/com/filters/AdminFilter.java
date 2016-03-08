@@ -34,7 +34,7 @@ public class AdminFilter implements Filter {
         	
         	chain.doFilter(request, response);
         } else {
-        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'acc�der � cette page!");
+        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
         	response.sendRedirect("/PapyFinance");
         }
 	}

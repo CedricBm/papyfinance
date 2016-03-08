@@ -33,7 +33,7 @@ public class CompanyFilter implements Filter {
         if (u != null && (u.getRole().getName().equals("Administrateur") || u.getRole().getName().equals("Membre société"))) {
         	chain.doFilter(request, response);
         } else {
-        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'acc�der � cette page!");
+        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
         	response.sendRedirect("/PapyFinance");
         }
 	}

@@ -28,6 +28,7 @@ public class AdminActivateMemberServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		UserDao ud = new UserDao();
 		User u = ud.getByEmail(Util.getInputValue(request, "email"));
 		if (u.getLogin() == null

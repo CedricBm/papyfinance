@@ -30,6 +30,8 @@ public class AdminSearchServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+
 		switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
 		case 1:
 			this.getServletContext()
@@ -61,10 +63,13 @@ public class AdminSearchServlet extends HttpServlet {
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
 		ArrayList res = new ArrayList();
+		
+		request.setCharacterEncoding("UTF-8");
 
 		switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
 		case 1:

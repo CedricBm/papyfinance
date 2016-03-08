@@ -33,7 +33,7 @@ public class InvestorFilter implements Filter {
         if (u != null) {
         	chain.doFilter(request, response);
         } else {
-        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
+        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accÃ©der Ã  cette page!");
         	response.sendRedirect("/PapyFinance");
         }
 	}

@@ -14,10 +14,10 @@ import fr.papyfinance.com.dao.CompanyDao;
 import fr.papyfinance.com.resources.Util;
 
 @WebServlet("/admin/accredit")
-public class AdminAccredit extends HttpServlet {
+public class AdminAccreditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public AdminAccredit() {
+	public AdminAccreditServlet() {
 		super();
 	}
 
@@ -33,6 +33,8 @@ public class AdminAccredit extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+		
 		CompanyDao cd = new CompanyDao();
 		String name = Util.getInputValue(request, "name");
 		if (name != null) {
