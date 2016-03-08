@@ -16,14 +16,14 @@
 	   <table class="bordered centered">
 		<thead>
 		<tr>
-			<td>Id utilisateur</td>
-			<td>Est confirmé</td>
-			<td>Email</td>
-			<td>Prénom</td>
-			<td>Nom</td>
-			<td>Login</td>
-			<td>Compagnie</td>
-			<td>Rôle</td>
+			<th>Id utilisateur</th>
+			<th>Est confirmé</th>
+			<th>Email</th>
+			<th>Prénom</th>
+			<th>Nom</th>
+			<th>Login</th>
+			<th>Compagnie</th>
+			<th>Rôle</th>
 		</tr>
 		</thead>
 
