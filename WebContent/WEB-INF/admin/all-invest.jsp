@@ -14,7 +14,7 @@
 	  </c:when>
 	  <c:otherwise>
 	   <table class="bordered centered">
-		<thead class="centered">
+		<thead>
 		<tr>
 			<td>Id utilisateur</td>
 			<td>Email</td>
