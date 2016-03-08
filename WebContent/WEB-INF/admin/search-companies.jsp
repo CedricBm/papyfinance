@@ -16,12 +16,12 @@
 	   <table class="bordered centered">
 		<thead>
 		<tr>
-			<td>Id compagnie</td>
-			<td>Nom</td>
-			<td>Chiffre d'affaire</td>
-			<td>Site web</td>
-			<td>Nombre d'employés</td>
-			<td>Secteur d'activité</td>
+			<th>Id compagnie</th>
+			<th>Nom</th>
+			<th>Chiffre d'affaire</th>
+			<th>Site web</th>
+			<th>Nombre d'employés</th>
+			<th>Secteur d'activité</th>
 		</tr>
 		</thead>
 
