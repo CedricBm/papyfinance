@@ -16,14 +16,14 @@
 	   <table class="bordered centered">
 		<thead>
 		<tr>
-			<td>Id offre</td>
-			<td>Prix</td>
-			<td>Quantité</td>
-			<td>Type offre</td>
-			<td>Mode de négociation</td>
-			<td>Type contrat</td>
-			<td>Nom vendeur</td>
-			<td>Compagnie</td>
+			<th>Id offre</th>
+			<th>Prix</th>
+			<th>Quantité</th>
+			<th>Type offre</th>
+			<th>Mode de négociation</th>
+			<th>Type contrat</th>
+			<th>Nom vendeur</th>
+			<th>Compagnie</th>
 		</tr>
 		</thead>
 
