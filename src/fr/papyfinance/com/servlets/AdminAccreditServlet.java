@@ -24,6 +24,10 @@ public class AdminAccreditServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		CompanyDao cd = new CompanyDao();
+		ArrayList<Company> listeCompanies = cd.getAllCompanyNotAccredit();
+		request.setAttribute("listeCompanies", listeCompanies);
+
 		this.getServletContext()
 				.getRequestDispatcher("/WEB-INF/admin/accredit.jsp")
 				.forward(request, response);
@@ -34,7 +38,7 @@ public class AdminAccreditServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		
+
 		CompanyDao cd = new CompanyDao();
 		String name = Util.getInputValue(request, "name");
 		if (name != null) {
@@ -44,8 +48,6 @@ public class AdminAccreditServlet extends HttpServlet {
 				cd.update(c);
 			}
 		}
-		ArrayList<Company> listeCompanies = cd.getAllCompanyNotAccredit();
-		request.setAttribute("listeCompanies", listeCompanies);
 
 		doGet(request, response);
 	}
