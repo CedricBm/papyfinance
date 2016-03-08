@@ -16,13 +16,13 @@
 	   <table class="bordered centered">
 		<thead>
 		<tr>
-			<td>Id utilisateur</td>
-			<td>Email</td>
-			<td>Prénom</td>
-			<td>Nom</td>
-			<td>Login</td>
-			<td>Nom compagnie</td>
-			<td>Activer/Désactiver</td>
+			<th>Id utilisateur</th>
+			<th>Email</th>
+			<th>Prénom</th>
+			<th>Nom</th>
+			<th>Login</th>
+			<th>Nom compagnie</th>
+			<th>Activer/Désactiver</th>
 		</tr>
 		</thead>
 
