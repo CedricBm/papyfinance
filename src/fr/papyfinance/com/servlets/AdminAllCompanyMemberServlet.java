@@ -14,27 +14,21 @@ import fr.papyfinance.com.dao.UserDao;
 
 @WebServlet("/admin/company-members")
 public class AdminAllCompanyMemberServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public AdminAllCompanyMemberServlet() {
-		super();
-	}
+  public AdminAllCompanyMemberServlet() {
+    super();
+  }
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    UserDao ud = new UserDao();
+    ArrayList<User> listeUsers = ud.getAllCompanyMember();
+    request.setAttribute("listeUsers", listeUsers);
 
-		UserDao ud = new UserDao();
-		ArrayList<User> listeUsers = ud.getAllCompanyMember();
-		request.setAttribute("listeUsers", listeUsers);
+    this.getServletContext().getRequestDispatcher("/WEB-INF/admin/all-company_member.jsp").forward(request, response);
+  }
 
-		this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/admin/all-company_member.jsp")
-				.forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
-	}
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doGet(request, response);
+  }
 }

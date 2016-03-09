@@ -20,49 +20,49 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "auctions")
 public class Auction implements Serializable {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	private int id;
-	private Date dateFin;
-	private Set<AuctionOffer> auctionOffers;
-	private Offer offer;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	@Temporal(TemporalType.DATE)
-	@Column(name = "date_fin")
-	public Date getDateFin() {
-		return dateFin;
-	}
-	
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "auction")
-	public Set<AuctionOffer> getAuctionOffers() {
-		return auctionOffers;
-	}
-	
-	public void setAuctionOffers(Set<AuctionOffer> auctionOffers) {
-		this.auctionOffers = auctionOffers;
-	}
+  private int id;
+  private Date dateFin;
+  private Set<AuctionOffer> auctionOffers;
+  private Offer offer;
 
-	@OneToOne
-	@PrimaryKeyJoinColumn
-	public Offer getOffer() {
-		return offer;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  public int getId() {
+    return id;
+  }
 
-	public void setOffer(Offer offer) {
-		this.offer = offer;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  @Temporal(TemporalType.DATE)
+  @Column(name = "date_fin")
+  public Date getDateFin() {
+    return dateFin;
+  }
+
+  public void setDateFin(Date dateFin) {
+    this.dateFin = dateFin;
+  }
+
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "auction")
+  public Set<AuctionOffer> getAuctionOffers() {
+    return auctionOffers;
+  }
+
+  public void setAuctionOffers(Set<AuctionOffer> auctionOffers) {
+    this.auctionOffers = auctionOffers;
+  }
+
+  @OneToOne
+  @PrimaryKeyJoinColumn
+  public Offer getOffer() {
+    return offer;
+  }
+
+  public void setOffer(Offer offer) {
+    this.offer = offer;
+  }
 }

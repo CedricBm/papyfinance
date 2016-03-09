@@ -1,14 +1,14 @@
 # PapyFinance
-Projet Java EE de CÃ©dric Beaumont, IÃ±aki Calzada, Ismail Mallasse et Yassine Ramrami.
+Projet Java EE de Cédric Beaumont, Iñaki Calzada, Ismail Mallasse et Yassine Ramrami.
 
 ## Installation
 - Installer [Eclipse](https://eclipse.org/downloads/)
 - Installer [JBoss - Wildfly](http://tools.jboss.org/downloads/jbosstools/mars/4.3.0.Final.html)
 - Installer [Maven](http://www.eclipse.org/m2e/)
-- Installer [xampp](https://www.apachefriends.org/fr/download.html) (pour la base de donnÃ©es MySQL)
-- Installer [h2](http://www.h2database.com/html/download.html) (pour la base de donnÃ©es de tests)
-- CrÃ©ation du projet
-  - CrÃ©er un Dynamic Web Project
+- Installer [xampp](https://www.apachefriends.org/fr/download.html) (pour la base de données MySQL)
+- Installer [h2](http://www.h2database.com/html/download.html) (pour la base de données de tests)
+- Création du projet
+  - Créer un Dynamic Web Project
   - Utiliser le runtime Wildfly 8.x
   - Download and install WildFly 8.2.1 Final
   - Finish
@@ -23,7 +23,7 @@ Projet Java EE de CÃ©dric Beaumont, IÃ±aki Calzada, Ismail Mallasse et Yassine R
     - git fetch --all
     - git reset --hard origin/master
 - Configuration du serveur WildFly
-  - Dans l'onglet "Servers", crÃ©er un nouveau serveur
+  - Dans l'onglet "Servers", créer un nouveau serveur
   - Choisir "WildFly 8.x"
   - Next > Next
   - Ajouter le projet PapyFinance

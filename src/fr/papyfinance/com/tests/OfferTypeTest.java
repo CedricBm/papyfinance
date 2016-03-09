@@ -19,43 +19,43 @@ import fr.papyfinance.com.dao.OfferTypeDao;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class OfferTypeTest {
-	private static OfferTypeDao offerTypeDao;
+  private static OfferTypeDao offerTypeDao;
 
-	@BeforeClass
-    public static  void runBeforeClass() {
-		Configuration configuration = new Configuration().configure("hibernate-test.cfg.xml");
-    	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        offerTypeDao = new OfferTypeDao(sessionFactory);
-    }
+  @BeforeClass
+  public static void runBeforeClass() {
+    Configuration configuration = new Configuration().configure("hibernate-test.cfg.xml");
+    StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+    SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+    offerTypeDao = new OfferTypeDao(sessionFactory);
+  }
 
-	@Test
-	public void test1Create() {
-		OfferType s = new OfferType();
-		s.setName("Achat");
-		offerTypeDao.create(s);
-		
-		assertNotNull(s.getId());
-	}
-	
-	@Test
-	public void test2Get() {
-		OfferType s = offerTypeDao.getByName("Achat");
-		
-		assertNotNull(s);
-	}
-	
-	@Test
-	public void test3GetAll() {
-		List<OfferType> offerTypes = offerTypeDao.getAll();
+  @Test
+  public void test1Create() {
+    OfferType s = new OfferType();
+    s.setName("Achat");
+    offerTypeDao.create(s);
 
-		assertTrue(offerTypes.size() > 0);
-	}
-	
-	@Test
-	public void test4UniqName() {
-		OfferType s = new OfferType();
-		s.setName("Achat");
-		assertFalse(offerTypeDao.create(s));
-	}
+    assertNotNull(s.getId());
+  }
+
+  @Test
+  public void test2Get() {
+    OfferType s = offerTypeDao.getByName("Achat");
+
+    assertNotNull(s);
+  }
+
+  @Test
+  public void test3GetAll() {
+    List<OfferType> offerTypes = offerTypeDao.getAll();
+
+    assertTrue(offerTypes.size() > 0);
+  }
+
+  @Test
+  public void test4UniqName() {
+    OfferType s = new OfferType();
+    s.setName("Achat");
+    assertFalse(offerTypeDao.create(s));
+  }
 }

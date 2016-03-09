@@ -21,93 +21,71 @@ import fr.papyfinance.com.resources.Util;
 
 @WebServlet("/admin/search")
 public class AdminSearchServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public AdminSearchServlet() {
-		super();
-	}
+  public AdminSearchServlet() {
+    super();
+  }
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
+      case 1:
+        this.getServletContext().getRequestDispatcher("/WEB-INF/admin/search-companies.jsp").forward(request, response);
+        break;
+      case 2:
+        this.getServletContext().getRequestDispatcher("/WEB-INF/admin/search-users.jsp").forward(request, response);
+        break;
+      case 3:
+        this.getServletContext().getRequestDispatcher("/WEB-INF/admin/search-offers.jsp").forward(request, response);
+        break;
+      case 4:
+        this.getServletContext().getRequestDispatcher("/WEB-INF/admin/search-transactions.jsp").forward(request, response);
+        break;
+      default:
+        this.getServletContext().getRequestDispatcher("/WEB-INF/admin/search-error.jsp").forward(request, response);
+    }
+  }
 
-		request.setCharacterEncoding("UTF-8");
+  @SuppressWarnings("rawtypes")
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    ArrayList res = new ArrayList();
 
-		switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
-		case 1:
-			this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/admin/search-companies.jsp")
-					.forward(request, response);
-			break;
-		case 2:
-			this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/admin/search-users.jsp")
-					.forward(request, response);
-			break;
-		case 3:
-			this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/admin/search-offers.jsp")
-					.forward(request, response);
-			break;
-		case 4:
-			this.getServletContext()
-					.getRequestDispatcher(
-							"/WEB-INF/admin/search-transactions.jsp")
-					.forward(request, response);
-			break;
-		default:
-			this.getServletContext()
-					.getRequestDispatcher("/WEB-INF/admin/search-error.jsp")
-					.forward(request, response);
-			break;
-		}
-
-	}
-
-	@SuppressWarnings("rawtypes")
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		ArrayList res = new ArrayList();
-		
-		request.setCharacterEncoding("UTF-8");
-
-		switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
-		case 1:
-			CompanyDao cd = new CompanyDao();
-			if (Util.getInputValue(request, "search") == null)
-				res = (ArrayList<Company>) cd.getAll();
-			else
-				res = (ArrayList<Company>) cd.getAllWithAttribute(Util
-						.getInputValue(request, "search"));
-			break;
-		case 2:
-			UserDao ud = new UserDao();
-			if (Util.getInputValue(request, "search") == null)
-				res = (ArrayList<User>) ud.getAll();
-			else
-				res = (ArrayList<User>) ud.getAllWithAttribute(Util
-						.getInputValue(request, "search"));
-			break;
-		case 3:
-			OfferDao od = new OfferDao();
-			if (Util.getInputValue(request, "search") == null)
-				res = (ArrayList<Offer>) od.getAll();
-			else
-				res = (ArrayList<Offer>) od.getAllWithAttribute(Util
-						.getInputValue(request, "search"));
-			break;
-		case 4:
-			TransactionDao td = new TransactionDao();
-			if (Util.getInputValue(request, "search") == null)
-				res = (ArrayList<Transaction>) td.getAll();
-			else
-				res = (ArrayList<Transaction>) td.getAllWithAttribute(Util
-						.getInputValue(request, "search"));
-			break;
-		default:
-			break;
-		}
-		request.setAttribute("listeRes", res);
-		doGet(request, response);
-	}
+    switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
+      case 1:
+        CompanyDao cd = new CompanyDao();
+        if (Util.getInputValue(request, "search") == null) {
+          res = (ArrayList<Company>) cd.getAll();
+        } else {
+          res = (ArrayList<Company>) cd.getAllWithAttribute(Util.getInputValue(request, "search"));
+        }
+        break;
+      case 2:
+        UserDao ud = new UserDao();
+        if (Util.getInputValue(request, "search") == null) {
+          res = (ArrayList<User>) ud.getAll();
+        } else {
+          res = (ArrayList<User>) ud.getAllWithAttribute(Util.getInputValue(request, "search"));
+        }
+        break;
+      case 3:
+        OfferDao od = new OfferDao();
+        if (Util.getInputValue(request, "search") == null) {
+          res = (ArrayList<Offer>) od.getAll();
+        } else {
+          res = (ArrayList<Offer>) od.getAllWithAttribute(Util.getInputValue(request, "search"));
+        }
+        break;
+      case 4:
+        TransactionDao td = new TransactionDao();
+        if (Util.getInputValue(request, "search") == null) {
+          res = (ArrayList<Transaction>) td.getAll();
+        } else {
+          res = (ArrayList<Transaction>) td.getAllWithAttribute(Util.getInputValue(request, "search"));
+        }
+        break;
+      default:
+    }
+    request.setAttribute("listeRes", res);
+    doGet(request, response);
+  }
 }

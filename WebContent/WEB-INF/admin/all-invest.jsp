@@ -21,7 +21,7 @@
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Login</th>
-                    <th>Nom compagnie</th>
+                    <th>Nom société</th>
                     <th>Activer/Désactiver</th>
                   </tr>
                 </thead>

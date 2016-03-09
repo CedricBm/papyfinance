@@ -12,14 +12,12 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <div class="input-field col s12">
-            <select name="typeSearch" size="1">
-              <option value=1>Société</option>
-              <option value=2>Utilisateur</option>
-              <option value=3>Offre</option>
-              <option value=4>Transaction</option>
-            </select>
-          </div>
+          <select id="typeSearch" name="typeSearch" size="1">
+            <option value=1>Société</option>
+            <option value=2>Utilisateur</option>
+            <option value=3>Offre</option>
+            <option value=4>Transaction</option>
+          </select> <label for="typeSearch">Type recherchée</label>
         </div>
       </div>
       <div class="row">

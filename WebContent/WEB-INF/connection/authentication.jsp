@@ -8,7 +8,7 @@
     <form method="post" class="col s4 offset-s4 hoverable">
       <div class="row">
         <div class="input-field col s12">
-          <i class="material-icons prefix">account_circle</i> <input id="login" name="login" type="text" class="validate" required aria-required="true"> <label for="login">Login</label>
+          <i class="material-icons prefix">account_circle</i> <input id="login" name="login" type="text" class="validate" required aria-required="true" autofocus> <label for="login">Login</label>
         </div>
       </div>
       <div class="row">

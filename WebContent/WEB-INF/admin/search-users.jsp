@@ -22,7 +22,7 @@
                     <th>Prénom</th>
                     <th>Nom</th>
                     <th>Login</th>
-                    <th>Compagnie</th>
+                    <th>Société</th>
                     <th>Rôle</th>
                   </tr>
                 </thead>

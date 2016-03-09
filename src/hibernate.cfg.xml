@@ -3,26 +3,26 @@
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/papyfinance</property>
-        <property name="hibernate.connection.username">root</property>
-        <property name="hibernate.connection.password"></property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.hbm2ddl.auto">update</property>
-        <property name="hibernate.current_session_context_class">thread</property>
-        <property name="show_sql">true</property>
-        <mapping class="fr.papyfinance.com.beans.Company"/>
-        <mapping class="fr.papyfinance.com.beans.Sector"/>
-        <mapping class="fr.papyfinance.com.beans.Publication"/>
-        <mapping class="fr.papyfinance.com.beans.User"/>
-        <mapping class="fr.papyfinance.com.beans.Role"/>
-        <mapping class="fr.papyfinance.com.beans.Transaction"/>
-        <mapping class="fr.papyfinance.com.beans.Auction"/>
-        <mapping class="fr.papyfinance.com.beans.AuctionOffer"/>
-        <mapping class="fr.papyfinance.com.beans.Offer"/>
-        <mapping class="fr.papyfinance.com.beans.OfferType"/>
-        <mapping class="fr.papyfinance.com.beans.ContractType"/>
-        <mapping class="fr.papyfinance.com.beans.NegociationMode"/>
-    </session-factory>
+  <session-factory>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/papyfinance</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password"></property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="show_sql">true</property>
+    <mapping class="fr.papyfinance.com.beans.Company" />
+    <mapping class="fr.papyfinance.com.beans.Sector" />
+    <mapping class="fr.papyfinance.com.beans.Publication" />
+    <mapping class="fr.papyfinance.com.beans.User" />
+    <mapping class="fr.papyfinance.com.beans.Role" />
+    <mapping class="fr.papyfinance.com.beans.Transaction" />
+    <mapping class="fr.papyfinance.com.beans.Auction" />
+    <mapping class="fr.papyfinance.com.beans.AuctionOffer" />
+    <mapping class="fr.papyfinance.com.beans.Offer" />
+    <mapping class="fr.papyfinance.com.beans.OfferType" />
+    <mapping class="fr.papyfinance.com.beans.ContractType" />
+    <mapping class="fr.papyfinance.com.beans.NegociationMode" />
+  </session-factory>
 </hibernate-configuration>

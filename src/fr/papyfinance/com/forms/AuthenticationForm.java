@@ -9,18 +9,18 @@ import fr.papyfinance.com.dao.UserDao;
 import fr.papyfinance.com.resources.Util;
 
 public class AuthenticationForm {
-	private UserDao userDao;
-	
-	public AuthenticationForm() {
-		userDao = new UserDao();
-	}
+  private UserDao userDao;
 
-	public User getUser(HttpServletRequest request) {
-		User user = userDao.getByLogin(Util.getInputValue(request, "login"));
+  public AuthenticationForm() {
+    userDao = new UserDao();
+  }
 
-		if (user != null && Arrays.equals(Util.encrypt(Util.getInputValue(request, "password")), user.getPassword())) {
-			return user;
-		}
-		return null;
-	}
+  public User getUser(HttpServletRequest request) {
+    User user = userDao.getByLogin(Util.getInputValue(request, "login"));
+
+    if (user != null && Arrays.equals(Util.encrypt(Util.getInputValue(request, "password")), user.getPassword())) {
+      return user;
+    }
+    return null;
+  }
 }

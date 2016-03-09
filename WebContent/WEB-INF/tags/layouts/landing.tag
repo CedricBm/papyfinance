@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageTitle}-PapyFinance</title>
+<title>${pageTitle} - PapyFinance</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/materialize.min.css" />" />

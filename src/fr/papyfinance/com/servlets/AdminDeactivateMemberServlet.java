@@ -14,43 +14,26 @@ import fr.papyfinance.com.resources.Util;
 
 @WebServlet("/admin/deactivate")
 public class AdminDeactivateMemberServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    this.getServletContext().getRequestDispatcher("/WEB-INF/admin/all/company-members.jsp").forward(request, response);
+  }
 
-		this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/admin/all/company-members.jsp")
-				.forward(request, response);
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    UserDao ud = new UserDao();
+    User u = ud.getByEmail(Util.getInputValue(request, "email"));
+    u.setConfirmed(false);
 
-	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		request.setCharacterEncoding("UTF-8");
-		UserDao ud = new UserDao();
-		User u = ud.getByEmail(Util.getInputValue(request, "email"));
-		u.setConfirmed(false);
-
-		if (ud.update(u)) {
-			request.getSession()
-					.setAttribute(
-							"deactivated",
-							"L'utilisateur " + u.getEmail()
-									+ " a bien Ã©tÃ© dÃ©sactivÃ© !");
-		} else {
-			request.getSession().setAttribute(
-					"not_deactivated",
-					"L'utilisateur " + u.getEmail()
-							+ " n'a pas Ã©tÃ© dÃ©sactivÃ© !");
-		}
-		if (Util.getInputValue(request, "role").equals("company-member")) {
-
-			response.sendRedirect("company-members");
-		} else {
-			response.sendRedirect("investors");
-		}
-	}
-
+    if (ud.update(u)) {
+      request.getSession().setAttribute("deactivated", "L'utilisateur " + u.getEmail() + " a bien été désactivé !");
+    } else {
+      request.getSession().setAttribute("not_deactivated", "L'utilisateur " + u.getEmail() + " n'a pas été désactivé !");
+    }
+    if (Util.getInputValue(request, "role").equals("company-member")) {
+      response.sendRedirect("company-members");
+    } else {
+      response.sendRedirect("investors");
+    }
+  }
 }

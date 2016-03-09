@@ -38,8 +38,7 @@ public class TransactionDao {
 	public List<Transaction> getAll() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		List<Transaction> transactions = session
-				.createQuery("from Transaction").list();
+		List<Transaction> transactions = session.createQuery("from Transaction").list();
 		session.getTransaction().commit();
 		session.close();
 		return transactions;
@@ -57,6 +56,6 @@ public class TransactionDao {
 				.createQuery(query).list();
 		session.getTransaction().commit();
 		session.close();
-		return c;
-	}
+    return c;
+  }
 }

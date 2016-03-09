@@ -24,14 +24,12 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <i class="material-icons prefix prefix-select">work</i>
-          <select id="company" name="company" class="validate">
+          <i class="material-icons prefix prefix-select">work</i> <select id="company" name="company" class="validate">
             <option value="" disabled selected>Choisir une société</option>
             <c:forEach var="company" items="${companies}">
               <option value="${ company.id }">${ company.name }</option>
             </c:forEach>
-          </select> 
-          <label for="company">Société</label>
+          </select> <label for="company">Société</label>
         </div>
       </div>
       <div class="row">

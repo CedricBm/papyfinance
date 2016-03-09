@@ -18,27 +18,26 @@ import fr.papyfinance.com.beans.User;
 @WebFilter(urlPatterns = { "/investor/*" })
 public class InvestorFilter implements Filter {
 
-	@Override
-	public void destroy() {
-	}
+  @Override
+  public void destroy() {
+  }
 
-	@Override
-	public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
-			throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
-        HttpSession session = request.getSession();
+  @Override
+  public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
+    HttpServletRequest request = (HttpServletRequest) req;
+    HttpServletResponse response = (HttpServletResponse) res;
+    HttpSession session = request.getSession();
 
-        User u = (User) session.getAttribute("user");
-        if (u != null) {
-        	chain.doFilter(request, response);
-        } else {
-        	session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accÃ©der Ã  cette page!");
-        	response.sendRedirect("/PapyFinance");
-        }
-	}
+    User u = (User) session.getAttribute("user");
+    if (u != null) {
+      chain.doFilter(request, response);
+    } else {
+      session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
+      response.sendRedirect("/PapyFinance");
+    }
+  }
 
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-	}
+  @Override
+  public void init(FilterConfig arg0) throws ServletException {
+  }
 }

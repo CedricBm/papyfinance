@@ -19,43 +19,43 @@ import fr.papyfinance.com.dao.RoleDao;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class RoleTest {
-	private static RoleDao roleDao;
+  private static RoleDao roleDao;
 
-	@BeforeClass
-    public static  void runBeforeClass() {
-		Configuration configuration = new Configuration().configure("hibernate-test.cfg.xml");
-    	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        roleDao = new RoleDao(sessionFactory);
-    }
+  @BeforeClass
+  public static void runBeforeClass() {
+    Configuration configuration = new Configuration().configure("hibernate-test.cfg.xml");
+    StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+    SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+    roleDao = new RoleDao(sessionFactory);
+  }
 
-	@Test
-	public void test1Create() {
-		Role s = new Role();
-		s.setName("Admin");
-		roleDao.create(s);
-		
-		assertNotNull(s.getId());
-	}
-	
-	@Test
-	public void test2Get() {
-		Role s = roleDao.getByName("Admin");
-		
-		assertNotNull(s);
-	}
-	
-	@Test
-	public void test3GetAll() {
-		List<Role> roles = roleDao.getAll();
+  @Test
+  public void test1Create() {
+    Role s = new Role();
+    s.setName("Admin");
+    roleDao.create(s);
 
-		assertTrue(roles.size() > 0);
-	}
-	
-	@Test
-	public void test4UniqName() {
-		Role s = new Role();
-		s.setName("Admin");
-		assertFalse(roleDao.create(s));
-	}
+    assertNotNull(s.getId());
+  }
+
+  @Test
+  public void test2Get() {
+    Role s = roleDao.getByName("Admin");
+
+    assertNotNull(s);
+  }
+
+  @Test
+  public void test3GetAll() {
+    List<Role> roles = roleDao.getAll();
+
+    assertTrue(roles.size() > 0);
+  }
+
+  @Test
+  public void test4UniqName() {
+    Role s = new Role();
+    s.setName("Admin");
+    assertFalse(roleDao.create(s));
+  }
 }
