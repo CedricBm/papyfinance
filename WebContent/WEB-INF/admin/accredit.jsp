@@ -16,7 +16,7 @@
               <table class="bordered centered">
                 <thead>
                   <tr>
-                    <th>Id compagnie</th>
+                    <th>Id société</th>
                     <th>Nom</th>
                     <th>Chiffre d'affaire</th>
                     <th>Site web</th>

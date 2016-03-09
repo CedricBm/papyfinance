@@ -15,37 +15,37 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "negociation_modes")
 public class NegociationMode implements Serializable {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	private int id;
-	private String name;
-	private Set<Offer> offers;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
+  private int id;
+  private String name;
+  private Set<Offer> offers;
 
-	@Column(unique = true)
-	public String getName() {
-		return name;
-	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "negociationMode")
-	public Set<Offer> getOffers() {
-		return offers;
-	}
-	
-	public void setOffers(Set<Offer> offers) {
-		this.offers = offers;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  @Column(unique = true)
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "negociationMode")
+  public Set<Offer> getOffers() {
+    return offers;
+  }
+
+  public void setOffers(Set<Offer> offers) {
+    this.offers = offers;
+  }
 }

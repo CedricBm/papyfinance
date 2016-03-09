@@ -14,27 +14,21 @@ import fr.papyfinance.com.dao.UserDao;
 
 @WebServlet("/admin/investors")
 public class AdminAllInvestServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	public AdminAllInvestServlet() {
-		super();
-	}
+  public AdminAllInvestServlet() {
+    super();
+  }
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		UserDao ud = new UserDao();
-		ArrayList<User> listeUsers = ud.getAllInvest();
-		request.setAttribute("listeUsers", listeUsers);
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    UserDao ud = new UserDao();
+    ArrayList<User> listeUsers = ud.getAllInvest();
+    request.setAttribute("listeUsers", listeUsers);
 
-		this.getServletContext()
-				.getRequestDispatcher("/WEB-INF/admin/all-invest.jsp")
-				.forward(request, response);
+    this.getServletContext().getRequestDispatcher("/WEB-INF/admin/all-invest.jsp").forward(request, response);
+  }
 
-	}
-
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-
-		doGet(request, response);
-	}
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doGet(request, response);
+  }
 }

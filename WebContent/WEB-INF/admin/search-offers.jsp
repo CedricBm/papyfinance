@@ -23,7 +23,7 @@
                     <th>Mode de négociation</th>
                     <th>Type contrat</th>
                     <th>Nom vendeur</th>
-                    <th>Compagnie</th>
+                    <th>Société</th>
                   </tr>
                 </thead>
 

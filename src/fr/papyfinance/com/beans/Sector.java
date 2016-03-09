@@ -15,37 +15,37 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "sectors")
 public class Sector implements Serializable {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private int id;
-    private String name;
-    private Set<Company> companies;
-    
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
-		return id;
-	}
+  private int id;
+  private String name;
+  private Set<Company> companies;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  public int getId() {
+    return id;
+  }
 
-	@Column(unique = true)
-	public String getName() {
-		return name;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  @Column(unique = true)
+  public String getName() {
+    return name;
+  }
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "sector")
-	public Set<Company> getCompanies() {
-		return companies;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public void setCompanies(Set<Company> companies) {
-		this.companies = companies;
-	}
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "sector")
+  public Set<Company> getCompanies() {
+    return companies;
+  }
+
+  public void setCompanies(Set<Company> companies) {
+    this.companies = companies;
+  }
 }

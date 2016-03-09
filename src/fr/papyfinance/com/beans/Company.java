@@ -18,126 +18,126 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "companies")
 public class Company implements Serializable {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    private int id;
-    private String name;
-    private byte[] logo;
-    private String workforce;
-    private String revenue;
-    private String website;
-    private Sector sector;
-    private Set<Publication> publications;
-    private Set<User> users;
-    private Set<Offer> offers;
-    private Set<Transaction> transactions;
-    private boolean confirmed;
-    
-	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-	public int getId() {
-		return id;
-	}
+  private int id;
+  private String name;
+  private byte[] logo;
+  private String workforce;
+  private String revenue;
+  private String website;
+  private Sector sector;
+  private Set<Publication> publications;
+  private Set<User> users;
+  private Set<Offer> offers;
+  private Set<Transaction> transactions;
+  private boolean confirmed;
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
-	@Column(unique = true)
-	public String getName() {
-		return name;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  public int getId() {
+    return id;
+  }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
 
-	@Lob
-    @Column(columnDefinition = "mediumblob")
-	public byte[] getLogo() {
-		return logo;
-	}
+  @Column(unique = true)
+  public String getName() {
+    return name;
+  }
 
-	public void setLogo(byte[] logo) {
-		this.logo = logo;
-	}
+  public void setName(String name) {
+    this.name = name;
+  }
 
-	public String getWorkforce() {
-		return workforce;
-	}
+  @Lob
+  @Column(columnDefinition = "mediumblob")
+  public byte[] getLogo() {
+    return logo;
+  }
 
-	public void setWorkforce(String workforce) {
-		this.workforce = workforce;
-	}
+  public void setLogo(byte[] logo) {
+    this.logo = logo;
+  }
 
-	public String getRevenue() {
-		return revenue;
-	}
+  public String getWorkforce() {
+    return workforce;
+  }
 
-	public void setRevenue(String revenue) {
-		this.revenue = revenue;
-	}
+  public void setWorkforce(String workforce) {
+    this.workforce = workforce;
+  }
 
-	public String getWebsite() {
-		return website;
-	}
+  public String getRevenue() {
+    return revenue;
+  }
 
-	public void setWebsite(String website) {
-		this.website = website;
-	}
+  public void setRevenue(String revenue) {
+    this.revenue = revenue;
+  }
 
-	@ManyToOne
-    @JoinColumn(name = "sector_id")
-	public Sector getSector() {
-		return sector;
-	}
+  public String getWebsite() {
+    return website;
+  }
 
-	public void setSector(Sector sector) {
-		this.sector = sector;
-	}
+  public void setWebsite(String website) {
+    this.website = website;
+  }
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
-	public Set<Publication> getPublications() {
-		return publications;
-	}
+  @ManyToOne
+  @JoinColumn(name = "sector_id")
+  public Sector getSector() {
+    return sector;
+  }
 
-	public void setPublications(Set<Publication> publications) {
-		this.publications = publications;
-	}
+  public void setSector(Sector sector) {
+    this.sector = sector;
+  }
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
-	public Set<User> getUsers() {
-		return users;
-	}
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
+  public Set<Publication> getPublications() {
+    return publications;
+  }
 
-	public void setUsers(Set<User> users) {
-		this.users = users;
-	}
+  public void setPublications(Set<Publication> publications) {
+    this.publications = publications;
+  }
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
-	public Set<Offer> getOffers() {
-		return offers;
-	}
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
+  public Set<User> getUsers() {
+    return users;
+  }
 
-	public void setOffers(Set<Offer> offers) {
-		this.offers = offers;
-	}
+  public void setUsers(Set<User> users) {
+    this.users = users;
+  }
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
-	public Set<Transaction> getTransactions() {
-		return transactions;
-	}
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
+  public Set<Offer> getOffers() {
+    return offers;
+  }
 
-	public void setTransactions(Set<Transaction> transactions) {
-		this.transactions = transactions;
-	}
-	
-	@Column(name = "is_confirmed")
-	public boolean isConfirmed() {
-		return confirmed;
-	}
+  public void setOffers(Set<Offer> offers) {
+    this.offers = offers;
+  }
 
-	public void setConfirmed(boolean confirmed) {
-		this.confirmed = confirmed;
-	}
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "company")
+  public Set<Transaction> getTransactions() {
+    return transactions;
+  }
+
+  public void setTransactions(Set<Transaction> transactions) {
+    this.transactions = transactions;
+  }
+
+  @Column(name = "is_confirmed")
+  public boolean isConfirmed() {
+    return confirmed;
+  }
+
+  public void setConfirmed(boolean confirmed) {
+    this.confirmed = confirmed;
+  }
 }

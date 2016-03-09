@@ -36,9 +36,9 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  
+
   <jsp:include page="/WEB-INF/inc/flash.jsp" />
-  
+
   <jsp:doBody />
 
   <footer class="page-footer orange">

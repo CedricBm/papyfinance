@@ -19,7 +19,7 @@
                     <th>Id transaction</th>
                     <th>Nom acheteur</th>
                     <th>Nom vendeur</th>
-                    <th>Compagnie</th>
+                    <th>Société</th>
                     <th>Id offre</th>
                   </tr>
                 </thead>

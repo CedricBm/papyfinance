@@ -20,49 +20,49 @@ import fr.papyfinance.com.dao.ContractTypeDao;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ContractTypeTest {
-	private static ContractTypeDao contractTypeDao;
+  private static ContractTypeDao contractTypeDao;
 
-	@BeforeClass
-    public static  void runBeforeClass() {
-		Configuration configuration = new Configuration().configure("hibernate-test.cfg.xml");
-    	StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
-        SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
-        contractTypeDao = new ContractTypeDao(sessionFactory);
-    }
+  @BeforeClass
+  public static void runBeforeClass() {
+    Configuration configuration = new Configuration().configure("hibernate-test.cfg.xml");
+    StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+    SessionFactory sessionFactory = configuration.buildSessionFactory(builder.build());
+    contractTypeDao = new ContractTypeDao(sessionFactory);
+  }
 
-	@Test
-	public void test1Create() {
-		ContractType s = new ContractType();
-		s.setName("Titre");
-		contractTypeDao.create(s);
-		
-		assertNotNull(s.getId());
-	}
-	
-	@Test
-	public void test2Get() {
-		ContractType s = contractTypeDao.getByName("Titre");
-		
-		assertNotNull(s);
-	}
-	
-	@Test
-	public void test3GetAll() {
-		List<ContractType> contractTypes = contractTypeDao.getAll();
+  @Test
+  public void test1Create() {
+    ContractType s = new ContractType();
+    s.setName("Titre");
+    contractTypeDao.create(s);
 
-		assertTrue(contractTypes.size() > 0);
-	}
-	
-	@Test
-	public void test4UniqName() {
-		ContractType s = new ContractType();
-		s.setName("Titre");
-		assertFalse(contractTypeDao.create(s));
-	}
-	
-	@Test
-	public void test5NullReturn() {
-		ContractType s = contractTypeDao.getByName("Foobar");
-		assertNull(s);
-	}
+    assertNotNull(s.getId());
+  }
+
+  @Test
+  public void test2Get() {
+    ContractType s = contractTypeDao.getByName("Titre");
+
+    assertNotNull(s);
+  }
+
+  @Test
+  public void test3GetAll() {
+    List<ContractType> contractTypes = contractTypeDao.getAll();
+
+    assertTrue(contractTypes.size() > 0);
+  }
+
+  @Test
+  public void test4UniqName() {
+    ContractType s = new ContractType();
+    s.setName("Titre");
+    assertFalse(contractTypeDao.create(s));
+  }
+
+  @Test
+  public void test5NullReturn() {
+    ContractType s = contractTypeDao.getByName("Foobar");
+    assertNull(s);
+  }
 }
