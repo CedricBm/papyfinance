@@ -1,6 +1,7 @@
 package fr.papyfinance.com.beans;
 
 import java.io.Serializable;
+import java.util.Base64;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -61,6 +62,11 @@ public class Company implements Serializable {
   public void setLogo(byte[] logo) {
     this.logo = logo;
   }
+  
+//  public String getLogoString(byte[] logo){
+//	  String url = "data:img/logos/png;base64," + Base64.getEncoder(logo);
+//	  return url;
+//  } 
 
   public String getWorkforce() {
     return workforce;
