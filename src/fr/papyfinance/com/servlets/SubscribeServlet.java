@@ -36,8 +36,10 @@ public class SubscribeServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    User u = subscribeForm.getUser(request);
-
+	request.setCharacterEncoding("UTF-8");
+	  
+	User u = subscribeForm.getUser(request);
+    
     if (userDao.create(u)) {
       Util.login(u, request.getSession());
       request.getSession().setAttribute("subscribe", "Inscription réussie!");

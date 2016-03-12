@@ -40,7 +40,9 @@ public class SubscribeCompanyServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    User u = subscribeCompanyForm.getUser(request);
+	request.setCharacterEncoding("UTF-8");
+	
+	User u = subscribeCompanyForm.getUser(request);
 
     if (userDao.create(u)) {
       request.getSession().setAttribute("subscribe", "Inscription réussie, veuillez attendre la validation de votre compte.");

@@ -50,6 +50,8 @@ public class AdminSearchServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     ArrayList res = new ArrayList();
 
+    request.setCharacterEncoding("UTF-8");
+    
     switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
       case 1:
         CompanyDao cd = new CompanyDao();
