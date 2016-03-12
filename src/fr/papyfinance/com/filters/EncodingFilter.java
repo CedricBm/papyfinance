@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebFilter("/EncodingFilter")
+@WebFilter("/*")
 public class EncodingFilter implements Filter {
   public void destroy() {
   }

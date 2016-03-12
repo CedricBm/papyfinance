@@ -33,8 +33,6 @@ public class AuthenticationServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	request.setCharacterEncoding("UTF-8");
-	  
 	User u = authenticationForm.getUser(request);
    
     if (u == null) {

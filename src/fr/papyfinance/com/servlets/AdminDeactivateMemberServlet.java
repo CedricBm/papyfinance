@@ -23,8 +23,6 @@ public class AdminDeactivateMemberServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     UserDao ud = new UserDao();
 
-    request.setCharacterEncoding("UTF-8");
-    
     User u = ud.getByEmail(Util.getInputValue(request, "email"));
     u.setConfirmed(false);
     if (ud.update(u)) {
