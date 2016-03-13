@@ -26,7 +26,7 @@
                       <td>${user.company.website}</td>
                       <td>${user.company.revenue}</td>
                       <td>${user.company.workforce}</td>
-                      <td><img src="/img/logos/${user.company.logo}"></td>
+                      <td><img src="${pageContext.request.contextPath}/WebContent/img/logos/${user.company.getLogo()}"></td>
                   </tbody>
               </table>
         </div>
