@@ -66,6 +66,15 @@ public class CompanyDao {
     session.close();
     return c;
   }
+  
+  public byte[] getByLogo(byte[] logo) {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    Company c = (Company) session.createQuery("from Company where logo = :clogo").setParameter("clogo", logo).uniqueResult();
+	    session.getTransaction().commit();
+	    session.close();
+	    return c.getLogo();
+}
 
   @SuppressWarnings("unchecked")
   public List<Company> getAll() {
