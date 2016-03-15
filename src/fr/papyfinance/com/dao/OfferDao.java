@@ -48,13 +48,10 @@ public class OfferDao {
 	public ArrayList<Offer> getAllWithAttribute(String attribute) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		String query = "from Offer where offerType.name like '%" + attribute
-				+ "%' OR negociationMode.name like '%" + attribute
-				+ "%' OR contractType.name like '%" + attribute
-				+ "%' OR user.lname like '%" + attribute
-				+ "%'OR company.name like '%" + attribute + "%'";
-		ArrayList<Offer> c = (ArrayList<Offer>) session.createQuery(query)
-				.list();
+		ArrayList<Offer> c = (ArrayList<Offer>) session
+				.createQuery(
+						"from Offer where offerType.name like :oattribute OR negociationMode.name like :oattribute OR contractType.name like :oattribute OR user.lname like :oattribute OR company.name like :oattribute")
+				.setParameter("oattribute", "%" + attribute + "%").list();
 		session.getTransaction().commit();
 		session.close();
 		return c;

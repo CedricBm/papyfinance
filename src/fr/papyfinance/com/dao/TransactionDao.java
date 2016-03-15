@@ -48,14 +48,12 @@ public class TransactionDao {
 	public ArrayList<Transaction> getAllWithAttribute(String attribute) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		String query = "from Transaction where buyer.lname like '%" + attribute
-				+ "%' OR seller.lname like '%" + attribute
-				+ "%' OR offer.offerType.name like '%" + attribute
-				+ "%' OR company.name like '%" + attribute + "%'";
 		ArrayList<Transaction> c = (ArrayList<Transaction>) session
-				.createQuery(query).list();
+				.createQuery(
+						"from Transaction where buyer.lname like :tattribute OR seller.lname like :tattribute OR offer.offerType.name like :tattribute OR company.name like :tattribute ")
+				.setParameter("tattribute", "%" + attribute + "%").list();
 		session.getTransaction().commit();
 		session.close();
-    return c;
-  }
+		return c;
+	}
 }
