@@ -126,4 +126,11 @@ public class TransactionTest {
 
     assertEquals(lc.size(), 1);
   }
+  
+  @Test
+  public void test8GetAllForInvestor() {
+    ArrayList<Transaction> lc = (ArrayList<Transaction>) transactionDao.getAllForInvestor("test","","",1);
+
+    assertEquals(lc.size(), 1);
+  }
 }

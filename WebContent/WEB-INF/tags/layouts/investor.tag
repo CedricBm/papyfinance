@@ -24,6 +24,8 @@
         <li><a class="waves-effect waves-light" href="#">Mon profil</a></li>
         <li><a class="waves-effect waves-light" href="#">Acheter/Vendre</a></li>
         <li><a class="waves-effect waves-light" href="/PapyFinance/investor/search/companies">Rechercher entreprises</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/search/offers">Rechercher offres</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
         <li><a href="logout">Déconnexion</a></li>
       </ul>
@@ -32,6 +34,9 @@
         <li><a class="waves-effect waves-light" href="#">Publier une offre</a></li>
         <li><a class="waves-effect waves-light" href="#">Mon profil</a></li>
         <li><a class="waves-effect waves-light" href="#">Acheter/Vendre</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/search/companies">Rechercher entreprises</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/search/offers">Rechercher offres</a></li>
+        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>
