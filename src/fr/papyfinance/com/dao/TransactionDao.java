@@ -49,8 +49,7 @@ public class TransactionDao {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     ArrayList<Transaction> c = (ArrayList<Transaction>) session
-        .createQuery(
-            "from Transaction where buyer.lname like :tattribute OR seller.lname like :tattribute OR offer.offerType.name like :tattribute OR company.name like :tattribute ")
+        .createQuery("from Transaction where buyer.lname like :tattribute OR seller.lname like :tattribute OR offer.offerType.name like :tattribute OR company.name like :tattribute ")
         .setParameter("tattribute", "%" + attribute + "%").list();
     session.getTransaction().commit();
     session.close();
@@ -61,21 +60,15 @@ public class TransactionDao {
   public ArrayList<Transaction> getAllForInvestor(String buyerName, String sellerName, String companyName, int idOffer) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    ArrayList<Transaction> c = null ;
-    if(idOffer < 0)
-    {
-     c = (ArrayList<Transaction>) session
-          .createQuery(
-              "from Transaction where buyer.lname like :tbuyerName AND seller.lname like :tsellerName AND company.name like :tcompanyName")
-          .setParameter("tbuyerName", "%" + buyerName + "%").setParameter("tsellerName", "%" + sellerName + "%")
-          .setParameter("tcompanyName", "%" + companyName + "%").list();
-    }else
-    {
+    ArrayList<Transaction> c = null;
+    if (idOffer < 0) {
+      c = (ArrayList<Transaction>) session.createQuery("from Transaction where buyer.lname like :tbuyerName AND seller.lname like :tsellerName AND company.name like :tcompanyName")
+          .setParameter("tbuyerName", "%" + buyerName + "%").setParameter("tsellerName", "%" + sellerName + "%").setParameter("tcompanyName", "%" + companyName + "%").list();
+    } else {
       c = (ArrayList<Transaction>) session
-          .createQuery(
-              "from Transaction where buyer.lname like :tbuyerName AND seller.lname like :tsellerName AND company.name like :tcompanyName AND offer.id = :tidOffer ")
-          .setParameter("tbuyerName", "%" + buyerName + "%").setParameter("tsellerName", "%" + sellerName + "%")
-          .setParameter("tcompanyName", "%" + companyName + "%").setParameter("tidOffer", idOffer).list();
+          .createQuery("from Transaction where buyer.lname like :tbuyerName AND seller.lname like :tsellerName AND company.name like :tcompanyName AND offer.id = :tidOffer ")
+          .setParameter("tbuyerName", "%" + buyerName + "%").setParameter("tsellerName", "%" + sellerName + "%").setParameter("tcompanyName", "%" + companyName + "%").setParameter("tidOffer", idOffer)
+          .list();
     }
     session.getTransaction().commit();
     session.close();

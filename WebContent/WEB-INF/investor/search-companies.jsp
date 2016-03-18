@@ -16,7 +16,6 @@
               <table class="bordered centered">
                 <thead>
                   <tr>
-                    <th>Id société</th>
                     <th>Nom</th>
                     <th>Chiffre d'affaire</th>
                     <th>Site web</th>
@@ -28,10 +27,9 @@
                 <c:forEach var="company" items="${listeRes}">
                   <tbody>
                     <tr>
-                      <td>${company.id}</td>
                       <td>${company.name}</td>
                       <td>${company.revenue}</td>
-                      <td><a href="${company.website}">${company.website}</a></td>
+                      <td><a href="${company.website}" target="_blank">${company.website}</a></td>
                       <td>${company.workforce}</td>
                       <td>${company.sector.name}</td>
                     </tr>
@@ -42,38 +40,40 @@
           </c:choose>
         </div>
         <div class="col s6">
-          <form method="post" class="col s6 offset-s6 hoverable" action="../../investor/search/companies">
-            <div class="row">
-              <div class="input-field">
-                <input id="name" name="name" type="text" class="validate"> <label for="name">Nom société :</label>
+          <div class="row">
+            <form method="post" class="col s6 offset-s6 hoverable" action="../../investor/search/companies">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="name" name="name" type="text" class="validate"> <label for="name">Nom société :</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <select id="sector" name="sector" class="validate">
-                  <option value="" disabled selected>Choisir un secteur</option>
-                  <c:forEach var="sector" items="${sectors}">
-                    <option value="${ sector.name }">${ sector.name }</option>
-                  </c:forEach>
-                </select> <label for="sector">Secteur</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="sector" name="sector" class="validate">
+                    <option value="" disabled selected>Choisir un secteur</option>
+                    <c:forEach var="sector" items="${sectors}">
+                      <option value="${ sector.name }">${ sector.name }</option>
+                    </c:forEach>
+                  </select> <label for="sector">Secteur</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <input id="revenue" name="revenue" type="text" class="validate"> <label for="revenue">Chiffre d'affaire supérieur à :</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="revenue" name="revenue" type="text" class="validate"> <label for="revenue">Chiffre d'affaire supérieur à :</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <input id="workforce" name="workforce" type="text" class="validate"> <label for="workforce">Nombre de salariés supérieur à :</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="workforce" name="workforce" type="text" class="validate"> <label for="workforce">Nombre de salariés supérieur à :</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <button class="waves-effect waves-light btn" type="submit">Rechercher</button>
-            </div>
-          </form>
+              <div class="row">
+                <button class="waves-effect waves-light btn" type="submit">Rechercher</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-    </div>
+  </div>
 </layout:investor>

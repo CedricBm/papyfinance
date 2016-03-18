@@ -16,7 +16,6 @@
               <table class="bordered centered">
                 <thead>
                   <tr>
-                    <th>Id offre</th>
                     <th>Prix</th>
                     <th>Type offre</th>
                     <th>Mode de négociation</th>
@@ -29,7 +28,6 @@
                 <c:forEach var="offer" items="${listeRes}">
                   <tbody>
                     <tr>
-                      <td>${offer.id}</td>
                       <td>${offer.price}</td>
                       <td>${offer.offerType.name}</td>
                       <td>${offer.negociationMode.name}</td>
@@ -44,56 +42,58 @@
           </c:choose>
         </div>
         <div class="col s6">
-          <form method="post" class="col s6 offset-s6 hoverable" action="../../investor/search/offers">
-            <div class="row">
-              <div class="input-field">
-                <input id="price" name="price" type="text" class="validate"> <label for="price">Prix supérieur à :</label>
+          <div class="row">
+            <form method="post" class="col s6 offset-s6 hoverable" action="../../investor/search/offers">
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="price" name="price" type="text" class="validate"> <label for="price">Prix supérieur à :</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <select id="offerType" name="offerType" class="validate">
-                  <option value="" disabled selected>Choisir un type d'offre</option>
-                  <c:forEach var="offerType" items="${offerTypes}">
-                    <option value="${ offerType.name }">${ offerType.name }</option>
-                  </c:forEach>
-                </select> <label for="offerType">Type Offre</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="offerType" name="offerType" class="validate">
+                    <option value="" disabled selected>Choisir un type d'offre</option>
+                    <c:forEach var="offerType" items="${offerTypes}">
+                      <option value="${ offerType.name }">${ offerType.name }</option>
+                    </c:forEach>
+                  </select> <label for="offerType">Type Offre</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <select id="negociationMode" name="negociationMode" class="validate">
-                  <option value="" disabled selected>Choisir un mode de négociation</option>
-                  <c:forEach var="negociationMode" items="${negociationModes}">
-                    <option value="${ negociationMode.name }">${ negociationMode.name }</option>
-                  </c:forEach>
-                </select> <label for="negociationMode">Mode de négociation</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="negociationMode" name="negociationMode" class="validate">
+                    <option value="" disabled selected>Choisir un mode de négociation</option>
+                    <c:forEach var="negociationMode" items="${negociationModes}">
+                      <option value="${ negociationMode.name }">${ negociationMode.name }</option>
+                    </c:forEach>
+                  </select> <label for="negociationMode">Mode de négociation</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <select id="contractType" name="contractType" class="validate">
-                  <option value="" disabled selected>Choisir un type de contrat</option>
-                  <c:forEach var="contractType" items="${contractTypes}">
-                    <option value="${ contractType.name }">${ contractType.name }</option>
-                  </c:forEach>
-                </select> <label for="contractType">Type de contrat</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <select id="contractType" name="contractType" class="validate">
+                    <option value="" disabled selected>Choisir un type de contrat</option>
+                    <c:forEach var="contractType" items="${contractTypes}">
+                      <option value="${ contractType.name }">${ contractType.name }</option>
+                    </c:forEach>
+                  </select> <label for="contractType">Type de contrat</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <input id="seller" name="seller" type="text" class="validate"> <label for="seller">Nom du vendeur :</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="seller" name="seller" type="text" class="validate"> <label for="seller">Nom du vendeur :</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <div class="input-field">
-                <input id="company" name="company" type="text" class="validate"> <label for="company">Nom de la société :</label>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="company" name="company" type="text" class="validate"> <label for="company">Nom de la société :</label>
+                </div>
               </div>
-            </div>
-            <div class="row">
-              <button class="waves-effect waves-light btn" type="submit">Rechercher</button>
-            </div>
-          </form>
+              <div class="row">
+                <button class="waves-effect waves-light btn" type="submit">Rechercher</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>

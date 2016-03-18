@@ -52,16 +52,12 @@ public class InvestorSearchCompanyServlet extends HttpServlet {
     } catch (Exception e) {
       request.setAttribute("listeRes", null);
       request.setAttribute("sectors", new SectorDao().getAll());
-    }finally
-    {
+    } finally {
       this.getServletContext().getRequestDispatcher("/WEB-INF/investor/search-companies.jsp").forward(request, response);
     }
-
-    
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     doGet(request, response);
   }
-
 }

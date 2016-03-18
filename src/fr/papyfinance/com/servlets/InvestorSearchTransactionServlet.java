@@ -42,21 +42,17 @@ public class InvestorSearchTransactionServlet extends HttpServlet {
         idOffer = Integer.parseInt(i);
       }
 
-      ArrayList<Transaction> res = (ArrayList<Transaction>) td.getAllForInvestor(buyerName, sellerName, companyName,
-          idOffer);
+      ArrayList<Transaction> res = (ArrayList<Transaction>) td.getAllForInvestor(buyerName, sellerName, companyName, idOffer);
 
       request.setAttribute("listeRes", res);
     } catch (Exception e) {
       request.setAttribute("listeRes", null);
     } finally {
-      this.getServletContext().getRequestDispatcher("/WEB-INF/investor/search-transactions.jsp").forward(request,
-          response);
+      this.getServletContext().getRequestDispatcher("/WEB-INF/investor/search-transactions.jsp").forward(request, response);
     }
-
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     doGet(request, response);
   }
-
 }

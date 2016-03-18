@@ -33,8 +33,8 @@ public class InvestorSearchOfferServlet extends HttpServlet {
       String contractType = Util.getInputValue(request, "contractType");
       String seller = Util.getInputValue(request, "seller");
       String company = Util.getInputValue(request, "company");
-      float price=0;
-      
+      float price = 0;
+
       if (p != null) {
         price = Float.parseFloat(p);
       }
@@ -43,16 +43,16 @@ public class InvestorSearchOfferServlet extends HttpServlet {
       }
       if (negociationMode == null) {
         negociationMode = "";
-      } 
+      }
       if (contractType == null) {
         contractType = "";
-      } 
+      }
       if (seller == null) {
         seller = "";
-      } 
+      }
       if (company == null) {
         company = "";
-      } 
+      }
 
       ArrayList<Offer> res = (ArrayList<Offer>) od.getAllForInvestor(price, offerType, negociationMode, contractType, seller, company);
 
@@ -73,5 +73,4 @@ public class InvestorSearchOfferServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     doGet(request, response);
   }
-
 }
