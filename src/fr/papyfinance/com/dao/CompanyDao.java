@@ -52,7 +52,8 @@ public class CompanyDao {
   public Company getByName(String name) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    Company c = (Company) session.createQuery("from Company where name = :cname").setParameter("cname", name).uniqueResult();
+    Company c = (Company) session.createQuery("from Company where name = :cname").setParameter("cname", name)
+        .uniqueResult();
     session.getTransaction().commit();
     session.close();
     return c;
@@ -91,8 +92,23 @@ public class CompanyDao {
   public ArrayList<Company> getAllWithAttribute(String attribute) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    String query = "from Company where name like '%" + attribute + "%' OR website like '%" + attribute + "%' ";
-    ArrayList<Company> c = (ArrayList<Company>) session.createQuery(query).list();
+    ArrayList<Company> c = (ArrayList<Company>) session
+        .createQuery("from Company where name like :cattribute OR website like :cattribute ")
+        .setParameter("cattribute", "%" + attribute + "%").list();
+    session.getTransaction().commit();
+    session.close();
+    return c;
+  }
+
+  @SuppressWarnings("unchecked")
+  public ArrayList<Company> getAllForInvestor(String name, String sector, long revenue, long workforce) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    ArrayList<Company> c = (ArrayList<Company>) session
+        .createQuery(
+            "from Company where name like :cname and sector.name like :csector and cast(revenue as long) >= :crevenue and cast(workforce as long) >= :cworkforce")
+        .setParameter("cname", "%" + name + "%").setParameter("csector", "%" + sector + "%")
+        .setParameter("crevenue", revenue).setParameter("cworkforce", workforce).list();
     session.getTransaction().commit();
     session.close();
     return c;

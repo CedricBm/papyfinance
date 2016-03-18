@@ -120,5 +120,12 @@ public class OfferTest {
 
     assertEquals(lc.size(), 1);
   }
+  
+  @Test
+  public void test7GetAllForInvestor() {
+    ArrayList<Offer> lc = (ArrayList<Offer>) offerDao.getAllForInvestor(0,"","","Action","","");
+
+    assertEquals(lc.size(), 1);
+  }
 
 }

@@ -17,7 +17,7 @@
             <option value=2>Utilisateur</option>
             <option value=3>Offre</option>
             <option value=4>Transaction</option>
-          </select> <label for="typeSearch">Type recherchée</label>
+          </select> <label for="typeSearch">Table recherchée</label>
         </div>
       </div>
       <div class="row">

@@ -23,6 +23,9 @@
         <li><a class="waves-effect waves-light" href="#">Publier une offre</a></li>
         <li><a class="waves-effect waves-light" href="#">Mon profil</a></li>
         <li><a class="waves-effect waves-light" href="#">Acheter/Vendre</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/companies">Rechercher entreprises</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/offers">Rechercher offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
         <li><a href="logout">Déconnexion</a></li>
       </ul>
@@ -31,8 +34,11 @@
         <li><a class="waves-effect waves-light" href="#">Publier une offre</a></li>
         <li><a class="waves-effect waves-light" href="#">Mon profil</a></li>
         <li><a class="waves-effect waves-light" href="#">Acheter/Vendre</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/companies">Rechercher entreprises</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/offers">Rechercher offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
-        <li><a href="logout">Déconnexion</a></li>
+        <li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
