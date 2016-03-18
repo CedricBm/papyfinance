@@ -32,7 +32,7 @@
               </table>
         </div>
         <div class="col s12">
-        <h2 class="header orange-text">Mes annonces</h2>
+        <h2 class="header orange-text">Mes Publications</h2>
               <table class="bordered">
                 <thead>
                   <tr>
@@ -40,11 +40,11 @@
                     <th>Description</th>
                   </tr>
                 </thead>
-                <c:forEach var="user.company.publications" items="${listePublication}">
+                <c:forEach var="publications" items="${user.company.publications}">
                   <tbody>
                     <tr>
-                    	 <td><c:out value="${user.company.publications[title]}" /></td>
-                    <td><c:out value="${user.company.publications[desciption]}" /></td>
+                    <td><c:out value="${publications.title}" /></td>
+                    <td><c:out value="${publications.description}" /></td>
 					</tr>
                   </tbody>
                   </c:forEach>

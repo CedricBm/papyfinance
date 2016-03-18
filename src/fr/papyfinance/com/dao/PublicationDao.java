@@ -1,11 +1,9 @@
 package fr.papyfinance.com.dao;
 
-import java.util.ArrayList;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import fr.papyfinance.com.beans.Publication;
-import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.resources.HibernateUtil;
 
 public class PublicationDao {
@@ -73,19 +71,4 @@ public class PublicationDao {
 	    session.close();
 	    return o;
 	  }
-
-	  @SuppressWarnings("unchecked")
-	  public ArrayList<Publication> getAllPublication() {
-	    Session session = sessionFactory.openSession();
-	    session.beginTransaction();
-	    ArrayList<Publication> o = (ArrayList<Publication>) session.createQuery("from Publication").list();
-	    session.getTransaction().commit();
-	    session.close();
-	    return o;
-	  }
-  
-  
-  
-  
-  
 }
