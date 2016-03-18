@@ -21,15 +21,15 @@
         class="material-icons right">list</i></a>
 
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/company/mycompany">Ma société</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/company/adscompany">Publier une annonce</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/mycompany">Ma société</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/companyads">Publier une annonce</a></li>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light" href="/PapyFinance/company/mycompany">Ma société</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/company/adscompany">Publier une annonce</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/mycompany">Ma société</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/companyads">Publier une annonce</a></li>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>

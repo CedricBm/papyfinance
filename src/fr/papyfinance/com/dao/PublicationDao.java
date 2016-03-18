@@ -1,9 +1,11 @@
 package fr.papyfinance.com.dao;
 
+import java.util.ArrayList;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import fr.papyfinance.com.beans.Publication;
+import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.resources.HibernateUtil;
 
 public class PublicationDao {
@@ -30,4 +32,60 @@ public class PublicationDao {
     }
     return true;
   }
+  
+  public boolean update(Publication o) {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    try {
+	      session.update(o);
+	      session.getTransaction().commit();
+	    } catch (Exception e) {
+	      return false;
+	    } finally {
+	      session.close();
+	    }
+	    return true;
+	  }
+
+	  public Publication getByTitle(String title) {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    Publication o = (Publication) session.createQuery("from Publication where title = :ctitle").setParameter("ctitle", title).uniqueResult();
+	    session.getTransaction().commit();
+	    session.close();
+	    return o;
+	  }
+	  
+	  public Publication getByDescription(String description) {
+		    Session session = sessionFactory.openSession();
+		    session.beginTransaction();
+		    Publication o = (Publication) session.createQuery("from Publication where description = :cdescription").setParameter("cdescription", description).uniqueResult();
+		    session.getTransaction().commit();
+		    session.close();
+		    return o;
+		  }
+
+	  public Publication getById(int id) {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    Publication o = (Publication) session.createQuery("from Publication where id = :cid").setParameter("cid", id).uniqueResult();
+	    session.getTransaction().commit();
+	    session.close();
+	    return o;
+	  }
+
+	  @SuppressWarnings("unchecked")
+	  public ArrayList<Publication> getAllPublication() {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    ArrayList<Publication> o = (ArrayList<Publication>) session.createQuery("from Publication").list();
+	    session.getTransaction().commit();
+	    session.close();
+	    return o;
+	  }
+  
+  
+  
+  
+  
 }

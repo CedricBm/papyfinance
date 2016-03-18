@@ -22,19 +22,19 @@
         class="material-icons right">list</i></a>
 
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin">Administration</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/company-members">Rechercher tous les membres sociétés</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/investors">Rechercher tous les investisseurs</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/accredit">Accréditer les sociétés</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin">Administration</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin/company-members">Rechercher tous les membres sociétés</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin/investors">Rechercher tous les investisseurs</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin/accredit">Accréditer les sociétés</a></li>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/company-members">Rechercher tous les membres sociétés</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin">Administration</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/investors">Rechercher tous les investisseurs</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/admin/accredit">Accréditer les sociétés</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin/company-members">Rechercher tous les membres sociétés</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin">Administration</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin/investors">Rechercher tous les investisseurs</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/admin/accredit">Accréditer les sociétés</a></li>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>

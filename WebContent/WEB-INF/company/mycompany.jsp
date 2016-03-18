@@ -8,6 +8,7 @@
       <br> <br>
       <div class="row center">
         <div class="col s12">
+        <h2 class="header orange-text">Ma société</h2>
               <table class="bordered centered">
                 <thead>
                   <tr>
@@ -28,6 +29,25 @@
                       <td>${user.company.workforce}</td>
                       <td><img src="${pageContext.request.contextPath}/WebContent/img/logos/${user.company.getLogo()}"></td>
                   </tbody>
+              </table>
+        </div>
+        <div class="col s12">
+        <h2 class="header orange-text">Mes annonces</h2>
+              <table class="bordered">
+                <thead>
+                  <tr>
+                    <th>Titre</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <c:forEach var="user.company.publications" items="${listePublication}">
+                  <tbody>
+                    <tr>
+                    	 <td><c:out value="${user.company.publications[title]}" /></td>
+                    <td><c:out value="${user.company.publications[desciption]}" /></td>
+					</tr>
+                  </tbody>
+                  </c:forEach>
               </table>
         </div>
       </div>
