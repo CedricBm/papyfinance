@@ -21,17 +21,17 @@
         class="material-icons right">list</i></a>
 
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a class="waves-effect waves-light" href="#">Ma société</a></li>
-        <li><a class="waves-effect waves-light" href="#">Publier une annonce</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/mycompany">Ma société</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/companyads">Publier une annonce</a></li>
         <li class="divider"></li>
-        <li><a href="logout">Déconnexion</a></li>
+        <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light" href="#">Ma société</a></li>
-        <li><a class="waves-effect waves-light" href="#">Publier une annonce</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/mycompany">Ma société</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/companyads">Publier une annonce</a></li>
         <li class="divider"></li>
-        <li><a href="logout">Déconnexion</a></li>
+        <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
@@ -39,7 +39,15 @@
 
   <jsp:include page="/WEB-INF/inc/flash.jsp" />
 
-  <jsp:doBody />
+ <div class="section no-pad-bot main">
+    <div class="container">
+      <br> <br>
+      <div class="row center">
+
+        <jsp:doBody />
+      </div>
+    </div>
+  </div>
 
   <footer class="page-footer orange">
     <div class="footer-copyright">
