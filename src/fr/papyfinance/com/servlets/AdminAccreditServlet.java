@@ -31,7 +31,7 @@ public class AdminAccreditServlet extends HttpServlet {
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     CompanyDao cd = new CompanyDao();
-    
+
     String name = Util.getInputValue(request, "name");
     if (name != null) {
       Company c = cd.getByName(name);

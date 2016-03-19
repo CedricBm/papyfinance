@@ -24,7 +24,6 @@ public class SubscribeCompanyForm {
     user.setEmail(Util.getInputValue(request, "email"));
     id_company = Util.getInputValue(request, "company");
     if (id_company != null) {
-
       user.setCompany(companyDao.getById(Integer.parseInt(id_company)));
     } else {
       user.setCompany(companyDao.getByName("Aucune société"));

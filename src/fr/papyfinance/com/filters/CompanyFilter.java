@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.papyfinance.com.beans.User;
 
-@WebFilter(urlPatterns = { "/company/*" })
+@WebFilter(urlPatterns = { "/company/*", "/company" })
 public class CompanyFilter implements Filter {
 
   @Override
@@ -29,7 +29,7 @@ public class CompanyFilter implements Filter {
     HttpSession session = request.getSession();
 
     User u = (User) session.getAttribute("user");
-    if (u != null && (u.getRole().getName().equals("Administrateur") || u.getRole().getName().equals("Membre société"))) {
+    if (u != null) {
       chain.doFilter(request, response);
     } else {
       session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
