@@ -135,7 +135,7 @@ public final class Seeder {
       });
       add(new HashMap<String, String>() {
         {
-          put("name", "Goole");
+          put("name", "Google");
           put("logo", "Google-logo.png");
           put("workforce", "57148");
           put("revenue", "66000000000");

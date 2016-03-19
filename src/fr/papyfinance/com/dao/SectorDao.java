@@ -33,6 +33,14 @@ public class SectorDao {
     return true;
   }
 
+  public Sector getById(int id) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    Sector s = (Sector) session.createQuery("from Sector where id = :sid").setParameter("sid", id).uniqueResult();
+    session.close();
+    return s;
+  }
+
   public Sector getByName(String name) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();

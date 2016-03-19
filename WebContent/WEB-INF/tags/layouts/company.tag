@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageTitle} - PapyFinance</title>
+<title>${pageTitle}-PapyFinance</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/materialize.min.css" />" />
@@ -21,15 +21,27 @@
         class="material-icons right">list</i></a>
 
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/mycompany">Ma société</a></li>
-        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/companyads">Publier une annonce</a></li>
+        <c:choose>
+          <c:when test="${user.company.id == 1}">
+            <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/new">Rajouter ma société</a></li>
+          </c:when>
+          <c:otherwise>
+            <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company?id=${user.company.id}">Ma société</a></li>
+          </c:otherwise>
+        </c:choose>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/mycompany">Ma société</a></li>
-        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/companyads">Publier une annonce</a></li>
+        <c:choose>
+          <c:when test="${user.company.id == 1}">
+            <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company/new">Rajouter ma société</a></li>
+          </c:when>
+          <c:otherwise>
+            <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/company?id=${user.company.id}">Ma société</a></li>
+          </c:otherwise>
+        </c:choose>
         <li class="divider"></li>
         <li><a href="/PapyFinance/logout">Déconnexion</a></li>
       </ul>
@@ -38,16 +50,7 @@
   </nav>
 
   <jsp:include page="/WEB-INF/inc/flash.jsp" />
-
- <div class="section no-pad-bot main">
-    <div class="container">
-      <br> <br>
-      <div class="row center">
-
-        <jsp:doBody />
-      </div>
-    </div>
-  </div>
+  <jsp:doBody />
 
   <footer class="page-footer orange">
     <div class="footer-copyright">

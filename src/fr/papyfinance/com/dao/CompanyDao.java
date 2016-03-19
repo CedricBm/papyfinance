@@ -52,8 +52,7 @@ public class CompanyDao {
   public Company getByName(String name) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    Company c = (Company) session.createQuery("from Company where name = :cname").setParameter("cname", name)
-        .uniqueResult();
+    Company c = (Company) session.createQuery("from Company where name = :cname").setParameter("cname", name).uniqueResult();
     session.getTransaction().commit();
     session.close();
     return c;
@@ -67,15 +66,6 @@ public class CompanyDao {
     session.close();
     return c;
   }
-  
-  public byte[] getByLogo(byte[] logo) {
-	    Session session = sessionFactory.openSession();
-	    session.beginTransaction();
-	    Company c = (Company) session.createQuery("from Company where logo = :clogo").setParameter("clogo", logo).uniqueResult();
-	    session.getTransaction().commit();
-	    session.close();
-	    return c.getLogo();
-}
 
   @SuppressWarnings("unchecked")
   public List<Company> getAll() {
@@ -101,9 +91,7 @@ public class CompanyDao {
   public ArrayList<Company> getAllWithAttribute(String attribute) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    ArrayList<Company> c = (ArrayList<Company>) session
-        .createQuery("from Company where name like :cattribute OR website like :cattribute ")
-        .setParameter("cattribute", "%" + attribute + "%").list();
+    ArrayList<Company> c = (ArrayList<Company>) session.createQuery("from Company where name like :cattribute OR website like :cattribute ").setParameter("cattribute", "%" + attribute + "%").list();
     session.getTransaction().commit();
     session.close();
     return c;
@@ -114,10 +102,8 @@ public class CompanyDao {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     ArrayList<Company> c = (ArrayList<Company>) session
-        .createQuery(
-            "from Company where name like :cname and sector.name like :csector and cast(revenue as long) >= :crevenue and cast(workforce as long) >= :cworkforce")
-        .setParameter("cname", "%" + name + "%").setParameter("csector", "%" + sector + "%")
-        .setParameter("crevenue", revenue).setParameter("cworkforce", workforce).list();
+        .createQuery("from Company where name like :cname and sector.name like :csector and cast(revenue as long) >= :crevenue and cast(workforce as long) >= :cworkforce")
+        .setParameter("cname", "%" + name + "%").setParameter("csector", "%" + sector + "%").setParameter("crevenue", revenue).setParameter("cworkforce", workforce).list();
     session.getTransaction().commit();
     session.close();
     return c;
