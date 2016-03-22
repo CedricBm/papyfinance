@@ -27,7 +27,7 @@
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/offers">Rechercher offres</a></li>
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
-        <li><a href="logout">Déconnexion</a></li>
+        <li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

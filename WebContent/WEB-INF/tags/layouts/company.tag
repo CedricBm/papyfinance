@@ -30,7 +30,7 @@
           </c:otherwise>
         </c:choose>
         <li class="divider"></li>
-        <li><a href="/PapyFinance/logout">Déconnexion</a></li>
+        <li><a href="${pageContext.request.contextPath}//logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
@@ -43,7 +43,7 @@
           </c:otherwise>
         </c:choose>
         <li class="divider"></li>
-        <li><a href="/PapyFinance/logout">Déconnexion</a></li>
+        <li><a href="${pageContext.request.contextPath}//logout">Déconnexion</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
