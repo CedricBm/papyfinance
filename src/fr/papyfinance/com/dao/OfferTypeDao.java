@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+
 import fr.papyfinance.com.beans.OfferType;
 import fr.papyfinance.com.resources.HibernateUtil;
 
@@ -51,4 +52,13 @@ public class OfferTypeDao {
     session.close();
     return offertTypes;
   }
+  
+  public OfferType getById(int id) {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    OfferType o = (OfferType) session.createQuery("from OfferType where id = :cid").setParameter("cid", id).uniqueResult();
+	    session.getTransaction().commit();
+	    session.close();
+	    return o;
+	  }
 }

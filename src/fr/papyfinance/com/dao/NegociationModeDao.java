@@ -51,4 +51,13 @@ public class NegociationModeDao {
     session.close();
     return negociationModes;
   }
+  
+  public NegociationMode getById(int id) {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    NegociationMode n = (NegociationMode) session.createQuery("from NegociationMode where id = :cid").setParameter("cid", id).uniqueResult();
+	    session.getTransaction().commit();
+	    session.close();
+	    return n;
+	  }
 }
