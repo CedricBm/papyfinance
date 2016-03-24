@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageTitle} - PapyFinance</title>
+<title>${pageTitle}-PapyFinance</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/materialize.min.css" />" />
@@ -16,39 +16,37 @@
 <body>
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
-      <a id="logo-container" href="${pageContext.request.contextPath}" class="brand-logo valign-wrapper"><img src="<c:url value="/img/logo.png" />" /></a>
-      <a class='right hide-on-med-and-down dropdown-button menu' href='#' data-activates='dropdown1' data-constrainwidth="false" data-beloworigin="true">Bienvenue ${ user.fname }<i class="material-icons right">list</i></a>
+      <a id="logo-container" href="${pageContext.request.contextPath}" class="brand-logo valign-wrapper"><img src="<c:url value="/img/logo.png" />" /></a> <a
+        class='right hide-on-med-and-down dropdown-button menu' href='#' data-activates='dropdown1' data-constrainwidth="false" data-beloworigin="true">Bienvenue ${ user.fname }<i
+        class="material-icons right">list</i></a>
 
       <ul id='dropdown1' class='dropdown-content'>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/postOffer">Publier une offre</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/profile">Mon profil</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/offers">Toutes les offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/postOffer">Publier une offre</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/profile">Mon profil</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/offers">Toutes les offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/companies">Rechercher entreprises</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/offers">Rechercher offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
-        <li><a href="/PapyFinance/logout">Déconnexion</a></li>
+        <li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">
-        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/postOffer">Publier une offre</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/profile">Mon profil</a></li>
-        <li><a class="waves-effect waves-light" href="/PapyFinance/investor/offers">Toutes les offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/postOffer">Publier une offre</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/profile">Mon profil</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/offers">Toutes les offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/companies">Rechercher entreprises</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/offers">Rechercher offres</a></li>
+        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
-        <li><a href="/PapyFinance/logout">Déconnexion</a></li>
+        <li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  
+
   <jsp:include page="/WEB-INF/inc/flash.jsp" />
-
-  <div class="section no-pad-bot main">
-    <div class="container">
-      <br> <br>
-      <div class="row center">
-
-        <jsp:doBody />
-      </div>
-    </div>
-  </div>
+  <jsp:doBody />
 
   <footer class="page-footer orange">
     <div class="footer-copyright">

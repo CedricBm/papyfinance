@@ -1,6 +1,7 @@
 package fr.papyfinance.com.servlets;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,30 +10,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.papyfinance.com.dao.OfferDao;
 
-
 @WebServlet("/investor/profile/delete")
 public class InvestorDeleteOfferServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-	private OfferDao offerDao;
+  private OfferDao offerDao;
 
-    public InvestorDeleteOfferServlet() {
-        super();
-        offerDao = new OfferDao();
-    }
+  public InvestorDeleteOfferServlet() {
+    super();
+    offerDao = new OfferDao();
+  }
 
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    this.getServletContext().getRequestDispatcher("/WEB-INF/investor/allOffers.jsp").forward(request, response);
+  }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	    this.getServletContext().getRequestDispatcher("/WEB-INF/investor/allOffers.jsp").forward(request, response);
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    offerDao.delete(Integer.parseInt(request.getParameter("oid")));
 
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		offerDao.delete(Integer.parseInt(request.getParameter("oid")));
-		
-		doGet(request, response);
-	}
-
+    doGet(request, response);
+  }
 }

@@ -30,16 +30,13 @@ public class AuctionDao {
     }
     return true;
   }
-  
-  
+
   public Auction getById(int id) {
-	    Session session = sessionFactory.openSession();
-	    session.beginTransaction();
-	    Auction a = (Auction) session.createQuery("from Auction where id = :sid").setParameter("sid", id).uniqueResult();
-	    session.getTransaction().commit();
-	    session.close();
-	    return a;
-	  }
-  
-  
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    Auction a = (Auction) session.createQuery("from Auction where id = :sid").setParameter("sid", id).uniqueResult();
+    session.getTransaction().commit();
+    session.close();
+    return a;
+  }
 }

@@ -16,49 +16,40 @@ import fr.papyfinance.com.forms.PostOfferForm;
 
 @WebServlet("/investor/postOffer")
 public class InvestorPostOfferServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-	private CompanyDao companyDao;
-	private PostOfferForm postOfferForm;
-	private OfferDao offerDao;
-	
-	
-   
-	public InvestorPostOfferServlet() {
-		super();
-		companyDao = new CompanyDao();
-		postOfferForm = new PostOfferForm();
-		offerDao = new OfferDao();
-	}
+  private static final long serialVersionUID = 1L;
 
+  private CompanyDao companyDao;
+  private PostOfferForm postOfferForm;
+  private OfferDao offerDao;
 
+  public InvestorPostOfferServlet() {
+    super();
+    companyDao = new CompanyDao();
+    postOfferForm = new PostOfferForm();
+    offerDao = new OfferDao();
+  }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	     
-	    request.setAttribute("companies", companyDao.getAll());
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    request.setAttribute("companies", companyDao.getAll());
 
-	    this.getServletContext().getRequestDispatcher("/WEB-INF/investor/postOffer.jsp").forward(request, response);
-	}
+    this.getServletContext().getRequestDispatcher("/WEB-INF/investor/postOffer.jsp").forward(request, response);
+  }
 
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Offer o;
+    try {
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Offer o;
-		try {
-			
-			o = postOfferForm.postOffer(request);
-			 if (offerDao.create(o)) {
-			      request.getSession().setAttribute("subscribe", "Publication réussie!");
-			      response.sendRedirect("/PapyFinance");
-			    } else {
-			      request.setAttribute("error", "une erreur");
-			      this.getServletContext().getRequestDispatcher("/WEB-INF/investor/postOffer.jsp").forward(request, response);
-			    }
-			 
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
+      o = postOfferForm.postOffer(request);
+      if (offerDao.create(o)) {
+        request.getSession().setAttribute("subscribe", "Publication réussie!");
+        response.sendRedirect("/PapyFinance");
+      } else {
+        request.setAttribute("error", "une erreur");
+        this.getServletContext().getRequestDispatcher("/WEB-INF/investor/postOffer.jsp").forward(request, response);
+      }
 
-	}
-
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+  }
 }

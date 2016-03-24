@@ -51,13 +51,13 @@ public class ContractTypeDao {
     session.close();
     return contractTypes;
   }
-  
+
   public ContractType getById(int id) {
-	    Session session = sessionFactory.openSession();
-	    session.beginTransaction();
-	    ContractType c = (ContractType) session.createQuery("from ContractType where id = :cid").setParameter("cid", id).uniqueResult();
-	    session.getTransaction().commit();
-	    session.close();
-	    return c;
-	  }
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    ContractType c = (ContractType) session.createQuery("from ContractType where id = :cid").setParameter("cid", id).uniqueResult();
+    session.getTransaction().commit();
+    session.close();
+    return c;
+  }
 }

@@ -51,15 +51,15 @@ public class UserDao {
     session.close();
     return o;
   }
-  
+
   public User getById(int id) {
-	    Session session = sessionFactory.openSession();
-	    session.beginTransaction();
-	    User o = (User) session.createQuery("from User where id = :sid").setParameter("sid", id).uniqueResult();
-	    session.getTransaction().commit();
-	    session.close();
-	    return o;
-	  }
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    User o = (User) session.createQuery("from User where id = :sid").setParameter("sid", id).uniqueResult();
+    session.getTransaction().commit();
+    session.close();
+    return o;
+  }
 
   @SuppressWarnings("unchecked")
   public ArrayList<User> getAllInvest() {
@@ -109,9 +109,9 @@ public class UserDao {
   public ArrayList<User> getAllWithAttribute(String attribute) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    String query = "from User where fname like '%" + attribute + "%' OR lname like '%" + attribute + "%' OR email like '%" + attribute + "%' OR role.name like '%" + attribute
-        + "%' OR company.name like '%" + attribute + "%'";
-    ArrayList<User> c = (ArrayList<User>) session.createQuery(query).list();
+    ArrayList<User> c = (ArrayList<User>) session
+        .createQuery("from User where fname like :uattribute OR lname like :uattribute OR email like :uattribute OR role.name like :uattribute OR company.name like :uattribute")
+        .setParameter("uattribute", "%" + attribute + "%").list();
     session.getTransaction().commit();
     session.close();
     return c;
