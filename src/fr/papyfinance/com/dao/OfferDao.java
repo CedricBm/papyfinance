@@ -93,7 +93,7 @@ public class OfferDao {
     session.beginTransaction();
     ArrayList<Offer> c = (ArrayList<Offer>) session
         .createQuery(
-            "from Offer where price >= :oprice AND offerType.name like :oofferType AND negociationMode.name like :onegociationMode AND contractType.name like :ocontractType AND user.lname like :oseller AND company.name like :ocompany")
+            "from Offer where price >= :oprice AND offerType.name like :oofferType AND negociationMode.name like :onegociationMode AND contractType.name like :ocontractType AND user.lname like :oseller AND company.name like :ocompany AND is_valid = 1")
         .setParameter("oprice", price).setParameter("oofferType", "%" + offerType + "%").setParameter("onegociationMode", "%" + negociationMode + "%")
         .setParameter("ocontractType", "%" + contractType + "%").setParameter("oseller", "%" + seller + "%").setParameter("ocompany", "%" + company + "%").list();
     session.getTransaction().commit();

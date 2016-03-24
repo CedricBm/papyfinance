@@ -21,11 +21,13 @@ public class InvestorBuyServlet extends HttpServlet {
 
   private SetTransactionForm setTransactionForm;
   private TransactionDao transactionDao;
+  private OfferDao of;
 
   public InvestorBuyServlet() {
     super();
     setTransactionForm = new SetTransactionForm();
     transactionDao = new TransactionDao();
+    of = new OfferDao();
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,8 +35,6 @@ public class InvestorBuyServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    OfferDao of = new OfferDao();
     int id = Integer.parseInt(Util.getInputValue(request, "oid"));
     Offer o = of.getById(id);
     o.setValid(false);
@@ -43,7 +43,7 @@ public class InvestorBuyServlet extends HttpServlet {
 
     if (transactionDao.create(transaction) && of.update(o)) {
       request.getSession().setAttribute("subscribe", "L'offre a bien été acheté !");
-      response.sendRedirect("/PapyFinance");
+      response.sendRedirect("/PapyFinance/investor/profile");
     } else {
       request.setAttribute("error", "une erreur");
       this.getServletContext().getRequestDispatcher("/WEB-INF/investor/allOffers.jsp").forward(request, response);

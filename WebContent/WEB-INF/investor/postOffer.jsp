@@ -14,7 +14,7 @@
           <form class="col s12 hoverable" method="post">
             <div class="row">
               <div class="input-field col s12">
-                <i class="material-icons prefix prefix-select">work</i> <select id="company" name="company" class="validate">
+                <i class="material-icons prefix prefix-select">work</i> <select id="company" name="company" class="validate" required aria-required="true">
                   <option value="" disabled selected>Choisir une société</option>
                   <c:forEach var="company" items="${companies}">
                     <option value="${ company.id }">${ company.name }</option>
@@ -31,7 +31,7 @@
                 <input id="oprice" name="oprice" type="number" step="any" min="0" class="validate" required aria-required="true"> <label for="oprice">Prix</label>
               </div>
               <div class="input-field col s6">
-                <select id="oofferType" name="oofferType" class="validate">
+                <select id="oofferType" name="oofferType" class="validate" required aria-required="true">
                   <option value="" disabled selected>Choisir le type de l'offre</option>
                   <option value="1">Achat</option>
                   <option value="2">Vente</option>
@@ -41,7 +41,7 @@
 
             <div class="row">
               <div class="input-field col s5">
-                <select id="ocontratType" name="ocontratType" class="validate">
+                <select id="ocontratType" name="ocontratType" class="validate" required aria-required="true">
                   <option value="" disabled selected>Choisir le type du contrat</option>
                   <option value="1">Action</option>
                   <option value="2">Stock option</option>
@@ -49,7 +49,7 @@
               </div>
 
               <div class="input-field col s7">
-                <select id="onegociationMode" name="onegociationMode" class="validate">
+                <select id="onegociationMode" name="onegociationMode" class="validate" required aria-required="true">
                   <option value="" disabled selected>Choisir le mode de négociation</option>
                   <option value="1">Prix fixe</option>
                   <option value="2">Enchere</option>

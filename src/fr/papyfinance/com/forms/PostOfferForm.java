@@ -44,7 +44,7 @@ public class PostOfferForm {
     if (id_company != null) {
       offer.setCompany(companyDao.getById(Integer.parseInt(id_company)));
     } else {
-      offer.setCompany(companyDao.getByName("Aucune société"));
+      throw new RuntimeException();
     }
 
     id_offerType = Util.getInputValue(request, "oofferType");

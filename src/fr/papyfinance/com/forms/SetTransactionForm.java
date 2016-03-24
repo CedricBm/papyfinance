@@ -31,14 +31,14 @@ public class SetTransactionForm {
 
     t.setBuyer(b);
     t.setBuyerFixed(b.toString());
-    t.setCompanyFixed(o.getCompany().getName());
+    t.setCompanyFixed(o.getCompany().toString());
 
     t.setSeller(s);
     t.setSellerFixed(s.toString());
     t.setCompany(o.getCompany());
 
     t.setContractFixed(o.getContractType().getName());
-    t.setOfferFixed(o.getOfferType().getName());
+    t.setOfferFixed(o.toString());
 
     t.setOffer(o);
 

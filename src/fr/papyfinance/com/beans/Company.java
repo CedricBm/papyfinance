@@ -140,4 +140,8 @@ public class Company implements Serializable {
   public void setConfirmed(boolean confirmed) {
     this.confirmed = confirmed;
   }
+
+  public String toString() {
+    return "[Company: id=" + id + " name=" + name + " workforce=" + workforce + " revenue=" + revenue + " website=" + website + " sector=" + sector.getName() + " confirmed=" + confirmed + "]";
+  }
 }
