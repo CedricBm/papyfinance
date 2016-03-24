@@ -31,7 +31,7 @@ public class SubscribeCompanyServlet extends HttpServlet {
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     if (Util.currentUser(request.getSession()) == null) {
-      request.setAttribute("companies", companyDao.getAll());
+      request.setAttribute("companies", companyDao.getAllWithoutNone());
       this.getServletContext().getRequestDispatcher("/WEB-INF/connection/signup_company.jsp").forward(request, response);
     } else {
       request.getSession().setAttribute("already_connected", "Vous êtes déjà connecté.");
@@ -40,7 +40,7 @@ public class SubscribeCompanyServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	User u = subscribeCompanyForm.getUser(request);
+    User u = subscribeCompanyForm.getUser(request);
 
     if (userDao.create(u)) {
       request.getSession().setAttribute("subscribe", "Inscription réussie, veuillez attendre la validation de votre compte.");

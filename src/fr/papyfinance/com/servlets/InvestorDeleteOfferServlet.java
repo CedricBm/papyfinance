@@ -22,7 +22,7 @@ public class InvestorDeleteOfferServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    this.getServletContext().getRequestDispatcher("/WEB-INF/investor/profile.jsp").forward(request, response);
+    response.sendRedirect("/PapyFinance/investor/profile");
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

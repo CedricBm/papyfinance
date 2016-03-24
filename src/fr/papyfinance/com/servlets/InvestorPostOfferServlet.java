@@ -30,7 +30,7 @@ public class InvestorPostOfferServlet extends HttpServlet {
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    request.setAttribute("companies", companyDao.getAll());
+    request.setAttribute("companies", companyDao.getAllWithoutNone());
 
     this.getServletContext().getRequestDispatcher("/WEB-INF/investor/postOffer.jsp").forward(request, response);
   }
@@ -38,13 +38,12 @@ public class InvestorPostOfferServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Offer o;
     try {
-
       o = postOfferForm.postOffer(request);
       if (offerDao.create(o)) {
         request.getSession().setAttribute("subscribe", "Publication réussie!");
-        response.sendRedirect("/PapyFinance");
+        response.sendRedirect("/PapyFinance/investor/profile");
       } else {
-        request.setAttribute("error", "une erreur");
+        request.setAttribute("error", "une erreur est survenue...");
         this.getServletContext().getRequestDispatcher("/WEB-INF/investor/postOffer.jsp").forward(request, response);
       }
 

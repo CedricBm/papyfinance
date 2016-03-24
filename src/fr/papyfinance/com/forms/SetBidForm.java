@@ -22,10 +22,6 @@ public class SetBidForm {
     int id_offer = Integer.parseInt(Util.getInputValue(request, "oid"));
     double mte = Double.parseDouble(Util.getInputValue(request, "price"));
 
-    System.out.println(mte);
-    System.out.println(Util.getInputValue(request, "price"));
-    System.out.println("==================================================================");
-
     Auction a = auctionDao.getById(id_offer);
     ao.setAuction(a);
     ao.setUser(b);

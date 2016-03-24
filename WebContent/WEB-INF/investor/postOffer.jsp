@@ -25,10 +25,10 @@
 
             <div class="row">
               <div class="input-field col s3">
-                <i class="material-icons prefix">assessment</i> <input id="qte" name="qte" type="number" class="validate" required aria-required="true"> <label for="qte">Quantité</label>
+                <i class="material-icons prefix">assessment</i> <input id="qte" name="qte" type="number" min="0" class="validate" required aria-required="true"> <label for="qte">Quantité</label>
               </div>
               <div class="input-field col s3">
-                <input id="oprice" name="oprice" type="number" step="any" class="validate" required aria-required="true"> <label for="oprice">Prix</label>
+                <input id="oprice" name="oprice" type="number" step="any" min="0" class="validate" required aria-required="true"> <label for="oprice">Prix</label>
               </div>
               <div class="input-field col s6">
                 <select id="oofferType" name="oofferType" class="validate">
@@ -58,8 +58,9 @@
             </div>
 
             <div class="row" id="champsDate">
-              <div class="input-field col s4">
-                <i class="material-icons prefix">today</i> <input name="dateFin" type="date">
+              <div class="col s12">
+                <label for="dateFin">Date de fin de l'enchère</label>
+                <input name="dateFin" type="date" id="dateFin">
               </div>
             </div>
 

@@ -78,6 +78,16 @@ public class CompanyDao {
   }
 
   @SuppressWarnings("unchecked")
+  public List<Company> getAllWithoutNone() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<Company> companies = session.createQuery("from Company c where c.name <> 'Aucune société'").list();
+    session.getTransaction().commit();
+    session.close();
+    return companies;
+  }
+
+  @SuppressWarnings("unchecked")
   public ArrayList<Company> getAllCompanyNotAccredit() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
