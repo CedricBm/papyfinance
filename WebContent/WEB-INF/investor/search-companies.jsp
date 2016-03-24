@@ -7,13 +7,13 @@
     <div class="container">
       <br> <br>
       <div class="row center">
-        <div class="col s6">
+        <div class="col s8">
           <c:choose>
             <c:when test="${empty listeRes }">
               <p>Aucune société à afficher pour le moment !!</p>
             </c:when>
             <c:otherwise>
-              <table class="bordered centered">
+              <table class="bordered centered highlight">
                 <thead>
                   <tr>
                     <th>Nom</th>
@@ -27,7 +27,7 @@
                 <c:forEach var="company" items="${listeRes}">
                   <tbody>
                     <tr>
-                      <td>${company.name}</td>
+                      <td><a href="${pageContext.request.contextPath}/company?id=${company.id}">${company.name}</a></td>
                       <td>${company.revenue}</td>
                       <td><a href="${company.website}" target="_blank">${company.website}</a></td>
                       <td>${company.workforce}</td>
@@ -39,9 +39,9 @@
             </c:otherwise>
           </c:choose>
         </div>
-        <div class="col s6">
+        <div class="col s4">
           <div class="row">
-            <form method="post" class="col s6 offset-s6 hoverable" action="../../investor/search/companies">
+            <form method="post" class="col s12 hoverable" action="../../investor/search/companies">
               <div class="row">
                 <div class="input-field col s12">
                   <input id="name" name="name" type="text" class="validate"> <label for="name">Nom société :</label>

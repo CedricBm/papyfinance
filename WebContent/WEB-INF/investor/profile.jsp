@@ -8,19 +8,28 @@
     <div class="container">
       <div class="row center">
         <div class="col s12">
+          <h4 class="header center orange-text">Votre profile</h4>
+          <p>Nom: ${user.lname}</p>
+          <p>Prénom: ${user.fname}</p>
+          <p>Login: ${user.login}</p>
+          <p>Email: ${user.email}</p>
+        </div>
+      </div>
+      <div class="row center">
+        <div class="col s12">
           <h4 class="header center orange-text">Vos offres</h4>
           <c:choose>
             <c:when test="${empty listeOffers }">
               <p>Vous n'avez publié aucune offre !!</p>
             </c:when>
             <c:otherwise>
-              <table class="bordered centered">
+              <table class="bordered centered highlight">
                 <thead>
                   <tr>
                     <th>Id Offre</th>
                     <th>Société</th>
                     <th>Quantité</th>
-                    <th>Prix</th>
+                    <th>Prix unitaire</th>
                     <th>Type de l'offre</th>
                     <th>Mode de négociation</th>
                     <th>Type du contrat</th>
@@ -61,49 +70,47 @@
       </div>
     </div>
 
-    <div class="container">
-      <div class="row center">
-        <div class="col s12">
-          <h4 class="header center orange-text">Vos transactions</h4>
-          <c:choose>
-            <c:when test="${empty listeTransactionsAchetees}">
-              <p>Vous n'avez pas de transaction !!</p>
-            </c:when>
-            <c:otherwise>
-              <table class="bordered centered">
-                <thead>
-                  <tr>
-                    <th>Id Offre</th>
-                    <th>Société</th>
-                    <th>Quantité</th>
-                    <th>Prix</th>
-                    <th>Type de l'offre</th>
-                    <th>Mode de négociation</th>
-                    <th>Type du contrat</th>
-                    <th>Prix total</th>
-                    <th>Vendeur</th>
-                  </tr>
-                </thead>
+    <div class="row center">
+      <div class="col s12">
+        <h4 class="header center orange-text">Vos transactions</h4>
+        <c:choose>
+          <c:when test="${empty listeTransactionsAchetees}">
+            <p>Vous n'avez pas de transaction !!</p>
+          </c:when>
+          <c:otherwise>
+            <table class="bordered centered highlight">
+              <thead>
+                <tr>
+                  <th>Id Transaction</th>
+                  <th>Société</th>
+                  <th>Quantité</th>
+                  <th>Prix unitaire</th>
+                  <th>Type de l'offre</th>
+                  <th>Mode de négociation</th>
+                  <th>Type du contrat</th>
+                  <th>Prix total</th>
+                  <th>Vendeur</th>
+                </tr>
+              </thead>
 
-                <c:forEach var="transaction" items="${listeTransactionsAchetees}">
-                  <tbody>
-                    <tr>
-                      <td>${transaction.offer.id}</td>
-                      <td>${transaction.offer.company.name}</td>
-                      <td>${transaction.offer.quantity}</td>
-                      <td>${transaction.offer.price}</td>
-                      <td>${transaction.offer.offerType.name}</td>
-                      <td>${transaction.offer.negociationMode.name}</td>
-                      <td>${transaction.offer.contractType.name}</td>
-                      <td>${(transaction.offer.quantity)*(transaction.offer.price)}</td>
-                      <td>${transaction.buyer.login}</td>
-                    </tr>
-                  </tbody>
-                </c:forEach>
-              </table>
-            </c:otherwise>
-          </c:choose>
-        </div>
+              <c:forEach var="transaction" items="${listeTransactionsAchetees}">
+                <tbody>
+                  <tr>
+                    <td>${transaction.offer.id}</td>
+                    <td>${transaction.offer.company.name}</td>
+                    <td>${transaction.offer.quantity}</td>
+                    <td>${transaction.offer.price}</td>
+                    <td>${transaction.offer.offerType.name}</td>
+                    <td>${transaction.offer.negociationMode.name}</td>
+                    <td>${transaction.offer.contractType.name}</td>
+                    <td>${(transaction.offer.quantity)*(transaction.offer.price)}</td>
+                    <td>${transaction.buyer.login}</td>
+                  </tr>
+                </tbody>
+              </c:forEach>
+            </table>
+          </c:otherwise>
+        </c:choose>
       </div>
     </div>
   </div>

@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>${pageTitle}-PapyFinance</title>
+<title>${pageTitle} - PapyFinance</title>
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/css/materialize.min.css" />" />
@@ -25,7 +25,6 @@
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/profile">Mon profil</a></li>
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/offers">Toutes les offres</a></li>
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/companies">Rechercher entreprises</a></li>
-        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/offers">Rechercher offres</a></li>
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
         <li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>
@@ -36,7 +35,6 @@
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/profile">Mon profil</a></li>
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/offers">Toutes les offres</a></li>
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/companies">Rechercher entreprises</a></li>
-        <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/offers">Rechercher offres</a></li>
         <li><a class="waves-effect waves-light" href="${pageContext.request.contextPath}/investor/search/transactions">Rechercher transactions</a></li>
         <li class="divider"></li>
         <li><a href="${pageContext.request.contextPath}/logout">Déconnexion</a></li>

@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import fr.papyfinance.com.beans.User;
 
-@WebFilter(urlPatterns = { "/admin/*", "/admin" })
-public class AdminFilter implements Filter {
+@WebFilter(urlPatterns = { "/investor/postOffer", "/investor/offers", "/investor/search/transactions" })
+public class UnconfirmedInvestorFilter implements Filter {
 
   @Override
   public void destroy() {
@@ -29,10 +29,10 @@ public class AdminFilter implements Filter {
     HttpSession session = request.getSession();
 
     User u = (User) session.getAttribute("user");
-    if (u != null && u.getRole().getName().equals("Administrateur")) {
+    if (u != null && (u.getRole().getName().equals("Administrateur") || (u.getRole().getName().equals("Investisseur") && u.isConfirmed()))) {
       chain.doFilter(request, response);
     } else {
-      session.setAttribute("unauthorized", "Vous n'avez pas le droit d'accéder à cette page!");
+      session.setAttribute("unauthorized", "Veuillez attendre qu'un administrateur valide votre profil avant de pouvoir accéder à cette page.");
       response.sendRedirect("/PapyFinance");
     }
   }

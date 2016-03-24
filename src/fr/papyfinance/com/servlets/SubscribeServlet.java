@@ -36,10 +36,11 @@ public class SubscribeServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	User u = subscribeForm.getUser(request);
-    
+    User u = subscribeForm.getUser(request);
+
     if (userDao.create(u)) {
-      request.getSession().setAttribute("subscribe", "Inscription réussie, veuillez attendre la validation de votre compte.");
+      Util.login(u, request.getSession());
+      request.getSession().setAttribute("subscribe", "Inscription réussie.");
       response.sendRedirect("/PapyFinance");
     } else {
       request.setAttribute("error", "Votre login et/ou votre email n'est pas disponible.");

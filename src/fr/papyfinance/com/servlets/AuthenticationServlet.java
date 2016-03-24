@@ -33,12 +33,12 @@ public class AuthenticationServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	User u = authenticationForm.getUser(request);
-   
+    User u = authenticationForm.getUser(request);
+
     if (u == null) {
       request.setAttribute("error", "Votre login ou mot de passe est erroné.");
       this.getServletContext().getRequestDispatcher("/WEB-INF/connection/authentication.jsp").forward(request, response);
-    } else if (!u.isConfirmed()) {
+    } else if (!u.isConfirmed() && u.getRole().getName().equals("Membre société")) {
       request.getSession().setAttribute("unconfirmed", "Votre compte est en cours de vérification. Veuillez attendre qu'il soit validé.");
       response.sendRedirect("/PapyFinance");
     } else {

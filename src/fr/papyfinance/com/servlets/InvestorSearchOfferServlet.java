@@ -16,17 +16,19 @@ import fr.papyfinance.com.dao.OfferDao;
 import fr.papyfinance.com.dao.OfferTypeDao;
 import fr.papyfinance.com.resources.Util;
 
-@WebServlet("/investor/search/offers")
+@WebServlet("/investor/offers")
 public class InvestorSearchOfferServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  private OfferDao od;
+
   public InvestorSearchOfferServlet() {
     super();
+    od = new OfferDao();
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
-      OfferDao od = new OfferDao();
       String p = Util.getInputValue(request, "price");
       String offerType = Util.getInputValue(request, "offerType");
       String negociationMode = Util.getInputValue(request, "negociationMode");
