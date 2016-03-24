@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/investor/profile")
 public class InvestorProfileServlet extends HttpServlet {
+  private static final long serialVersionUID = 1L;
 
   public InvestorProfileServlet() {
     super();
@@ -22,5 +23,4 @@ public class InvestorProfileServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     doGet(request, response);
   }
-
 }

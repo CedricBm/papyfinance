@@ -9,7 +9,7 @@
       <div class="row center">
         <div class="col s12">
           <h4 class="header center orange-text">Donner un prix</h4>
-          <table class="bordered centered">
+          <table class="bordered centered highlight">
             <thead>
               <tr>
                 <th>Id Offre</th>
@@ -36,26 +36,23 @@
                 <td>${(offer.quantity)*(offer.price)}</td>
               </tr>
             </tbody>
-
           </table>
         </div>
       </div>
 
-
       <div class="row center">
         <div class="col s6">
-          <h4 class="header center orange-text">les offres precedentes</h4>
+          <h4 class="header center orange-text">Historique</h4>
           <c:choose>
             <c:when test="${empty listAuctionOffers }">
-              <p>Aucune transaction à afficher pour le moment !!</p>
+              <p>Aucune offre n'a été faite pour l'instant.</p>
             </c:when>
             <c:otherwise>
-              <table class="bordered centered">
+              <table class="bordered centered highlight">
                 <thead>
                   <tr>
                     <th>Id Offre</th>
                     <th>Acheteur</th>
-                    <th>Date</th>
                     <th>Prix</th>
                   </tr>
                 </thead>
@@ -64,7 +61,6 @@
                     <tr>
                       <td>${auctionOffer.id}</td>
                       <td>${auctionOffer.user.login}</td>
-                      <td>${auctionOffer.auction.dateFin}</td>
                       <td>${auctionOffer.amount}</td>
                     </tr>
                   </tbody>
@@ -76,12 +72,12 @@
 
         <div class="col s6">
           <h4 class="header center orange-text">Votre prix</h4>
-          <form class="hoverable" method="post" action="../offers/bid/setAuction">
-            <input id="oid" type="text" name="oid" value="${offer.id}" style="display: none" />
-            <div class="input-field col s3">
-              <input id="price" name="price" type="number" step="any" class="validate" required aria-required="true"> <label for="price">Prix</label>
+          <form method="post" action="../offers/bid">
+            <input id="oid" type="hidden" name="oid" value="${offer.id}" />
+            <div class="input-field col s3 offset-s3">
+              <input id="price" name="price" type="number" step="any" min="${minBid}" class="validate" required aria-required="true"> <label for="price">Prix</label>
             </div>
-            <div class="input-field col s3 offset-s4">
+            <div class="input-field col s3">
               <button class="waves-effect waves-light btn" type="submit">Valider</button>
             </div>
           </form>

@@ -43,15 +43,12 @@
                           <c:when test="${user.id == offer.user.id}">C'est votre offre</c:when>
                           <c:when test="${offer.negociationMode.id == 1}">
                             <form method="post" action="../investor/offers/buy">
-                              <input id="role" type="text" name="role" value="company-member" style="display: none" /> <input id="oid" type="text" name="oid" value="${offer.id}" style="display: none" />
+                              <input id="role" type="hidden" name="role" value="company-member" /> <input id="oid" type="hidden" name="oid" value="${offer.id}" />
                               <button class="waves-effect waves-light btn" type="submit">Acheter</button>
                             </form>
                           </c:when>
                           <c:otherwise>
-                            <form method="post" action="../investor/offers/bid">
-                              <input id="role" type="text" name="role" value="company-member" style="display: none" /> <input id="oid" type="text" name="oid" value="${offer.id}" style="display: none" />
-                              <button class="waves-effect waves-light btn" type="submit">Encherir</button>
-                            </form>
+                            <a href="../investor/offers/bid?id=${offer.id}" class="waves-effect waves-light btn" type="submit">Encherir</a>
                           </c:otherwise>
                         </c:choose></td>
                     </tr>

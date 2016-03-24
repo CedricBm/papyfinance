@@ -2,7 +2,7 @@ package fr.papyfinance.com.beans;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +26,7 @@ public class Auction implements Serializable {
 
   private int id;
   private Date dateFin;
-  private Set<AuctionOffer> auctionOffers;
+  private List<AuctionOffer> auctionOffers;
   private Offer offer;
 
   @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "offer") )
@@ -52,11 +52,11 @@ public class Auction implements Serializable {
   }
 
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "auction")
-  public Set<AuctionOffer> getAuctionOffers() {
+  public List<AuctionOffer> getAuctionOffers() {
     return auctionOffers;
   }
 
-  public void setAuctionOffers(Set<AuctionOffer> auctionOffers) {
+  public void setAuctionOffers(List<AuctionOffer> auctionOffers) {
     this.auctionOffers = auctionOffers;
   }
 
