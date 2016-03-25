@@ -70,18 +70,27 @@
           </c:choose>
         </div>
 
-        <div class="col s6">
-          <h4 class="header center orange-text">Votre prix</h4>
-          <form method="post" action="../offers/bid">
-            <input id="oid" type="hidden" name="oid" value="${offer.id}" />
-            <div class="input-field col s3 offset-s3">
-              <input id="price" name="price" type="number" step="any" min="${minBid}" class="validate" required aria-required="true"> <label for="price">Prix</label>
+        <c:choose>
+          <c:when test="${user.id eq offer.user.id}">
+            <div class="col s6">Ceci est votre offre.</div>
+          </c:when>
+          <c:when test="${not empty over}">Enchère terminée!</c:when>
+          <c:otherwise>
+            <div class="col s6">
+              <h4 class="header center orange-text">Votre prix</h4>
+              <form method="post" action="../offers/bid">
+                <input id="oid" type="hidden" name="oid" value="${offer.id}" />
+                <div class="input-field col s3 offset-s3">
+                  <input id="price" name="price" type="number" step="any" min="${minBid}" class="validate" required aria-required="true"> <label for="price">Prix</label>
+                </div>
+                <div class="input-field col s3">
+                  <button class="waves-effect waves-light btn" type="submit">Valider</button>
+                </div>
+              </form>
             </div>
-            <div class="input-field col s3">
-              <button class="waves-effect waves-light btn" type="submit">Valider</button>
-            </div>
-          </form>
-        </div>
+          </c:otherwise>
+        </c:choose>
+
       </div>
     </div>
   </div>

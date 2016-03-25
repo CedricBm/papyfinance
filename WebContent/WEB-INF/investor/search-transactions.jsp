@@ -21,6 +21,7 @@
                     <th>Nom vendeur</th>
                     <th>Société</th>
                     <th>Id offre</th>
+                    <th>Prix total</th>
                   </tr>
                 </thead>
 
@@ -32,6 +33,7 @@
                       <td>${transaction.seller.lname}</td>
                       <td>${transaction.company.name}</td>
                       <td>${transaction.offer.id}</td>
+                      <td>${transaction.totalPrice}</td>
                     </tr>
                   </tbody>
                 </c:forEach>

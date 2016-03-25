@@ -46,7 +46,12 @@
                       <td>${offer.quantity}</td>
                       <td>${offer.price}</td>
                       <td>${offer.offerType.name}</td>
-                      <td>${offer.negociationMode.name}</td>
+                      <td><c:choose>
+                          <c:when test="${offer.negociationMode.name == 'Enchère'}">
+                            <a href="${pageContext.request.contextPath}/investor/offers/bid?id=${offer.id}">${offer.negociationMode.name}</a>
+                          </c:when>
+                          <c:otherwise>${offer.negociationMode.name}</c:otherwise>
+                        </c:choose></td>
                       <td>${offer.contractType.name}</td>
                       <td>${(offer.quantity)*(offer.price)}</td>
                       <td><c:choose>
@@ -100,9 +105,14 @@
                       <td>${transaction.offer.quantity}</td>
                       <td>${transaction.offer.price}</td>
                       <td>${transaction.offer.offerType.name}</td>
-                      <td>${transaction.offer.negociationMode.name}</td>
+                      <td><c:choose>
+                          <c:when test="${transaction.offer.negociationMode.name == 'Enchère'}">
+                            <a href="${pageContext.request.contextPath}/investor/offers/bid?id=${transaction.offer.id}">${transaction.offer.negociationMode.name}</a>
+                          </c:when>
+                          <c:otherwise>${transaction.offer.negociationMode.name}</c:otherwise>
+                        </c:choose></td>
                       <td>${transaction.offer.contractType.name}</td>
-                      <td>${(transaction.offer.quantity)*(transaction.offer.price)}</td>
+                      <td>${transaction.totalPrice}</td>
                       <td>${transaction.buyer.login}</td>
                     </tr>
                   </tbody>
@@ -144,9 +154,14 @@
                       <td>${transaction.offer.quantity}</td>
                       <td>${transaction.offer.price}</td>
                       <td>${transaction.offer.offerType.name}</td>
-                      <td>${transaction.offer.negociationMode.name}</td>
+                      <td><c:choose>
+                          <c:when test="${transaction.offer.negociationMode.name == 'Enchère'}">
+                            <a href="${pageContext.request.contextPath}/investor/offers/bid?id=${transaction.offer.id}">${transaction.offer.negociationMode.name}</a>
+                          </c:when>
+                          <c:otherwise>${transaction.offer.negociationMode.name}</c:otherwise>
+                        </c:choose></td>
                       <td>${transaction.offer.contractType.name}</td>
-                      <td>${(transaction.offer.quantity)*(transaction.offer.price)}</td>
+                      <td>${transaction.totalPrice}</td>
                       <td>${transaction.buyer.login}</td>
                     </tr>
                   </tbody>

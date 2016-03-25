@@ -44,6 +44,8 @@ public class SetTransactionForm {
 
     t.setOffer(o);
 
+    t.setTotalPrice(o.getPrice() * o.getQuantity());
+
     return t;
   }
 

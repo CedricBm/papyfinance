@@ -1,7 +1,10 @@
 package fr.papyfinance.com.servlets;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -31,6 +34,12 @@ public class InvestorBidServlet extends HttpServlet {
   private AuctionOfferDao auctionOfferDao;
   @Inject
   private Util util;
+  private DateFormat df;
+
+  public InvestorBidServlet() {
+    super();
+    df = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
+  }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     int id = Integer.parseInt(util.getInputValue(request, "id"));
@@ -43,12 +52,22 @@ public class InvestorBidServlet extends HttpServlet {
     request.setAttribute("offer", o);
     request.setAttribute("minBid", listAuctionOffers.isEmpty() ? o.getPrice() * o.getQuantity() : listAuctionOffers.get(0).getAmount() + 1);
 
+    if (o.getAuction().getDateFin().before(new Date())) {
+      request.setAttribute("alert", "L'enchère est close depuis le " + df.format(o.getAuction().getDateFin()));
+      request.setAttribute("over", "over");
+    } else {
+      request.setAttribute("notice", "L'enchère se terminera le " + df.format(o.getAuction().getDateFin()));
+    }
+
     this.getServletContext().getRequestDispatcher("/WEB-INF/investor/bidOffer.jsp").forward(request, response);
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     AuctionOffer auctionOffer = setBidForm.setBid(request);
-    if (auctionOfferDao.create(auctionOffer)) {
+    int id = Integer.parseInt(util.getInputValue(request, "oid"));
+    Offer o = of.getById(id);
+
+    if (auctionOfferDao.create(auctionOffer) && o.getAuction().getDateFin().after(new Date())) {
       request.getSession().setAttribute("subscribe", "Enchére réussie!");
       util.updateUser(request.getSession());
     } else {
