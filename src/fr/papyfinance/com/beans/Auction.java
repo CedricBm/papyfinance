@@ -41,8 +41,8 @@ public class Auction implements Serializable {
     this.id = id;
   }
 
-  @Temporal(TemporalType.DATE)
-  @Column(name = "date_fin")
+  @Column(name = "date_fin", columnDefinition = "DATETIME")
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getDateFin() {
     return dateFin;
   }

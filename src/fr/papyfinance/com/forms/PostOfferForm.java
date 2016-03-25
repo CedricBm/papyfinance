@@ -34,7 +34,7 @@ public class PostOfferForm {
     String id_offerType;
     String id_negoMode;
     String id_contratType;
-    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     String odate = Util.getInputValue(request, "dateFin");
 
     offer.setPrice(Float.parseFloat(Util.getInputValue(request, "oprice")));

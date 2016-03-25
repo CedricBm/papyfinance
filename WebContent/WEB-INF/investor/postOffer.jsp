@@ -59,8 +59,8 @@
 
             <div class="row" id="champsDate">
               <div class="col s12">
-                <label for="dateFin">Date de fin de l'enchère</label>
-                <input name="dateFin" type="date" id="dateFin">
+                <label for="dateFin">Date de fin de l'enchère (dd/MM/yyyy hh:mm)</label>
+                <input name="dateFin" type="datetime" id="dateFin">
               </div>
             </div>
 
