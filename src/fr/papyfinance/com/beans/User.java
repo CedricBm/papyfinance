@@ -159,4 +159,8 @@ public class User implements Serializable {
   public void setTransactionsSold(Set<Transaction> transactionsSold) {
     this.transactionsSold = transactionsSold;
   }
+
+  public String toString() {
+    return "[User: id=" + id + " login=" + login + " email=" + email + " fname=" + fname + " lname=" + lname + " confirmed=" + confirmed + "]";
+  }
 }

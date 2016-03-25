@@ -3,12 +3,15 @@ package fr.papyfinance.com.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.resources.HibernateUtil;
 
+@Stateless
 public class UserDao {
   private SessionFactory sessionFactory;
 
@@ -47,6 +50,15 @@ public class UserDao {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     User o = (User) session.createQuery("from User where login = :slogin").setParameter("slogin", login).uniqueResult();
+    session.getTransaction().commit();
+    session.close();
+    return o;
+  }
+
+  public User getById(int id) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    User o = (User) session.createQuery("from User where id = :sid").setParameter("sid", id).uniqueResult();
     session.getTransaction().commit();
     session.close();
     return o;
@@ -101,8 +113,7 @@ public class UserDao {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     ArrayList<User> c = (ArrayList<User>) session
-        .createQuery(
-            "from User where fname like :uattribute OR lname like :uattribute OR email like :uattribute OR role.name like :uattribute OR company.name like :uattribute")
+        .createQuery("from User where fname like :uattribute OR lname like :uattribute OR email like :uattribute OR role.name like :uattribute OR company.name like :uattribute")
         .setParameter("uattribute", "%" + attribute + "%").list();
     session.getTransaction().commit();
     session.close();

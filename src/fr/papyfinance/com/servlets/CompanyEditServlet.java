@@ -3,6 +3,7 @@ package fr.papyfinance.com.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,15 +20,12 @@ import fr.papyfinance.com.forms.CompanyForm;
 public class CompanyEditServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  @EJB
   private CompanyDao cd;
+  @EJB
   private SectorDao sd;
+  @EJB
   private CompanyForm cf;
-
-  public CompanyEditServlet() {
-    cd = new CompanyDao();
-    sd = new SectorDao();
-    cf = new CompanyForm();
-  }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     Company c = cd.getById(Integer.parseInt(request.getParameter("id")));

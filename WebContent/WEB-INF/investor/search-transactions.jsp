@@ -7,13 +7,13 @@
     <div class="container">
       <br> <br>
       <div class="row center">
-        <div class="col s6">
+        <div class="col s8">
           <c:choose>
             <c:when test="${empty listeRes }">
               <p>Aucune transaction à afficher pour le moment !!</p>
             </c:when>
             <c:otherwise>
-              <table class="bordered centered">
+              <table class="bordered centered highlight">
                 <thead>
                   <tr>
                     <th>Id transaction</th>
@@ -21,6 +21,7 @@
                     <th>Nom vendeur</th>
                     <th>Société</th>
                     <th>Id offre</th>
+                    <th>Prix total</th>
                   </tr>
                 </thead>
 
@@ -32,6 +33,7 @@
                       <td>${transaction.seller.lname}</td>
                       <td>${transaction.company.name}</td>
                       <td>${transaction.offer.id}</td>
+                      <td>${transaction.totalPrice}</td>
                     </tr>
                   </tbody>
                 </c:forEach>
@@ -39,9 +41,9 @@
             </c:otherwise>
           </c:choose>
         </div>
-        <div class="col s6">
+        <div class="col s4">
           <div class="row">
-            <form method="post" class="col s6 offset-s6 hoverable" action="../../investor/search/transactions">
+            <form method="post" class="col s12 hoverable" action="../../investor/search/transactions">
               <div class="row">
                 <div class="input-field col s12">
                   <input id="buyerName" name="buyerName" type="text" class="validate"> <label for="buyerName">Nom acheteur :</label>

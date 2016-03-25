@@ -2,12 +2,15 @@ package fr.papyfinance.com.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.papyfinance.com.beans.ContractType;
 import fr.papyfinance.com.resources.HibernateUtil;
 
+@Stateless
 public class ContractTypeDao {
   private SessionFactory sessionFactory;
 
@@ -50,5 +53,14 @@ public class ContractTypeDao {
     session.getTransaction().commit();
     session.close();
     return contractTypes;
+  }
+
+  public ContractType getById(int id) {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    ContractType c = (ContractType) session.createQuery("from ContractType where id = :cid").setParameter("cid", id).uniqueResult();
+    session.getTransaction().commit();
+    session.close();
+    return c;
   }
 }

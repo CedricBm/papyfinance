@@ -1,12 +1,19 @@
 package fr.papyfinance.com.resources;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import fr.papyfinance.com.beans.User;
+import fr.papyfinance.com.dao.UserDao;
 
-public final class Util {
-  public static String getInputValue(HttpServletRequest request, String inputName) {
+@Stateless
+public class Util {
+  @EJB
+  private UserDao ud;
+
+  public String getInputValue(HttpServletRequest request, String inputName) {
     String value = request.getParameter(inputName);
     if (value == null || value.trim().length() == 0) {
       return null;
@@ -15,19 +22,25 @@ public final class Util {
     }
   }
 
-  public static void login(User u, HttpSession session) {
+  public void login(User u, HttpSession session) {
     session.setAttribute("user", u);
   }
 
-  public static void logout(HttpSession session) {
+  public void logout(HttpSession session) {
     session.invalidate();
   }
 
-  public static User currentUser(HttpSession session) {
+  public void updateUser(HttpSession session) {
+    User u = currentUser(session);
+    u = ud.getById(u.getId());
+    session.setAttribute("user", u);
+  }
+
+  public User currentUser(HttpSession session) {
     return (User) session.getAttribute("user");
   }
 
-  public static byte[] encrypt(String password) {
+  public byte[] encrypt(String password) {
     try {
       java.security.MessageDigest d = null;
       d = java.security.MessageDigest.getInstance("SHA-256");

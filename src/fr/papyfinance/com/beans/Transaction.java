@@ -22,6 +22,7 @@ public class Transaction implements Serializable {
   private String offerFixed;
   private String companyFixed;
   private String contractFixed;
+  private float totalPrice;
   private User buyer;
   private User seller;
   private Company company;
@@ -120,5 +121,13 @@ public class Transaction implements Serializable {
 
   public void setOffer(Offer offer) {
     this.offer = offer;
+  }
+
+  public float getTotalPrice() {
+    return totalPrice;
+  }
+
+  public void setTotalPrice(float totalPrice) {
+    this.totalPrice = totalPrice;
   }
 }

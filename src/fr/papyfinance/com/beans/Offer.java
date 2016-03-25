@@ -139,4 +139,9 @@ public class Offer implements Serializable {
   public void setTransactions(Set<Transaction> transactions) {
     this.transactions = transactions;
   }
+
+  public String toString() {
+    return "[Offer: id=" + id + " price=" + price + " quantity=" + quantity + " valid=" + valid + " offerType=" + offerType.getName() + " negociationMode=" + negociationMode.getName()
+        + " contractType=" + contractType.getName() + "]";
+  }
 }

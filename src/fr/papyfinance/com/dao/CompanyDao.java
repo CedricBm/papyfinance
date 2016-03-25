@@ -3,6 +3,8 @@ package fr.papyfinance.com.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
@@ -10,6 +12,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import fr.papyfinance.com.beans.Company;
 import fr.papyfinance.com.resources.HibernateUtil;
 
+@Stateless
 public class CompanyDao {
   private SessionFactory sessionFactory;
 
@@ -72,6 +75,16 @@ public class CompanyDao {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
     List<Company> companies = session.createQuery("from Company").list();
+    session.getTransaction().commit();
+    session.close();
+    return companies;
+  }
+
+  @SuppressWarnings("unchecked")
+  public List<Company> getAllWithoutNone() {
+    Session session = sessionFactory.openSession();
+    session.beginTransaction();
+    List<Company> companies = session.createQuery("from Company c where c.name <> 'Aucune société'").list();
     session.getTransaction().commit();
     session.close();
     return companies;

@@ -2,13 +2,12 @@ package fr.papyfinance.com.beans;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -17,6 +16,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+
 @Entity
 @Table(name = "auctions")
 public class Auction implements Serializable {
@@ -24,11 +26,13 @@ public class Auction implements Serializable {
 
   private int id;
   private Date dateFin;
-  private Set<AuctionOffer> auctionOffers;
+  private List<AuctionOffer> auctionOffers;
   private Offer offer;
 
+  @GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "offer") )
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(generator = "generator")
+  @Column(name = "offer_id", unique = true, nullable = false)
   public int getId() {
     return id;
   }
@@ -37,8 +41,8 @@ public class Auction implements Serializable {
     this.id = id;
   }
 
-  @Temporal(TemporalType.DATE)
-  @Column(name = "date_fin")
+  @Column(name = "date_fin", columnDefinition = "DATETIME")
+  @Temporal(TemporalType.TIMESTAMP)
   public Date getDateFin() {
     return dateFin;
   }
@@ -48,11 +52,11 @@ public class Auction implements Serializable {
   }
 
   @OneToMany(fetch = FetchType.EAGER, mappedBy = "auction")
-  public Set<AuctionOffer> getAuctionOffers() {
+  public List<AuctionOffer> getAuctionOffers() {
     return auctionOffers;
   }
 
-  public void setAuctionOffers(Set<AuctionOffer> auctionOffers) {
+  public void setAuctionOffers(List<AuctionOffer> auctionOffers) {
     this.auctionOffers = auctionOffers;
   }
 

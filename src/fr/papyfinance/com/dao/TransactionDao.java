@@ -3,12 +3,15 @@ package fr.papyfinance.com.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.papyfinance.com.beans.Transaction;
 import fr.papyfinance.com.resources.HibernateUtil;
 
+@Stateless
 public class TransactionDao {
   private SessionFactory sessionFactory;
 
@@ -48,9 +51,9 @@ public class TransactionDao {
   public ArrayList<Transaction> getAllWithAttribute(String attribute) {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    ArrayList<Transaction> c = (ArrayList<Transaction>) session
-        .createQuery("from Transaction where buyer.lname like :tattribute OR seller.lname like :tattribute OR offer.offerType.name like :tattribute OR company.name like :tattribute ")
-        .setParameter("tattribute", "%" + attribute + "%").list();
+    String query = "from Transaction where buyer.lname like '%" + attribute + "%' OR seller.lname like '%" + attribute + "%' OR offer.offerType.name like '%" + attribute + "%' OR company.name like '%"
+        + attribute + "%'";
+    ArrayList<Transaction> c = (ArrayList<Transaction>) session.createQuery(query).list();
     session.getTransaction().commit();
     session.close();
     return c;

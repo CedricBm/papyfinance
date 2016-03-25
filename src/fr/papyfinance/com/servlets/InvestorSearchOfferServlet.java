@@ -3,6 +3,8 @@ package fr.papyfinance.com.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,23 +18,23 @@ import fr.papyfinance.com.dao.OfferDao;
 import fr.papyfinance.com.dao.OfferTypeDao;
 import fr.papyfinance.com.resources.Util;
 
-@WebServlet("/investor/search/offers")
+@WebServlet("/investor/offers")
 public class InvestorSearchOfferServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public InvestorSearchOfferServlet() {
-    super();
-  }
+  @EJB
+  private OfferDao od;
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
-      OfferDao od = new OfferDao();
-      String p = Util.getInputValue(request, "price");
-      String offerType = Util.getInputValue(request, "offerType");
-      String negociationMode = Util.getInputValue(request, "negociationMode");
-      String contractType = Util.getInputValue(request, "contractType");
-      String seller = Util.getInputValue(request, "seller");
-      String company = Util.getInputValue(request, "company");
+      String p = util.getInputValue(request, "price");
+      String offerType = util.getInputValue(request, "offerType");
+      String negociationMode = util.getInputValue(request, "negociationMode");
+      String contractType = util.getInputValue(request, "contractType");
+      String seller = util.getInputValue(request, "seller");
+      String company = util.getInputValue(request, "company");
       float price = 0;
 
       if (p != null) {
