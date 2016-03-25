@@ -1,5 +1,8 @@
 package fr.papyfinance.com.forms;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.papyfinance.com.beans.Offer;
@@ -9,21 +12,20 @@ import fr.papyfinance.com.dao.OfferDao;
 import fr.papyfinance.com.dao.UserDao;
 import fr.papyfinance.com.resources.Util;
 
+@Stateless
 public class SetTransactionForm {
-
-  private OfferDao offerDao = new OfferDao();
-  private UserDao userDao = new UserDao();
-
-  public SetTransactionForm() {
-    offerDao = new OfferDao();
-    userDao = new UserDao();
-  }
+  @EJB
+  private OfferDao offerDao;
+  @EJB
+  private UserDao userDao;
+  @Inject
+  private Util util;
 
   public Transaction setTransaction(HttpServletRequest request) {
     Transaction t = new Transaction();
-    User b = Util.currentUser(request.getSession());
+    User b = util.currentUser(request.getSession());
 
-    int id_offer = Integer.parseInt(Util.getInputValue(request, "oid"));
+    int id_offer = Integer.parseInt(util.getInputValue(request, "oid"));
 
     Offer o = offerDao.getById(id_offer);
     int id_seller = o.getUser().getId();

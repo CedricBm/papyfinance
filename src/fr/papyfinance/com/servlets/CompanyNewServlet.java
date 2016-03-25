@@ -2,6 +2,8 @@ package fr.papyfinance.com.servlets;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,20 +22,19 @@ import fr.papyfinance.com.resources.Util;
 public class CompanyNewServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  @EJB
   private CompanyDao cd;
+  @EJB
   private CompanyForm cf;
+  @EJB
   private SectorDao sd;
+  @EJB
   private UserDao ud;
-
-  public CompanyNewServlet() {
-    cd = new CompanyDao();
-    cf = new CompanyForm();
-    sd = new SectorDao();
-    ud = new UserDao();
-  }
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    User u = Util.currentUser(request.getSession());
+    User u = util.currentUser(request.getSession());
     if (u.getCompany().getId() == 1) {
       request.setAttribute("sectors", sd.getAll());
       this.getServletContext().getRequestDispatcher("/WEB-INF/company/new.jsp").forward(request, response);
@@ -46,7 +47,7 @@ public class CompanyNewServlet extends HttpServlet {
     Company c = cf.getCompany(request);
     cd.create(c);
 
-    User u = Util.currentUser(request.getSession());
+    User u = util.currentUser(request.getSession());
     u.setCompany(c);
     ud.update(u);
 

@@ -30,6 +30,7 @@ public final class Seeder {
   private static RoleDao roleDao = new RoleDao();
   private static CompanyDao companyDao = new CompanyDao();
   private static UserDao userDao = new UserDao();
+  private static Util util = new Util();
 
   private static List<String> contractTypes = Arrays.asList("Action", "Stock Option");
   private static List<String> negociationModes = Arrays.asList("Prix Fixe", "Enchère");
@@ -388,7 +389,7 @@ public final class Seeder {
     u.setFname("Admin");
     u.setLname("Istrateur");
     u.setLogin("admin");
-    u.setPassword(Util.encrypt("password"));
+    u.setPassword(util.encrypt("password"));
     u.setRole(roleDao.getByName("Administrateur"));
     u.setCompany(companyDao.getByName("Aucune société"));
     u.setConfirmed(true);

@@ -3,6 +3,9 @@ package fr.papyfinance.com.forms;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import fr.papyfinance.com.beans.Auction;
@@ -13,19 +16,18 @@ import fr.papyfinance.com.dao.NegociationModeDao;
 import fr.papyfinance.com.dao.OfferTypeDao;
 import fr.papyfinance.com.resources.Util;
 
+@Stateless
 public class PostOfferForm {
-
+  @EJB
   private CompanyDao companyDao;
+  @EJB
   private OfferTypeDao offerTypeDao;
+  @EJB
   private NegociationModeDao negociationModeDao;
+  @EJB
   private ContractTypeDao contractTypeDao;
-
-  public PostOfferForm() {
-    companyDao = new CompanyDao();
-    offerTypeDao = new OfferTypeDao();
-    negociationModeDao = new NegociationModeDao();
-    contractTypeDao = new ContractTypeDao();
-  }
+  @Inject
+  private Util util;
 
   public Offer postOffer(HttpServletRequest request) throws ParseException {
     Offer offer = new Offer();
@@ -35,11 +37,11 @@ public class PostOfferForm {
     String id_negoMode;
     String id_contratType;
     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-    String odate = Util.getInputValue(request, "dateFin");
+    String odate = util.getInputValue(request, "dateFin");
 
-    offer.setPrice(Float.parseFloat(Util.getInputValue(request, "oprice")));
-    offer.setQuantity(Float.parseFloat(Util.getInputValue(request, "qte")));
-    id_company = Util.getInputValue(request, "company");
+    offer.setPrice(Float.parseFloat(util.getInputValue(request, "oprice")));
+    offer.setQuantity(Float.parseFloat(util.getInputValue(request, "qte")));
+    id_company = util.getInputValue(request, "company");
 
     if (id_company != null) {
       offer.setCompany(companyDao.getById(Integer.parseInt(id_company)));
@@ -47,17 +49,17 @@ public class PostOfferForm {
       throw new RuntimeException();
     }
 
-    id_offerType = Util.getInputValue(request, "oofferType");
+    id_offerType = util.getInputValue(request, "oofferType");
     offer.setOfferType(offerTypeDao.getById(Integer.parseInt(id_offerType)));
 
-    id_negoMode = Util.getInputValue(request, "onegociationMode");
+    id_negoMode = util.getInputValue(request, "onegociationMode");
     offer.setNegociationMode(negociationModeDao.getById(Integer.parseInt(id_negoMode)));
 
-    id_contratType = Util.getInputValue(request, "ocontratType");
+    id_contratType = util.getInputValue(request, "ocontratType");
     offer.setContractType(contractTypeDao.getById(Integer.parseInt(id_contratType)));
 
     offer.setValid(true);
-    offer.setUser(Util.currentUser(request.getSession()));
+    offer.setUser(util.currentUser(request.getSession()));
 
     if (Integer.parseInt(id_negoMode) == 2) {
       auction.setDateFin(formatter.parse(odate));

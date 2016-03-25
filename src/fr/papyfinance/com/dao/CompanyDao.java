@@ -3,6 +3,8 @@ package fr.papyfinance.com.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
@@ -10,6 +12,7 @@ import org.hibernate.exception.ConstraintViolationException;
 import fr.papyfinance.com.beans.Company;
 import fr.papyfinance.com.resources.HibernateUtil;
 
+@Stateless
 public class CompanyDao {
   private SessionFactory sessionFactory;
 

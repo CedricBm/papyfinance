@@ -2,6 +2,8 @@ package fr.papyfinance.com.servlets;
 
 import java.io.IOException;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,23 +21,21 @@ import fr.papyfinance.com.resources.Util;
 public class InvestorBuyServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  @EJB
   private SetTransactionForm setTransactionForm;
+  @EJB
   private TransactionDao transactionDao;
+  @EJB
   private OfferDao of;
-
-  public InvestorBuyServlet() {
-    super();
-    setTransactionForm = new SetTransactionForm();
-    transactionDao = new TransactionDao();
-    of = new OfferDao();
-  }
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     this.getServletContext().getRequestDispatcher("/WEB-INF/investor/allOffers.jsp").forward(request, response);
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    int id = Integer.parseInt(Util.getInputValue(request, "oid"));
+    int id = Integer.parseInt(util.getInputValue(request, "oid"));
     Offer o = of.getById(id);
     o.setValid(false);
 
@@ -43,6 +43,7 @@ public class InvestorBuyServlet extends HttpServlet {
 
     if (transactionDao.create(transaction) && of.update(o)) {
       request.getSession().setAttribute("subscribe", "L'offre a bien été acheté !");
+      util.updateUser(request.getSession());
       response.sendRedirect("/PapyFinance/investor/profile");
     } else {
       request.setAttribute("error", "une erreur");

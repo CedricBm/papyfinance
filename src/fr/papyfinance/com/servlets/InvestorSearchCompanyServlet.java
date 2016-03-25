@@ -3,6 +3,8 @@ package fr.papyfinance.com.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,19 +20,20 @@ import fr.papyfinance.com.resources.Util;
 public class InvestorSearchCompanyServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public InvestorSearchCompanyServlet() {
-    super();
-  }
+  @EJB
+  private CompanyDao cd;
+  @EJB
+  private SectorDao sd;
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     try {
-      CompanyDao cd = new CompanyDao();
-      SectorDao sd = new SectorDao();
-      String name = Util.getInputValue(request, "name");
-      String sector = Util.getInputValue(request, "sector");
-      String r = Util.getInputValue(request, "revenue");
-      String w = Util.getInputValue(request, "workforce");
+      String name = util.getInputValue(request, "name");
+      String sector = util.getInputValue(request, "sector");
+      String r = util.getInputValue(request, "revenue");
+      String w = util.getInputValue(request, "workforce");
       long revenue = 0;
       long workforce = 0;
       if (name == null) {

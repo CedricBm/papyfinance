@@ -3,6 +3,8 @@ package fr.papyfinance.com.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,12 +19,12 @@ import fr.papyfinance.com.resources.Util;
 public class AdminAccreditServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public AdminAccreditServlet() {
-    super();
-  }
+  @EJB
+  private CompanyDao cd;
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    CompanyDao cd = new CompanyDao();
     ArrayList<Company> listeCompanies = cd.getAllCompanyNotAccredit();
     request.setAttribute("listeCompanies", listeCompanies);
 
@@ -30,9 +32,7 @@ public class AdminAccreditServlet extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    CompanyDao cd = new CompanyDao();
-
-    String name = Util.getInputValue(request, "name");
+    String name = util.getInputValue(request, "name");
     if (name != null) {
       Company c = cd.getByName(name);
       if (c != null) {

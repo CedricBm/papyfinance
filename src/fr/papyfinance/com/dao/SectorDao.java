@@ -2,12 +2,15 @@ package fr.papyfinance.com.dao;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.papyfinance.com.beans.Sector;
 import fr.papyfinance.com.resources.HibernateUtil;
 
+@Stateless
 public class SectorDao {
   private SessionFactory sessionFactory;
 

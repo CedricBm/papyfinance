@@ -3,6 +3,7 @@ package fr.papyfinance.com.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,12 +17,10 @@ import fr.papyfinance.com.dao.UserDao;
 public class AdminAllCompanyMemberServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public AdminAllCompanyMemberServlet() {
-    super();
-  }
+  @EJB
+  private UserDao ud;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    UserDao ud = new UserDao();
     ArrayList<User> listeUsers = ud.getAllCompanyMember();
     request.setAttribute("listeUsers", listeUsers);
 

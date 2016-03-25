@@ -3,6 +3,8 @@ package fr.papyfinance.com.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,17 +19,17 @@ import fr.papyfinance.com.resources.Util;
 public class InvestorSearchTransactionServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public InvestorSearchTransactionServlet() {
-    super();
-  }
+  @EJB
+  private TransactionDao td;
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     try {
-      TransactionDao td = new TransactionDao();
-      String buyerName = Util.getInputValue(request, "buyerName");
-      String sellerName = Util.getInputValue(request, "sellerName");
-      String companyName = Util.getInputValue(request, "companyName");
-      String i = Util.getInputValue(request, "idOffer");
+      String buyerName = util.getInputValue(request, "buyerName");
+      String sellerName = util.getInputValue(request, "sellerName");
+      String companyName = util.getInputValue(request, "companyName");
+      String i = util.getInputValue(request, "idOffer");
       int idOffer = -1;
       if (buyerName == null) {
         buyerName = "";

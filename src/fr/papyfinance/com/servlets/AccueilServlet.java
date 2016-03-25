@@ -2,6 +2,7 @@ package fr.papyfinance.com.servlets;
 
 import java.io.IOException;
 
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,12 +15,15 @@ import fr.papyfinance.com.resources.Util;
 public class AccueilServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  @Inject
+  private Util util;
+
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if (Util.currentUser(request.getSession()) == null) {
+    if (util.currentUser(request.getSession()) == null) {
       this.getServletContext().getRequestDispatcher("/WEB-INF/landing/landing.jsp").forward(request, response);
-    } else if (Util.currentUser(request.getSession()).getRole().getName().equals("Administrateur")) {
+    } else if (util.currentUser(request.getSession()).getRole().getName().equals("Administrateur")) {
       this.getServletContext().getRequestDispatcher("/WEB-INF/admin/admin.jsp").forward(request, response);
-    } else if (Util.currentUser(request.getSession()).getRole().getName().equals("Membre société")) {
+    } else if (util.currentUser(request.getSession()).getRole().getName().equals("Membre société")) {
       this.getServletContext().getRequestDispatcher("/WEB-INF/landing/landing-company.jsp").forward(request, response);
     } else {
       this.getServletContext().getRequestDispatcher("/WEB-INF/landing/landing-investor.jsp").forward(request, response);

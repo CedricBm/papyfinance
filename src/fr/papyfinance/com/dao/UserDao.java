@@ -3,12 +3,15 @@ package fr.papyfinance.com.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import fr.papyfinance.com.beans.User;
 import fr.papyfinance.com.resources.HibernateUtil;
 
+@Stateless
 public class UserDao {
   private SessionFactory sessionFactory;
 

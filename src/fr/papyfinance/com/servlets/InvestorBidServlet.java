@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,19 +23,17 @@ import fr.papyfinance.com.resources.Util;
 public class InvestorBidServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
+  @EJB
   private OfferDao of;
+  @EJB
   private SetBidForm setBidForm;
+  @EJB
   private AuctionOfferDao auctionOfferDao;
-
-  public InvestorBidServlet() {
-    super();
-    of = new OfferDao();
-    setBidForm = new SetBidForm();
-    auctionOfferDao = new AuctionOfferDao();
-  }
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    int id = Integer.parseInt(Util.getInputValue(request, "id"));
+    int id = Integer.parseInt(util.getInputValue(request, "id"));
     Offer o = of.getById(id);
 
     List<AuctionOffer> listAuctionOffers = o.getAuction().getAuctionOffers();
@@ -50,6 +50,7 @@ public class InvestorBidServlet extends HttpServlet {
     AuctionOffer auctionOffer = setBidForm.setBid(request);
     if (auctionOfferDao.create(auctionOffer)) {
       request.getSession().setAttribute("subscribe", "Enchére réussie!");
+      util.updateUser(request.getSession());
     } else {
       request.setAttribute("error", "une erreur est survenue...");
     }

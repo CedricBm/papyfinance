@@ -3,6 +3,8 @@ package fr.papyfinance.com.servlets;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.ejb.EJB;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,12 +25,19 @@ import fr.papyfinance.com.resources.Util;
 public class AdminSearchServlet extends HttpServlet {
   private static final long serialVersionUID = 1L;
 
-  public AdminSearchServlet() {
-    super();
-  }
+  @EJB
+  private CompanyDao cd;
+  @EJB
+  private UserDao ud;
+  @EJB
+  private OfferDao od;
+  @EJB
+  private TransactionDao td;
+  @Inject
+  private Util util;
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
+    switch (Integer.parseInt(util.getInputValue(request, "typeSearch"))) {
       case 1:
         this.getServletContext().getRequestDispatcher("/WEB-INF/admin/search-companies.jsp").forward(request, response);
         break;
@@ -50,37 +59,33 @@ public class AdminSearchServlet extends HttpServlet {
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     ArrayList res = new ArrayList();
 
-    switch (Integer.parseInt(Util.getInputValue(request, "typeSearch"))) {
+    switch (Integer.parseInt(util.getInputValue(request, "typeSearch"))) {
       case 1:
-        CompanyDao cd = new CompanyDao();
-        if (Util.getInputValue(request, "search") == null) {
+        if (util.getInputValue(request, "search") == null) {
           res = (ArrayList<Company>) cd.getAll();
         } else {
-          res = (ArrayList<Company>) cd.getAllWithAttribute(Util.getInputValue(request, "search"));
+          res = (ArrayList<Company>) cd.getAllWithAttribute(util.getInputValue(request, "search"));
         }
         break;
       case 2:
-        UserDao ud = new UserDao();
-        if (Util.getInputValue(request, "search") == null) {
+        if (util.getInputValue(request, "search") == null) {
           res = (ArrayList<User>) ud.getAll();
         } else {
-          res = (ArrayList<User>) ud.getAllWithAttribute(Util.getInputValue(request, "search"));
+          res = (ArrayList<User>) ud.getAllWithAttribute(util.getInputValue(request, "search"));
         }
         break;
       case 3:
-        OfferDao od = new OfferDao();
-        if (Util.getInputValue(request, "search") == null) {
+        if (util.getInputValue(request, "search") == null) {
           res = (ArrayList<Offer>) od.getAll();
         } else {
-          res = (ArrayList<Offer>) od.getAllWithAttribute(Util.getInputValue(request, "search"));
+          res = (ArrayList<Offer>) od.getAllWithAttribute(util.getInputValue(request, "search"));
         }
         break;
       case 4:
-        TransactionDao td = new TransactionDao();
-        if (Util.getInputValue(request, "search") == null) {
+        if (util.getInputValue(request, "search") == null) {
           res = (ArrayList<Transaction>) td.getAll();
         } else {
-          res = (ArrayList<Transaction>) td.getAllWithAttribute(Util.getInputValue(request, "search"));
+          res = (ArrayList<Transaction>) td.getAllWithAttribute(util.getInputValue(request, "search"));
         }
         break;
       default:
