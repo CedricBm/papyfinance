@@ -1,14 +1,14 @@
 # PapyFinance
-Projet Java EE de CÈdric Beaumont, IÒaki Calzada, Ismail Mallasse et Yassine Ramrami.
+Projet Java EE de C√©dric Beaumont, I√±aki Calzada, Ismail Mallasse et Yassine Ramrami.
 
 ## Installation
 - Installer [Eclipse](https://eclipse.org/downloads/)
 - Installer [JBoss - Wildfly](http://tools.jboss.org/downloads/jbosstools/mars/4.3.0.Final.html)
 - Installer [Maven](http://www.eclipse.org/m2e/)
-- Installer [xampp](https://www.apachefriends.org/fr/download.html) (pour la base de donnÈes MySQL)
-- Installer [h2](http://www.h2database.com/html/download.html) (pour la base de donnÈes de tests)
-- CrÈation du projet
-  - CrÈer un Dynamic Web Project
+- Installer [xampp](https://www.apachefriends.org/fr/download.html) (pour la base de donn√©es MySQL)
+- Installer [h2](http://www.h2database.com/html/download.html) (pour la base de donn√©es de tests)
+- Cr√©ation du projet
+  - Cr√©er un Dynamic Web Project
   - Utiliser le runtime Wildfly 8.x
   - Download and install WildFly 8.2.1 Final
   - Finish
@@ -23,8 +23,27 @@ Projet Java EE de CÈdric Beaumont, IÒaki Calzada, Ismail Mallasse et Yassine Ram
     - git fetch --all
     - git reset --hard origin/master
 - Configuration du serveur WildFly
-  - Dans l'onglet "Servers", crÈer un nouveau serveur
+  - Dans l'onglet "Servers", cr√©er un nouveau serveur
   - Choisir "WildFly 8.x"
   - Next > Next
   - Ajouter le projet PapyFinance
   - Finish
+
+## Ex√©cution (avec le fichier war)
+- Placer le fichier war dans le dossier /standalone/deployments/ de Wildfly
+- La configuration de MySQL est la suivante:
+  - adresse: localhost:3306
+  - nom de la base: papyfinance
+  - username: root
+  - password:
+- Lancer MySQL
+- Cr√©er la base de donn√©es "papyfinance" (juste la base, Hibernate se chargera de cr√©er les tables)
+- Lancer le serveur Wildfly
+- Se rendre sur l'url http://localhost:8080/PapyFinance/seed
+- Seeder en cliquant sur la bouton
+- Naviguer
+- Si jamais vous ne pouviez pas utiliser l'utilisateur MySQL "root" sans mot de passe, vous pouvez changer l'utilisateur dans le fichier PapyFinance/src/hibernate.cfg.xml en modifiant ces deux lignes:
+```xml
+<property name="hibernate.connection.username">root</property>
+<property name="hibernate.connection.password"></property>
+```
